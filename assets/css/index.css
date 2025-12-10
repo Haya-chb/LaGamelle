@@ -1,0 +1,79 @@
+section {
+    padding: 10px;
+    min-height: 80vh;
+}
+
+h1 {
+    font-size: 16rem;
+    margin-top: 50px;
+}
+
+h3{
+    font-size: 3rem;
+}
+
+.hero p {
+    font-family: 'Kelson Sans';
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.hero #search {
+    background-color: var(--rose);
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    padding: 10px;
+    width: 500px;
+    margin-top: 50px;
+    font-family: 'Louis George Cafe';
+}
+
+.hero #search::placeholder {
+    color: #000;
+    font-style: italic;
+    font-size: 1rem;
+}
+
+img {
+    max-width: 800px;
+    display: block;
+    margin-left: auto;
+}
+
+.recents {
+    display: none;
+}
+
+.cards {
+    margin: auto;
+    width: fit-content;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card{
+    background-color: var(--jaune);
+    width: 450px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.card *{
+    margin-bottom: 20px ;
+}
+
+.card a{
+    background-color: var(--rouge);
+    padding: 5px 20px;
+    border-radius: 20px;
+    color: #fff;
+    transition: all 0.3s ease-in;
+}
+
+.card a:hover{
+    text-decoration: underline;
+    transform: translateY(5px);
+}

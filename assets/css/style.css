@@ -1,0 +1,133 @@
+@font-face {
+    font-family: 'Kelson Sans';
+    src: url('../polices/KelsonSans-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kelson Sans';
+    src: url('../polices/KelsonSans-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Louis George Cafe';
+    src: url('../polices/LouisGeorgeCafe-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Louis George Cafe';
+    src: url('../polices/LouisGeorgeCafe.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nobulina';
+    src: url('../polices/NobulinaDemo-Inktrap.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --beige: #FFE8CE;
+    --rouge: #AD0000;
+    --jaune: #FFBF35;
+    --rose: #F791C3;
+    --vert: #006732;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--beige);
+    font-family: 'Louis George Cafe', sans-serif;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    font-family: 'Kelson Sans';
+    font-weight: bold;
+    font-size: 1.05rem;
+    transition: all 0.3s ease-in;
+}
+
+.active{
+    border-bottom: #000 2px solid;   
+}
+
+.navbar a:hover {
+    border-bottom: #000 2px solid;
+    padding: 0 10px;
+}
+
+.connexion a {
+    background-color: var(--jaune);
+    padding: 0 10px;
+    border-radius: 20px;
+}
+
+.connexion a:nth-child(2){
+    background-color: var(--rouge);
+    color: #fff;
+}
+
+.connexion a:hover{
+    transform: translateY(5px);
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Nobulina', sans-serif;
+    font-weight: normal;
+}
+
+h1{
+    font-size: 9rem;
+}
+
+h2{
+    font-size: 7rem;
+}
