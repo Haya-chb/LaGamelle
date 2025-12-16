@@ -41,10 +41,6 @@ img {
     margin-left: auto;
 }
 
-.recents {
-    display: none;
-}
-
 .cards {
     margin: auto;
     width: fit-content;

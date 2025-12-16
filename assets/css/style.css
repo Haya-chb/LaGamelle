@@ -125,9 +125,20 @@ h3 {
 }
 
 h1{
-    font-size: 9rem;
+    font-size: 11rem;
 }
 
 h2{
     font-size: 7rem;
+}
+
+.btn-favoris {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-favoris.active {
+    color: red;
 }

@@ -1,3 +1,9 @@
+<?php 
+    require('connexion.php');
+    $stmt = $db->prepare("SELECT * FROM recette");
+    $stmt->execute();
+    $recette = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -14,7 +20,7 @@
         <nav>
             <ul class="navbar">
                 <li><a href="#">LG</a></li>
-                <li><a href="">Nos Recettes</a></li>
+                <li><a href="vues/recette.php">Nos Recettes</a></li>
                 <li><a href="">Aliments toxiques</a></li>
                 <li><a href="">Trouver un vétérinaire</a></li>
                 <li><a href="">Proposer un recette</a></li>
@@ -43,6 +49,12 @@
             <p>Ne ratez rien des nouveautés pour vos compagnons ! Chaque semaine, de nouvelles recettes saines et
                 gourmandes arrivent pour ravir chats et chiens. Inspirez-vous et faites plaisir à votre chouchou avec
                 des repas faits maison faciles à préparer.</p>
+
+            <?php
+                foreach($recette as $r){
+                    echo "<h3>".$r['nom_recette']."</h3>";
+                }
+            ?>
         </section>
 
         <section class="nous">
@@ -55,18 +67,18 @@
                 <div class="card">
                     <h3>Snacks</h3>
                     <p>Des snacks délicieux, parfaits pour leur offrir un petit plaisir sain à tout moment.</p>
-                    <a href="">Voir les snacks</a>
+                    <a href="vues/recette.php?type=snack">Voir les snacks</a>
                 </div>
                 <div class="card">
                     <h3>Plats</h3>
                     <p>Des plats variés salés et savoureux, adaptés aux goûts et besoins des animaux.
                     </p>
-                    <a href="">Voir les plats</a>
+                    <a href="vues/recette.php?type=plat">Voir les plats</a>
                 </div>
                 <div class="card">
                     <h3>Desserts</h3>
                     <p>Des desserts gourmands et variés, parfaits pour satisfaire toutes les envies sucrées.</p>
-                    <a href="">Voir les desserts</a>
+                    <a href="vues/recette.php?type=dessert">Voir les desserts</a>
                 </div>
             </div>
 
