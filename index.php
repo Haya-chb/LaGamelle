@@ -1,9 +1,3 @@
-<?php 
-    require('connexion.php');
-    $stmt = $db->prepare("SELECT * FROM recette");
-    $stmt->execute();
-    $recette = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -23,7 +17,7 @@
                 <li><a href="vues/recette.php">Nos Recettes</a></li>
                 <li><a href="">Aliments toxiques</a></li>
                 <li><a href="">Trouver un vétérinaire</a></li>
-                <li><a href="">Proposer un recette</a></li>
+                <li><a href="">Proposer une recette</a></li>
             </ul>
             <div class="connexion">
                 <a href="">Inscription</a>
@@ -49,12 +43,6 @@
             <p>Ne ratez rien des nouveautés pour vos compagnons ! Chaque semaine, de nouvelles recettes saines et
                 gourmandes arrivent pour ravir chats et chiens. Inspirez-vous et faites plaisir à votre chouchou avec
                 des repas faits maison faciles à préparer.</p>
-
-            <?php
-                foreach($recette as $r){
-                    echo "<h3>".$r['nom_recette']."</h3>";
-                }
-            ?>
         </section>
 
         <section class="nous">
@@ -65,17 +53,20 @@
 
             <div class="cards">
                 <div class="card">
+                    <div class="img"></div>
                     <h3>Snacks</h3>
                     <p>Des snacks délicieux, parfaits pour leur offrir un petit plaisir sain à tout moment.</p>
                     <a href="vues/recette.php?type=snack">Voir les snacks</a>
                 </div>
                 <div class="card">
+                    <div class="img"></div>
                     <h3>Plats</h3>
                     <p>Des plats variés salés et savoureux, adaptés aux goûts et besoins des animaux.
                     </p>
                     <a href="vues/recette.php?type=plat">Voir les plats</a>
                 </div>
                 <div class="card">
+                    <div class="img"></div>
                     <h3>Desserts</h3>
                     <p>Des desserts gourmands et variés, parfaits pour satisfaire toutes les envies sucrées.</p>
                     <a href="vues/recette.php?type=dessert">Voir les desserts</a>
@@ -83,6 +74,69 @@
             </div>
 
             <div class="jsp"></div>
+        </section>
+
+        <section class="croquette">
+            <h2>De nouvelles recettes saines pour remplacer les croquettes.</h2>
+            <div class="croquette-container">
+                <div class="gauche">
+                    <div>
+                        <h3>Des aliments sains</h3>
+                        <p>De nouvelles recettes saines pour remplacer les croquettes.</p>
+                    </div>
+                    <div>
+                        <h3>Des recettes personnalisées</h3>
+                        <p>Des recettes proposées par rapport à la race de votre animal, ses préférences et ses
+                            problèmes de santés éventuels</p>
+                    </div>
+                </div>
+                <div class="img"></div>
+                <div class="droite">
+                    <div>
+                        <h3>Tout pour sa santé</h3>
+                        <p>Des recettes qui respectent leurs régimes alimentaitaires ou leurs problèmes de santé.</p>
+                    </div>
+                    <div>
+                        <h3>Ajouter vos propres recettes</h3>
+                        <p>Proposez des recettes qui seront validées ou refusées par nos modérateurs, selon leur
+                            conformité avec nos valeurs éthiques.</p>
+                        <a href="">Ajouter une recette</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="aliment">
+            <h2>Des aliments dangeureux pour vos animaux !</h2>
+            <div class="timeline">
+                <div class="timeline-step">
+                    <div class="timeline-icon">🥗</div>
+                    <p>Nos recettes sont conçues avec des ingrédients sûrs et comestibles pour les humains. Vous pouvez expérimenter en cuisine et préparer des plats savoureux pour vous.</p>
+                    <h3>Des ingrédients sûrs pour votre animal</h3>
+                    <div class="point"></div>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="timeline-icon">⚠️</div>
+                    <p>Certaines choses bonnes pour vous peuvent être dangereuses pour votre compagnon. Chocolat, oignon ou raisin, par exemple, sont à éviter.</p>
+                    <h3>Vérifiez pour votre animal</h3>
+                    <div class="point"></div>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="timeline-icon">📖</div>
+                    <p>La Gamelle vous aide à identifier facilement les aliments à risque et à adapter vos recettes pour qu’elles restent délicieuses et sûres.</p>
+                    <h3>Consultez notre guide</h3>
+                    <div class="point"></div>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="timeline-icon">⏱️</div>
+                    <p>Avant de cuisiner pour votre compagnon, consultez notre liste des aliments dangereux. Vous assurerez sa sécurité tout en préparant de bons plats.</p>
+                    <h3>Agissez vite !</h3>
+                    <div class="point"></div>
+                </div>
+            </div>
         </section>
     </main>
 </body>

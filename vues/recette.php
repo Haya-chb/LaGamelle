@@ -11,6 +11,7 @@ include_once('../controleurs/user.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nos Recettes | La Gamelle</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/recette.css">
 </head>
 
 <body>
@@ -21,7 +22,7 @@ include_once('../controleurs/user.php');
                 <li><a href="recette.php" class="active">Nos Recettes</a></li>
                 <li><a href="">Aliments toxiques</a></li>
                 <li><a href="">Trouver un vétérinaire</a></li>
-                <li><a href="">Proposer un recette</a></li>
+                <li><a href="">Proposer une recette</a></li>
             </ul>
             <div class="connexion">
                 <a href="">Inscription</a>
@@ -77,9 +78,9 @@ include_once('../controleurs/user.php');
             <?php
             if (!empty($recettes)) {
                 foreach ($recettes as $recette) {
-                    echo "<div><img src='' alt=''>
+                    echo "<div class='recette'><div class='img'></div>
                 <h2>{$recette['nom_recette']}</h2>
-                <span><img src='../assets/images/clock.png' alt=''> {$recette['temps']} min</span>
+                <span class='temps'><img src='../assets/images/clock.png' alt=''> {$recette['temps']} min</span>
                 <div class='badge'>";
 
                     if ($recette['animal'] == 'chien') {
@@ -89,11 +90,10 @@ include_once('../controleurs/user.php');
                         echo "<img src='../assets/images/cat.png' alt=''><p>Pour {$recette['animal']}</p>
                 </div>";
                     }
-                    echo '<button class="btn-favoris" data-recette="' . $recette["id_recette"] . '">Ajouter</button>
-</div>';
+                    echo '<button class="btn-favoris" data-recette="' . $recette["id_recette"] . '"><img src="../assets/images/favorite-off.svg" alt=""> <p class="sr-only">Ajouter aux favoris</p></button></div>';
                 }
             } else {
-                echo '<p> Aucun résultat </p>';
+                echo '<p class="rien"> Aucun résultat </p>';
             }
             ?>
         </section>
@@ -107,7 +107,7 @@ include_once('../controleurs/user.php');
             const recetteId = parseInt(btn.dataset.recette);
             if (favoris.includes(recetteId)) {
                 btn.classList.add('active');
-                btn.textContent = 'Supprimer';
+                btn.innerHTML = '<img src="../assets/images/favorite-on.svg" alt="">';
             }
         });
     </script>

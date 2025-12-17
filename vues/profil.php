@@ -20,7 +20,7 @@ require '../controleurs/animal.php';
                 <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="">Aliments toxiques</a></li>
                 <li><a href="">Trouver un vétérinaire</a></li>
-                <li><a href="">Proposer un recette</a></li>
+                <li><a href="">Proposer une recette</a></li>
             </ul>
             <div class="compte">
                 <a href="">Profil</a>
@@ -103,10 +103,11 @@ require '../controleurs/animal.php';
 
             <div class="favoris">
                 <?php
+            if (!empty($favoris)) {
                 foreach ($favoris as $fav) {
-                    echo "<div class='favoris-card'><img src='' alt=''>
+                    echo "<div class='recette'><div class='img'></div>
                 <h2>{$fav['nom_recette']}</h2>
-                <span><img src='../assets/images/clock.png' alt=''> {$fav['temps']} min</span>
+                <span class='temps'><img src='../assets/images/clock.png' alt=''> {$fav['temps']} min</span>
                 <div class='badge'>";
 
                     if ($fav['animal'] == 'chien') {
@@ -116,11 +117,14 @@ require '../controleurs/animal.php';
                         echo "<img src='../assets/images/cat.png' alt=''><p>Pour {$fav['animal']}</p>
                 </div>";
                     }
-                    echo '<button class="btn-supp" data-recette="' . $fav["id_recette"] . '"> Supprimer </button>
-                </div>';
+                    echo '<button class="btn-supp" data-recette="' . $fav["id_recette"] . '"><img src="../assets/images/favorite-on.svg" alt=""> <p class="sr-only">Ajouter aux favoris</p></button></div>';
                 }
+            } else {
+                echo "<p class='rien'> Aucun favoris pour l'instant. </p>";
+            }
                 ?>
             </div>
+           </section>
         </section>
     </main>
 

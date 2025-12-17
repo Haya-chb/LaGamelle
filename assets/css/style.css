@@ -44,6 +44,7 @@
     --jaune: #FFBF35;
     --rose: #F791C3;
     --vert: #006732;
+    --bleu: #116FD1;
 }
 
 * {
@@ -104,13 +105,12 @@ nav a {
 
 .connexion a {
     background-color: var(--jaune);
-    padding: 0 10px;
+    padding: 5px 20px;
     border-radius: 20px;
 }
 
 .connexion a:nth-child(2){
-    background-color: var(--rouge);
-    color: #fff;
+    background-color: #E63C23;
 }
 
 .connexion a:hover{
@@ -132,13 +132,99 @@ h2{
     font-size: 7rem;
 }
 
-.btn-favoris {
-    font-size: 24px;
+.recettes, .favoris {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    justify-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.recette {
+    background-color: var(--bleu);
+    padding: 20px;
+    width: 340px;
+    height: 450px;
+    border-radius: 10px;
+    background-image:
+        radial-gradient(circle at center, var(--beige) 10px, transparent 10px),
+        linear-gradient(#FFBADD 3px, transparent 3px);
+    background-size:
+        50px 50px,
+        90% 40px;
+    background-repeat:
+        repeat-x,
+        repeat-y;
+    background-position:
+        center top,
+        center top;
+    color: #fff;
+    position: relative;
+}
+
+.recette h2 {
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+.temps,
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.temps {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.recette .img {
+    height: 250px;
+    width: 250px;
+    border-radius: 20px;
+    background-color: var(--jaune);
+    position: relative;
+    left: 95px;
+    bottom: 10px;
+    transform: rotate(0.06turn);
+}
+
+.badge {
+    background-color: var(--jaune);
+    width: fit-content;
+    padding: 3px 10px 3px 3px;
+    border-radius: 20px;
+    color: #000;
+    font-family: 'Kelson Sans', sans-serif;
+    position: absolute;
+    left: 180px;
+    transform: rotate(-0.04turn);
+}
+
+.badge img,
+.btn-favoris img, .btn-supp img{
+    background-color: var(--rouge);
+    border-radius: 50%;
+    padding: 3px;
+}
+
+.btn-favoris img, .btn-supp img {
+    width: 40px;
+    background-color: #fff;
+}
+
+.btn-favoris, .btn-supp{
+    position: absolute;
+    top: 10px;
+    right: 10px;
     background: none;
     border: none;
     cursor: pointer;
 }
 
-.btn-favoris.active {
-    color: red;
+.rien{
+    font-size: 1.5rem;
+    font-weight: bold;
 }

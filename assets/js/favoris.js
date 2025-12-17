@@ -22,12 +22,12 @@ btnFavoris.forEach(btn => {
             .then(result => {
                 if (result.status === 'added') {
                     btn.classList.add('active');
-                    btn.textContent = 'Supprimer';
+                    btn.innerHTML = '<img src="../assets/images/favorite-on.svg" alt="">';
                 }
 
                 if (result.status === 'removed') {
                     btn.classList.remove('active');
-                    btn.textContent = 'Ajouter';
+                    btn.innerHTML = '<img src="../assets/images/favorite-off.svg" alt="">';
                 }
             })
             .catch(error => console.log('Erreur:', error));

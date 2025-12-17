@@ -1,0 +1,36 @@
+main{
+    padding: 10px;
+}
+
+.filtres {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+select {
+    background-color: var(--rose);
+    border: none;
+    font-family: 'Kelson Sans', sans-serif;
+    font-size: 1.1rem;
+    padding: 3px 20px;
+    border-radius: 50px;
+}
+
+input[type="submit"]{
+    font-size: 1.1rem;
+    font-family: 'Kelson Sans', sans-serif;
+    padding: 3px 20px;
+    border: none;
+    background-color: var(--vert);
+    color: #fff;
+    border-radius: 20px;
+}
+
+.btn-reset {
+    font-family: 'Kelson Sans', sans-serif;
+    font-size: 1.1rem;
+    padding: 5px 20px;
+    background-color: #E63C23;
+    border-radius: 20px;
+}
