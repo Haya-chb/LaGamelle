@@ -21,7 +21,7 @@ include ("../controleurs/c-connexion.php");
                 <li><a href="vues/recette.php">Nos Recettes</a></li>
                 <li><a href="">Aliments toxiques</a></li>
                 <li><a href="">Trouver un vétérinaire</a></li>
-                <li><a href="">Proposer un recette</a></li>
+                <li><a href="">Proposer une recette</a></li>
             </ul>
         </nav>
     </header>
