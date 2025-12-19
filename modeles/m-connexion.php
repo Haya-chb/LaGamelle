@@ -2,7 +2,7 @@
 
 include("../connexion.php");
 
-function connecter ($pseudo, $mdp) {
+function connecter ($db, $pseudo, $mdp) {
 
         $stmt = $db->prepare('SELECT id_utilisateur, pseudo, password FROM utilisateur WHERE pseudo = :pseudo');
         $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
