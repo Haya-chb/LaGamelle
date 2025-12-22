@@ -41,10 +41,16 @@
 :root {
     --beige: #FFE8CE;
     --rouge: #AD0000;
+    /* bon contraste sur le beige*/
+    --orange: #E63C23;
+    /* bon contraste sur le beige*/
     --jaune: #FFBF35;
     --rose: #F791C3;
     --vert: #006732;
+    /* bon contraste sur le beige*/
     --bleu: #116FD1;
+    /* bon contraste sur le beige*/
+    --noir: #010101;
 }
 
 * {
@@ -70,53 +76,6 @@ body {
     border-width: 0;
 }
 
-a{
-    text-decoration: none;
-    color: #000;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-nav a {
-    font-family: 'Kelson Sans';
-    font-weight: bold;
-    font-size: 1.05rem;
-    transition: all 0.3s ease-in;
-}
-
-.active{
-    border-bottom: #000 2px solid;   
-}
-
-.navbar a:hover {
-    border-bottom: #000 2px solid;
-    padding: 0 10px;
-}
-
-.connexion a {
-    background-color: var(--jaune);
-    padding: 5px 20px;
-    border-radius: 20px;
-}
-
-.connexion a:nth-child(2){
-    background-color: #E63C23;
-}
-
-.connexion a:hover{
-    transform: translateY(5px);
-}
-
 h1,
 h2,
 h3 {
@@ -124,19 +83,92 @@ h3 {
     font-weight: normal;
 }
 
-h1{
-    font-size: 11rem;
+a {
+    text-decoration: none;
+    color: #000;
 }
 
-h2{
-    font-size: 7rem;
+/* mobile-first */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 3px;
 }
 
-.recettes, .favoris {
+nav {
+    position: fixed;
+    z-index: 100;
+    inset: 0;
+    background-color: var(--jaune);
+
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+
+    transform: translateY(-100%);
+    opacity: 0;
+
+    transition:
+        transform 1s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease;
+
+    pointer-events: none;
+}
+
+nav.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+nav a {
+    color: #000;
+    position: relative;
+    font-family: 'Kelson Sans', sans-serif;
+    font-weight: bold;
+}
+
+.navbar,
+.connexion {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    list-style: none;
+}
+
+.burger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 102;
+}
+
+.burger img {
+    width: 40px;
+}
+
+/* titre */
+
+h1 {
+    font-size: 6rem;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+/* recettes et favoris */
+.recettes,
+.favoris {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     justify-items: center;
-    gap: 15px;
+    gap: 30px;
     margin-top: 20px;
     padding: 10px;
 }
@@ -144,8 +176,8 @@ h2{
 .recette {
     background-color: var(--bleu);
     padding: 20px;
-    width: 340px;
-    height: 450px;
+    width: 260px;
+    height: 350px;
     border-radius: 10px;
     background-image:
         radial-gradient(circle at center, var(--beige) 10px, transparent 10px),
@@ -164,8 +196,9 @@ h2{
 }
 
 .recette h2 {
-    font-size: 2rem;
-    margin-top: 20px;
+    font-size: 1.5rem;
+    font-family: 'Kelson Sans', sans-serif;
+
 }
 
 .temps,
@@ -181,12 +214,12 @@ h2{
 }
 
 .recette .img {
-    height: 250px;
-    width: 250px;
-    border-radius: 20px;
+    height: 190px;
+    width: 190px;
+    border-radius: 10px;
     background-color: var(--jaune);
     position: relative;
-    left: 95px;
+    left: 50px;
     bottom: 10px;
     transform: rotate(0.06turn);
 }
@@ -199,23 +232,27 @@ h2{
     color: #000;
     font-family: 'Kelson Sans', sans-serif;
     position: absolute;
-    left: 180px;
+    bottom: 40px;
+    left: 120px;
     transform: rotate(-0.04turn);
 }
 
 .badge img,
-.btn-favoris img, .btn-supp img{
+.btn-favoris img,
+.btn-supp img {
     background-color: var(--rouge);
     border-radius: 50%;
     padding: 3px;
 }
 
-.btn-favoris img, .btn-supp img {
+.btn-favoris img,
+.btn-supp img {
     width: 40px;
     background-color: #fff;
 }
 
-.btn-favoris, .btn-supp{
+.btn-favoris,
+.btn-supp {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -224,7 +261,114 @@ h2{
     cursor: pointer;
 }
 
-.rien{
+.rien {
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+.pin {
+    position: absolute;
+    top: -15px;
+    right: 80px;
+    width: 35px;
+}
+
+@media (min-width: 850px) {
+    header {
+        flex-direction: row;
+        justify-content: start;
+        gap: 10px;
+    }
+
+    .burger {
+        display: none;
+    }
+
+    nav {
+        position: static;
+        background-color: transparent;
+
+        font-size: 1rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .navbar,
+    .connexion {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    nav a {
+        opacity: 1;
+        transform: none;
+        position: relative;
+    }
+
+    nav a.active {
+        border-bottom: #000 2px solid;
+    }
+
+    .connexion a {
+        background-color: var(--rose);
+        padding: 5px 15px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .connexion a:nth-child(2) {
+        background-color: var(--orange);
+    }
+
+    .connexion a:hover {
+        transform: translateY(5px);
+    }
+}
+
+@media (min-width: 950px) {
+    nav {
+        font-size: 1.05rem;
+    }
+}
+
+@media (min-width: 1400px) {
+
+    .recettes,
+    .favoris {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        justify-items: center;
+    }
+
+    .recette {
+        width: 340px;
+        height: 450px;
+    }
+
+    .recette h2 {
+        font-size: 2rem;
+        margin-top: 5px;
+    }
+
+    .recette .img {
+        height: 220px;
+        width: 220px;
+        left: 90px;
+    }
+
+    .badge {
+        left: 180px;
+    }
+
+    .pin {
+        right: 100px;
+        width: 50px;
+        top: -25px;
+    }
 }

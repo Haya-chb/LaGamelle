@@ -1,10 +1,17 @@
 <?php
-require('../connexion.php');
+require_once __DIR__ . '/../connexion.php';
 
 //Récupération de toute les recettes
 function getRecettes($db)
 {
     $stmt = $db->prepare("SELECT * FROM recette");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+//Récupération des recettes récentes
+function newRecette($db){
+    $stmt = $db->prepare("SELECT * FROM recette ORDER BY id_recette DESC LIMIT 4");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

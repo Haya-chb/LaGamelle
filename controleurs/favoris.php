@@ -1,6 +1,5 @@
 <?php
-require_once '../connexion.php';
-require_once '../modeles/favoris.php';
+require_once  __DIR__ . '/../modeles/favoris.php';
 
 // TEMPORAIRE
 $id_user = 1;

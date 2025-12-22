@@ -1,5 +1,8 @@
 <?php
-require_once('../modeles/recette.php');
+require_once __DIR__ . '/../modeles/recette.php';
+
+//Les recettes récentes
+$newRecettes = newRecette($db);
 
 //Récupération des filtres
 $animal = $_GET["animal"] ?? null;

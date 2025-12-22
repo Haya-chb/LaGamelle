@@ -1,3 +1,7 @@
+<?php
+include_once('controleurs/recette.php');
+include_once('controleurs/user.php');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -11,15 +15,19 @@
 
 <body>
     <header>
-        <nav>
+        <a href="#" class="logo">LG</a>
+        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+            <img src="assets/images/burger-menu.svg" alt="">
+        </button>
+
+        <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
-                <li><a href="#">LG</a></li>
                 <li><a href="vues/recette.php">Nos Recettes</a></li>
                 <li><a href="">Aliments toxiques</a></li>
                 <li><a href="">Trouver un vétérinaire</a></li>
                 <li><a href="">Proposer une recette</a></li>
             </ul>
-            <div class="connexion">
+            <div class="connexion pc-only">
                 <a href="">Inscription</a>
                 <a href="">Connexion</a>
             </div>
@@ -29,13 +37,6 @@
         <section class="hero">
             <h1>La Gamelle</h1>
             <p>Parce que vos animaux sont adorables, ils méritent des plats de qualité.</p>
-
-            <form action="" method="GET">
-                <label for="search" class="sr-only">Recherche</label>
-                <input type="search" name="recherche" id="search" placeholder="Rechercher une recette...">
-            </form>
-
-            <img src="/assets/images/accueil.webp" alt="">
         </section>
 
         <section class="recents">
@@ -43,6 +44,7 @@
             <p>Ne ratez rien des nouveautés pour vos compagnons ! Chaque semaine, de nouvelles recettes saines et
                 gourmandes arrivent pour ravir chats et chiens. Inspirez-vous et faites plaisir à votre chouchou avec
                 des repas faits maison faciles à préparer.</p>
+            <section class="new"></section>
         </section>
 
         <section class="nous">
@@ -110,35 +112,45 @@
             <h2>Des aliments dangeureux pour vos animaux !</h2>
             <div class="timeline">
                 <div class="timeline-step">
-                    <div class="timeline-icon">🥗</div>
-                    <p>Nos recettes sont conçues avec des ingrédients sûrs et comestibles pour les humains. Vous pouvez expérimenter en cuisine et préparer des plats savoureux pour vous.</p>
-                    <h3>Des ingrédients sûrs pour votre animal</h3>
+                    <div class="timeline-icon"></div>
+                    <p>De nombreux ingrédients que nous utilisons chaque jour en cuisine sont parfaitement comestibles
+                        pour les humains. Fruits, légumes, produits laitiers ou féculents : ils font partie de nos
+                        habitudes alimentaires.</p>
+                    <h3>Des ingrédients du quotidien</h3>
                     <div class="point"></div>
                 </div>
 
                 <div class="timeline-step">
                     <div class="timeline-icon">⚠️</div>
-                    <p>Certaines choses bonnes pour vous peuvent être dangereuses pour votre compagnon. Chocolat, oignon ou raisin, par exemple, sont à éviter.</p>
-                    <h3>Vérifiez pour votre animal</h3>
+                    <p>Cependant, chez les chiens et les chats, certains aliments peuvent provoquer de graves troubles :
+                        intoxications, problèmes digestifs, atteintes neurologiques ou rénales. Le chocolat, l’oignon,
+                        l’ail ou encore le raisin en sont des exemples courants..</p>
+                    <h3>Des risques méconnus</h3>
                     <div class="point"></div>
                 </div>
 
                 <div class="timeline-step">
                     <div class="timeline-icon">📖</div>
-                    <p>La Gamelle vous aide à identifier facilement les aliments à risque et à adapter vos recettes pour qu’elles restent délicieuses et sûres.</p>
-                    <h3>Consultez notre guide</h3>
+                    <p>La Gamelle met à votre disposition une liste claire des aliments dangereux, adaptée à chaque
+                        espèce. Vous savez immédiatement quels ingrédients éviter et comment ajuster vos recettes en
+                        toute sécurité.</p>
+                    <h3>Un guide pour éviter les erreurs</h3>
                     <div class="point"></div>
                 </div>
 
                 <div class="timeline-step">
                     <div class="timeline-icon">⏱️</div>
-                    <p>Avant de cuisiner pour votre compagnon, consultez notre liste des aliments dangereux. Vous assurerez sa sécurité tout en préparant de bons plats.</p>
-                    <h3>Agissez vite !</h3>
+                    <p>Avant de préparer un repas maison pour votre animal, prenez quelques secondes pour vérifier les
+                        ingrédients. Un simple réflexe peut éviter des risques inutiles et garantir son bien-être au
+                        quotidien.</p>
+                    <h3>Protégez votre compagnon</h3>
                     <div class="point"></div>
                 </div>
             </div>
         </section>
     </main>
+
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

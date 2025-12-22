@@ -1,36 +1,80 @@
-main{
+main {
     padding: 10px;
 }
 
 .filtres {
+    position: fixed;
+    inset: 0;
+    background: var(--bleu);
+    padding: 2rem 1.5rem;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: start;
+    gap: 1.2rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    z-index: 100;
+}
+
+.filtres.active {
+    transform: translateY(50%);
+}
+
+.btn-filtres {
+    margin-top: 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--rose);
+    padding: 5px 20px;
+    font-size: 1.1rem;
+    font-family: 'Kelson Sans', sans-serif;
+    cursor: pointer;
 }
 
 select {
     background-color: var(--rose);
     border: none;
     font-family: 'Kelson Sans', sans-serif;
-    font-size: 1.1rem;
     padding: 3px 20px;
     border-radius: 50px;
 }
 
-input[type="submit"]{
-    font-size: 1.1rem;
+.btn-reset {
     font-family: 'Kelson Sans', sans-serif;
-    padding: 3px 20px;
-    border: none;
-    background-color: var(--vert);
-    color: #fff;
+    padding: 5px 20px;
+    background-color: var(--orange);
     border-radius: 20px;
 }
 
-.btn-reset {
-    font-family: 'Kelson Sans', sans-serif;
-    font-size: 1.1rem;
-    padding: 5px 20px;
-    background-color: #E63C23;
-    border-radius: 20px;
+@media screen and (min-width: 768px) {
+    h1 {
+        font-size: 11rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    h1 {
+        font-size: 11rem;
+    }
+}
+
+@media (min-width: 820px) {
+    .btn-filtres {
+        display: none;
+    }
+
+    .filtres {
+        position: static;
+        transform: none;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background: transparent;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    select{
+        font-size: 1.1rem;
+    }
 }

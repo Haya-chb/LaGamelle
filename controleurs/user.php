@@ -1,6 +1,6 @@
 <?php
-require_once('../modeles/users.php');
-require_once('../modeles/favoris.php');
+require_once __DIR__ . '/../modeles/users.php';
+require_once __DIR__ .'/../modeles/favoris.php';
 
 $userId = 1;
 $user = getUserById($db, $userId);

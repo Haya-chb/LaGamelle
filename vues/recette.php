@@ -16,15 +16,19 @@ include_once('../controleurs/user.php');
 
 <body>
     <header>
-        <nav>
+        <a href="../index.php" class="logo">LG</a>
+        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+            <img src="../assets/images/burger-menu.svg" alt="">
+        </button>
+
+        <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
-                <li><a href="../index.php">LG</a></li>
                 <li><a href="recette.php" class="active">Nos Recettes</a></li>
                 <li><a href="">Aliments toxiques</a></li>
                 <li><a href="">Trouver un vétérinaire</a></li>
                 <li><a href="">Proposer une recette</a></li>
             </ul>
-            <div class="connexion">
+            <div class="connexion pc-only">
                 <a href="">Inscription</a>
                 <a href="">Connexion</a>
             </div>
@@ -36,6 +40,10 @@ include_once('../controleurs/user.php');
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, ab fugiat minima dolores pariatur
                 repellat?</p>
 
+            <button class="btn-filtres" aria-expanded="false" aria-controls="filtres">
+                Filtres
+            </button>
+            
             <div class="filtres">
                 <form action="" method="get">
                     <label for="animal" class="sr-only">Pour quel animal ?</label>
@@ -69,7 +77,6 @@ include_once('../controleurs/user.php');
                         <option value="moyen">Moyen</option>
                         <option value="difficile">Difficile</option>
                     </select>
-                    <input type="submit" value="Filtrer">
                 </form>
                 <a href="recette.php" class="btn-reset">Réinitialiser</a>
             </div>
@@ -79,6 +86,7 @@ include_once('../controleurs/user.php');
             if (!empty($recettes)) {
                 foreach ($recettes as $recette) {
                     echo "<div class='recette'><div class='img'></div>
+                    <img src='../assets/images/pin.png' alt='' class='pin'>
                 <h2>{$recette['nom_recette']}</h2>
                 <span class='temps'><img src='../assets/images/clock.png' alt=''> {$recette['temps']} min</span>
                 <div class='badge'>";
@@ -90,7 +98,9 @@ include_once('../controleurs/user.php');
                         echo "<img src='../assets/images/cat.png' alt=''><p>Pour {$recette['animal']}</p>
                 </div>";
                     }
-                    echo '<button class="btn-favoris" data-recette="' . $recette["id_recette"] . '"><img src="../assets/images/favorite-off.svg" alt=""> <p class="sr-only">Ajouter aux favoris</p></button></div>';
+                    echo '<button class="btn-favoris" data-recette="' . $recette["id_recette"] . '"><img src="../assets/images/favorite-off.svg" alt="">
+                     <span class="sr-only">Ajouter aux favoris</span></button>
+                     </div>';
                 }
             } else {
                 echo '<p class="rien"> Aucun résultat </p>';
@@ -110,7 +120,18 @@ include_once('../controleurs/user.php');
                 btn.innerHTML = '<img src="../assets/images/favorite-on.svg" alt="">';
             }
         });
+
+        //Affichage des filtres (mobile)
+        const btnFiltres = document.querySelector('.btn-filtres');
+        const filtres = document.querySelector('.filtres');
+
+        btnFiltres.addEventListener('click', () => {
+            const isOpen = filtres.classList.toggle('active');
+            btnFiltres.setAttribute('aria-expanded', isOpen);
+        });
+
     </script>
+    <script src="../assets/js/script.js"></script>
     <script src="../assets/js/favoris.js"></script>
 </body>
 

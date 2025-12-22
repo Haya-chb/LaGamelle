@@ -1,5 +1,5 @@
 <?php
-require('../connexion.php');
+require_once __DIR__ . '/../connexion.php';
 
 function getUserById($db, $id){
     $stmt = $db->prepare("SELECT * FROM utilisateur WHERE id_utilisateur = :id");
