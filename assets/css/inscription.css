@@ -4,14 +4,12 @@
   box-sizing: border-box;
 }
 
+
 :root {
 --blanc: #f8f8f8;
 }
 
-body{
-    background-color: var(--bg-color);
-    
-}
+
 
 form{ background-color: var(--jaune);
 padding: 20px;
@@ -33,12 +31,22 @@ align-items: center;
 
 }
 
+
+#etape1, #etape2, #etape3, .dis, .etape4-1{
+
+    display: none;
+}
+
+
 .button{
 border-radius: 50%;
 background-color: var(--beige);
 width: 180px;
 
+
 }
+
+
 
 
 input{
@@ -52,5 +60,11 @@ input{
 }
 
 
+fieldset{ border: none;}
 
-
+legend{
+    font-size: 2rem;
+    font-family: 'Nobulina';
+    margin: auto;
+    margin-top: 8px;
+}

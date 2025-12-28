@@ -8,7 +8,7 @@ include ("../controleurs/c-connexion.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/connexion.css">
+    <link rel="stylesheet" href="../assets/css/form.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <title>Document</title>
 </head>
@@ -27,6 +27,9 @@ include ("../controleurs/c-connexion.php");
     </header>
 <?php
  echo '<form action="v-connexion.php" method="POST">
+
+
+
 
 <div><label for="login">Login :</label><br>
 <input type="text" id="login" name="pseudo" required></div>

@@ -2,7 +2,21 @@
 
 include("../controleurs/c-inscription.php");
 
+?>
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../assets/css/inscription.css">
+  <link rel="stylesheet" href="../assets/css/form.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <title>Inscription</title>
+</head>
+<body>
+  
+<?php
 echo '
 
 <form action="v-inscription.php" method="POST">
@@ -74,10 +88,11 @@ echo '
 
 <section id="etape4">
 
-<fildset>
+<fieldset>
 
 <legend>Votre boule de poile</legend>
 
+<div class="etape4-1">
 <div>
 <label for="race">Sa race :</label>
 <br><input type="text" name="race" id="race" required>
@@ -92,6 +107,9 @@ echo '
 <label for="agee"> Son âge:</label>
 <br><input type="number" name="age" id="age" required>
 </div>
+</div>
+
+<div class="etape4-2">
 
 <div>
 <label for="agee"> Son anniversaire:</label>
@@ -107,21 +125,22 @@ echo '
 <label for="sexe"> Son sexe:</label>
 <br><input type="text" name="sexe" id="sexe" required>
 </div>
+</div>
+</fieldset>
 
 </section>
 
+<div>
+<input type="submit" name="action" value="Précédent" class="button">
 
-<input type="submit" name="action" value="Précédent">
-
-<input type="submit" name="action" value="Continuer">
-
-<input type="submit" name="action" value="Valider">
-
-
-
-</form>
-
-';
+<input type="submit" name="action" value="Continuer" class="button">
+</div>
+<input type="submit" name="action" value="Valider" class="button dis">
 
 
+
+</form>';
 ?>
+
+</body>
+</html>
