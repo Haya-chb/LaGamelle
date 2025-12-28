@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../controleurs/user.php';
 require '../controleurs/animal.php';
 ?>
@@ -44,21 +45,27 @@ require '../controleurs/animal.php';
             <div class="section flex head-compagnon">
                 <div class="img"></div>
                 <div>
-                    <h1 class="animal-name"><?= htmlspecialchars($animals[0]['nom_animal']) ?></h1>
+                    <h1 class="animal-name"><?= htmlspecialchars($animaux[0]['nom_animal']) ?></h1>
                 </div>
             </div>
 
             <div class="section flex compagnon-modif">
-                <button id="compagnon-modif">Modifier le profil de <?= htmlspecialchars($animals[0]['nom_animal']) ?></button>
-                <label for="animal" class="sr-only">Changer de profil animal :</label>
+                <button id="compagnon-modif">Modifier le profil de
+                    <?= htmlspecialchars($animaux[0]['nom_animal']) ?></button>
+                <?php
+                if (count($animaux) > 1) {
+                    echo '<label for="animal" class="sr-only">Changer de profil animal :</label>
                 <select name="animal" id="animal">
-                    <option value="">Changer de profil animal</option>
-                    <?php
-                    foreach ($animals as $index => $a) {
+                    <option value="">Changer de profil animal</option>';
+
+
+                    foreach ($animaux as $index => $a) {
                         echo "<option value='{$index}'>{$a['nom_animal']}</option>";
                     }
-                    ?>
-                </select>
+
+                    echo '</select>';
+                }
+                ?>
             </div>
 
             <button class="section gardien-modif active">Modifier mon profil</button>
@@ -75,7 +82,7 @@ require '../controleurs/animal.php';
                     <span class="text">Boule de poil</span>
                 </button>
                 <button id="favoris" class="nav-btn" data-target="favoris">
-                    <img src="../assets/images/favorite-on.svg" alt="" aria-hidden="false">
+                    <img src="../assets/images/favorite-profil.svg" alt="" aria-hidden="false">
                     <span class="text">Favoris</span>
                 </button>
             </div>
@@ -84,7 +91,8 @@ require '../controleurs/animal.php';
                 <h2>Fiche de renseignement</h2>
                 <div>
                     <p><strong>Nom et prénom :</strong></p>
-                    <p> <?= htmlspecialchars($user['prenom']) . ' ' . htmlspecialchars($user['nom']) ?></p>
+                    <p> <?= htmlspecialchars($user['prenom_utilisateur']) . ' ' . htmlspecialchars($user['nom_utilisateur']) ?>
+                    </p>
                 </div>
                 <div>
                     <p><strong>Adresse Mail :</strong></p>
@@ -92,19 +100,19 @@ require '../controleurs/animal.php';
                 </div>
                 <div>
                     <p><strong>Numéro de téléphone :</strong></p>
-                    <p><?php echo htmlspecialchars($user['numero']); ?></p>
+                    <p><?php echo htmlspecialchars($user['numero_utilisateur']); ?></p>
                 </div>
                 <div>
                     <p><strong>Animaux à charge :</strong></p>
                     <div class="animal">
                         <?php
-                        foreach ($animals as $a) {
+                        foreach ($animaux as $a) {
                             echo '<span>';
                             echo "<img src='../assets/images/{$a["espece"]}-profil.png' alt='' class='icon'><p>" . htmlspecialchars($a['nom_animal']) . "</p>";
                             echo '</span>';
                         }
                         ?>
-                        <span><img src="../assets/images/ajout.png" alt="Ajouter un animal" class="icon">
+                        <span id="addBtn"><img src="../assets/images/ajout.png" alt="Ajouter un animal" class="icon">
                             <p>Ajouter</p>
                         </span>
                     </div>
@@ -115,27 +123,27 @@ require '../controleurs/animal.php';
                 <h2>Fiche de renseignement</h2>
                 <div>
                     <p><strong>Espèce :</strong></p>
-                    <p class="animal-espece"><?php echo htmlspecialchars($animals[0]['espece']); ?></p>
+                    <p class="animal-espece"><?php echo htmlspecialchars($animaux[0]['espece']); ?></p>
                 </div>
                 <div>
                     <p><strong>Race :</strong></p>
-                    <p class="animal-race"><?php echo htmlspecialchars($animals[0]['race']); ?></p>
+                    <p class="animal-race"><?php echo htmlspecialchars($animaux[0]['race']); ?></p>
                 </div>
                 <div>
                     <p><strong>Sexe :</strong></p>
-                    <p class="animal-sexe"><?php echo htmlspecialchars($animals[0]['sexe']); ?></p>
+                    <p class="animal-sexe"><?php echo htmlspecialchars($animaux[0]['sexe']); ?></p>
                 </div>
                 <div>
                     <p><strong>Age :</strong></p>
-                    <p class="animal-age"><?php echo htmlspecialchars($animals[0]['age']); ?> ans</p>
+                    <p class="animal-age"><?php echo htmlspecialchars($animaux[0]['age']); ?> ans</p>
                 </div>
                 <div>
                     <p><strong>Anniversaire :</strong></p>
-                    <p class="animal-anniv"><?php echo htmlspecialchars($animals[0]['anniversaire']); ?></p>
+                    <p class="animal-anniv"><?php echo htmlspecialchars($animaux[0]['anniversaire']); ?></p>
                 </div>
                 <div>
                     <p><strong>Poids :</strong></p>
-                    <p class="animal-poids"><?php echo htmlspecialchars($animals[0]['poids']); ?> kg</p>
+                    <p class="animal-poids"><?php echo htmlspecialchars($animaux[0]['poids']); ?> kg</p>
                 </div>
             </div>
 
@@ -164,37 +172,243 @@ require '../controleurs/animal.php';
                 ?>
             </div>
         </section>
+        <section class="modal">
+            <!-- FORMULAIRE MODIF PROFIL -->
+            <div class="gardien-form">
+                <h2>Modifier vos informations</h2>
+                <form action="../controleurs/user.php" method="post">
+                    <input type="hidden" name="id_user" value="<?php echo $user['id_utilisateur']; ?>">
+                    <div>
+                        <label for="pseudo">Pseudo :</label><br>
+                        <input type="text" name="pseudo" id="pseudo"
+                            value="<?php echo htmlspecialchars($user['pseudo']); ?>" required>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="nom">Nom :</label><br>
+                        <input type="text" name="nom" id="nom"
+                            value="<?php echo htmlspecialchars($user['nom_utilisateur']); ?>" require>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="prenom">Prénom :</label><br>
+                        <input type="text" name="prenom" id="prenom"
+                            value="<?php echo htmlspecialchars($user['prenom_utilisateur']); ?>" require>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="mail">Mail :</label><br>
+                        <input type="email" name="mail" id="mail" value="<?php echo htmlspecialchars($user['mail']); ?>"
+                            require>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="numero">Numéro de téléphone :</label><br>
+                        <input type="tel" name="numero" id="numero"
+                            value="<?php echo htmlspecialchars($user['numero_utilisateur']); ?>" require>
+                    </div>
+                    <br>
+                    <div class="btn">
+                        <button class="annuler">Annuler</button>
+                        <input type="submit" value="Modifier" name="update">
+                    </div>
+                </form>
+            </div>
+            <!-- FORMULAIRE MODIF ANIMAL -->
+            <div class="compagnon-form">
+                <h2>Modifier les infos de votre boule de poil</h2>
+                <form action="../controleurs/animal.php" method="post" class="compagnon-form">
+                    <input type="hidden" name="id-animal" value="<?php echo $animaux[0]['id_animal']; ?>">
+                    <div>
+                        <label for="nom-animal">Nom :</label><br>
+                        <input type="text" name="nom-animal" id="nom-animal"
+                            value="<?php echo htmlspecialchars($animaux[0]['nom_animal']); ?>">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="espece">Espèce :</label><br>
+                        <input type="text" name="espece" id="espece"
+                            value="<?php echo htmlspecialchars($animaux[0]['espece']); ?>">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="sexe">Sexe :</label><br>
+                        <input type="text" name="sexe" id="sexe"
+                            value="<?php echo htmlspecialchars($animaux[0]['sexe']); ?>">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="race">Race :</label><br>
+                        <input type="text" name="race" id="race"
+                            value="<?php echo htmlspecialchars($animaux[0]['race']); ?>">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="age">Age :</label><br>
+                        <input type="text" name="age" id="age"
+                            value="<?php echo htmlspecialchars($animaux[0]['age']); ?>">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="annniv">Anniversaire :</label><br>
+                        <input type="date" name="anniv" id="anniv"
+                            value="<?php echo htmlspecialchars($animaux[0]['anniversaire']); ?>">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="poids">Poids de l'animal :</label><br>
+                        <input type="number" name="poids" id="poids"
+                            value="<?php echo htmlspecialchars($animaux[0]['poids']); ?>">
+                    </div>
+                    <br>
+                    <div class="btn">
+                        <button class="annuler">Annuler</button>
+                        <input type="submit" value="Modifier" name="updateCompagnon">
+                    </div>
+                </form>
+            </div>
+            <!-- FORMULAIRE AJOUT ANIMAL -->
+            <div class="ajout-animal-form">
+                <h2>Ajouter un nouveau compagnon</h2>
+                <form action="../controleurs/animal.php" method="post">
+                    <input type="hidden" name="fk_user" value="<?php echo $user['id_utilisateur']; ?>">
+
+                    <div>
+                        <label for="new-nom">Nom de l'animal :</label><br>
+                        <input type="text" name="nom-animal" id="new-nom" placeholder="Ex: Rex" required>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="new-espece">Espèce :</label><br>
+                        <select name="espece" id="new-espece" required>
+                            <option value="chien">Chien</option>
+                            <option value="chat">Chat</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="new-sexe">Sexe :</label><br>
+                        <select name="sexe" id="new-sexe" required>
+                            <option value="Mâle">Mâle</option>
+                            <option value="Femelle">Femelle</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="new-race">Race :</label><br>
+                        <input type="text" name="race" id="new-race" placeholder="Ex: Labrador" required>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="new-age">Âge :</label><br>
+                        <input type="number" name="age" id="new-age" required>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="new-anniv">Date d'anniversaire :</label><br>
+                        <input type="date" name="anniv" id="new-anniv" required>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="new-poids">Poids (kg) :</label><br>
+                        <input type="number" step="0.1" name="poids" id="new-poids" required>
+                    </div>
+                    <br>
+                    <div class="btn">
+                        <button class="annuler">Annuler</button>
+                        <input type="submit" value="Ajouter l'animal" name="addAnimal">
+                    </div>
+                </form>
+            </div>
+        </section>
     </main>
 
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/favoris.js"></script>
     <script>
-        //Change les infos de l'animal au changement dans le select
-        const animals = <?= json_encode($animals, JSON_UNESCAPED_UNICODE); ?>;
+        //Btn de mofif et ajout
+        let updateGardien = document.querySelector('.gardien-modif');
+        let updateCompagnon = document.querySelector('.compagnon-modif');
+        let ajoutCompagnon = document.querySelector('#addBtn');
 
-        const select = document.getElementById('animal');
-        select.addEventListener('change', () => {
-            const index = select.value;
-            if (index === "") return;
+        let modal = document.querySelector('.modal');
+        const forms = document.querySelectorAll('.modal > div');
 
-            const animal = animals[index];
+        function openModal(formClass) {
+            // Cache tous les formulaires d'abord
+            forms.forEach(f => f.style.display = 'none');
+            // Affiche le bon
+            document.querySelector('.' + formClass).style.display = 'block';
+            modal.classList.add('show');
+        }
 
-            document.getElementById('compagnon-modif').textContent = 'Modifier le profil de ' + animal.nom_animal
-            document.querySelector('.animal-name').textContent = animal.nom_animal;
-            document.querySelector('.animal-espece').textContent = animal.espece;
-            document.querySelector('.animal-race').textContent = animal.race;
-            document.querySelector('.animal-sexe').textContent = animal.sexe;
-            document.querySelector('.animal-age').textContent = animal.age + ' ans';
-            document.querySelector('.animal-anniv').textContent = animal.anniversaire;
-            document.querySelector('.animal-poids').textContent = animal.poids + ' kg';
+        function closeModal() {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                forms.forEach(f => f.style.display = 'none');
+            }, 300);
+        }
+
+        // Écouteurs d'ouverture
+        updateGardien.addEventListener('click', () => openModal('gardien-form'));
+        updateCompagnon.addEventListener('click', () => openModal('compagnon-form'));
+        ajoutCompagnon.addEventListener('click', () => openModal('ajout-animal-form'));
+
+        // Écouteurs de fermeture
+        document.querySelectorAll('.annuler').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModal();
+            });
         });
 
+        // Fermer si on clique sur le fond noir
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        //Change les infos de l'animal au changement dans le select
+        const animals = <?= json_encode($animaux, JSON_UNESCAPED_UNICODE); ?>;
+
+        const select = document.getElementById('animal');
+        if (select !== null) {
+            select.addEventListener('change', () => {
+                const index = select.value;
+                if (index === "") return;
+
+                const animal = animals[index];
+                console.log(animals[index]);
+
+                document.getElementById('compagnon-modif').textContent = 'Modifier le profil de ' + animal.nom_animal
+                document.querySelector('.animal-name').textContent = animal.nom_animal;
+                document.querySelector('.animal-espece').textContent = animal.espece;
+                document.querySelector('.animal-race').textContent = animal.race;
+                document.querySelector('.animal-sexe').textContent = animal.sexe;
+                document.querySelector('.animal-age').textContent = animal.age + ' ans';
+                document.querySelector('.animal-anniv').textContent = animal.anniversaire;
+                document.querySelector('.animal-poids').textContent = animal.poids + ' kg';
+
+                //Mise à jour du formulaire de modification
+                const form = document.querySelector('.compagnon-form');
+
+                // On utilise l'attribut name pour être sûr
+                form.querySelector('input[name="id-animal"]').value = animal.id_animal;
+                form.querySelector('input[name="nom-animal"]').value = animal.nom_animal;
+                form.querySelector('input[name="espece"]').value = animal.espece;
+                form.querySelector('input[name="sexe"]').value = animal.sexe;
+                form.querySelector('input[name="race"]').value = animal.race;
+                form.querySelector('input[name="age"]').value = animal.age;
+                form.querySelector('input[name="anniv"]').value = animal.anniversaire;
+                form.querySelector('input[name="poids"]').value = animal.poids;
+            });
+        }
 
         // Navigation sur la page
         const buttons = document.querySelectorAll('.nav-btn');
         const sections = document.querySelectorAll('.section');
 
         function showSection(target) {
+            history.pushState(null, '', `?${target}`);
             // reset sections
             sections.forEach(section => section.classList.remove('active'));
 
@@ -226,8 +440,16 @@ require '../controleurs/animal.php';
             });
         });
 
+        // Au chargement de la page
+        window.addEventListener('DOMContentLoaded', () => {
+            const query = window.location.search.substring(1);
 
-
+            if (query && ['gardien', 'compagnon', 'favoris'].includes(query)) {
+                showSection(query);
+            } else {
+                showSection('gardien');
+            }
+        });
     </script>
 
 </body>

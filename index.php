@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once('controleurs/recette.php');
 include_once('controleurs/user.php');
 ?>
@@ -10,7 +11,6 @@ include_once('controleurs/user.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil | La Gamelle</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 
 <body>
@@ -27,10 +27,25 @@ include_once('controleurs/user.php');
                 <li><a href="">Trouver un vétérinaire</a></li>
                 <li><a href="">Proposer une recette</a></li>
             </ul>
-            <div class="connexion pc-only">
-                <a href="">Inscription</a>
-                <a href="">Connexion</a>
-            </div>
+            <?php
+            if (isset($_SESSION['id_utilisateur'])) {
+                echo '<form action="controleurs/recette.php" method="get">
+                <label for="recherche" class="sr-only">Recherchez une recette</label>
+                <input type="search" name="recherche" placeholder="Recherchez une recette...">
+            </form>';
+
+                echo '<div class="compte">
+                        <a href="vues/profil.php?favoris"><img src="assets/images/favorite-on.svg" alt="Voir mes favoris"></a>
+                        <a href="vues/profil.php"><img src="assets/images/compte.svg" alt="Accéder à mon profil"></a>
+                     </div>';
+            } else {
+                echo '<div class="connexion">
+                        <a href="vues/v-inscription.php">Inscription</a>
+                        <a href="vues/v-connexion.php">Connexion</a>
+                    </div>';
+            }
+
+            ?>
         </nav>
     </header>
     <main>

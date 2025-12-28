@@ -10,13 +10,15 @@ $type = $_GET["type"] ?? null;
 $temps = $_GET["temps"] ?? null;
 $niveau = $_GET["niveau"] ?? null;
 
+//Récupération de la recherche
+$search = $_GET['recherche'] ?? null;
 
-if (!empty($animal) || !empty($type) || !empty($temps) || !empty($niveau)) {
+if (!empty($animal) || !empty($type) || !empty($temps) || !empty($niveau) || !empty($search)) {
     //Les recettes filtrées
-    $recettes = filtreRecettes($db, $animal, $type, $temps, $niveau);
+    $recettes = filtreRecettes($db, $animal, $type, $temps, $niveau, $search);
     include_once '../vues/recette.php';
 } else {
     //Toutes les recettes
     $recettes = getRecettes($db);
-};
+}
 ?>

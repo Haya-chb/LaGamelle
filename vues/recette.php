@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('../connexion.php');
 include_once('../controleurs/recette.php');
 include_once('../controleurs/user.php');
@@ -43,9 +44,9 @@ include_once('../controleurs/user.php');
             <button class="btn-filtres" aria-expanded="false" aria-controls="filtres">
                 Filtres
             </button>
-            
+
             <div class="filtres">
-                <form action="" method="get">
+                <form id="filtres-form" method="get">
                     <label for="animal" class="sr-only">Pour quel animal ?</label>
                     <select name="animal" id="animal">
                         <option value="">Espèce</option>
@@ -73,12 +74,13 @@ include_once('../controleurs/user.php');
                     <label for="niveau" class="sr-only">Niveau de difficulté</label>
                     <select name="niveau" id="niveau">
                         <option value="">Difficulté</option>
-                        <option value="facile">Facile</option>
-                        <option value="moyen">Moyen</option>
-                        <option value="difficile">Difficile</option>
+                        <option value="1">Facile</option>
+                        <option value="2">Moyen</option>
+                        <option value="3">Difficile</option>
                     </select>
+                    <input type="submit" value="Filtrer">
                 </form>
-                <a href="recette.php" class="btn-reset">Réinitialiser</a>
+                <a href="../vues/recette.php" class="btn-reset">Réinitialiser</a>
             </div>
         </section>
         <section class="recettes">
@@ -105,13 +107,16 @@ include_once('../controleurs/user.php');
             } else {
                 echo '<p class="rien"> Aucun résultat </p>';
             }
+
             ?>
         </section>
     </main>
 
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/recette.js"></script>
+    <script src="../assets/js/favoris.js"></script>
     <script>
         //Vérifis s'il la recette est déjà dans les favoris de l'utilisateur
-
         const favoris = <?= json_encode(array_column($favoris, 'id_recette')) ?>;
         document.querySelectorAll('.btn-favoris').forEach(btn => {
             const recetteId = parseInt(btn.dataset.recette);
@@ -120,19 +125,7 @@ include_once('../controleurs/user.php');
                 btn.innerHTML = '<img src="../assets/images/favorite-on.svg" alt="">';
             }
         });
-
-        //Affichage des filtres (mobile)
-        const btnFiltres = document.querySelector('.btn-filtres');
-        const filtres = document.querySelector('.filtres');
-
-        btnFiltres.addEventListener('click', () => {
-            const isOpen = filtres.classList.toggle('active');
-            btnFiltres.setAttribute('aria-expanded', isOpen);
-        });
-
     </script>
-    <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/favoris.js"></script>
 </body>
 
 </html>

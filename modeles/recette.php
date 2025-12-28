@@ -17,7 +17,7 @@ function newRecette($db){
 }
 
 //Récupération des recettes filtrées
-function filtreRecettes($db, $animal, $type, $temps, $niveau){
+function filtreRecettes($db, $animal, $type, $temps, $niveau, $search){
     $sql = "SELECT * FROM recette WHERE 1=1";
     $filtres = [];
 
@@ -28,8 +28,8 @@ function filtreRecettes($db, $animal, $type, $temps, $niveau){
     }
 
     if (!empty($type)) {
-        $sql .= " AND categorie = :categorie";
-        $filtres['categorie'] = $type;
+        $sql .= " AND categorie_recette = :categorie_recette";
+        $filtres['categorie_recette'] = $type;
     }
 
     if (!empty($temps)) {
@@ -42,10 +42,18 @@ function filtreRecettes($db, $animal, $type, $temps, $niveau){
         $filtres['niveau'] = $niveau;
     }
 
+    //Recherche des recettes
+    if (!empty($search)) {
+        $sql .= " AND (
+            nom_recette LIKE :search
+            OR categorie_recette LIKE :search
+        )";
+        $filtres['search'] = '%' . $search . '%';
+    }
+
     $stmt = $db->prepare($sql);
     $stmt->execute($filtres);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 };
-
 
 ?>
