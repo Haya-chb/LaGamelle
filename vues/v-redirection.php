@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/redirection.css">
     <title>Document</title>
 </head>
 <body>
@@ -29,8 +31,10 @@
 
 <p>Nous allons examiner votre recette ! Si elle apprécié nous l'ajouterons à notre catalogue</p>
 
+<div class="boutton">
 <a href="../index.php">Retour à l'acceuil</a>
 <a href="v-contribution.php">Proposer une nouvelle recette</a>
+</div>
 
 </main>
 </body>
