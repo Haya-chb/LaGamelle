@@ -120,12 +120,12 @@ echo '
 <span class="etape4-2">
 
 <div>
-<label for="age"> Son anniversaire:</label>
+<label for="anniv"> Son anniversaire:</label>
 <br><input type="date" name="anniv" id="anniv" required>
 </div>
 
 <div>
-<label for="age"> Son poids:</label>
+<label for="poids"> Son poids:</label>
 <br><input type="number" name="poids" id="poids" required>
 </div>
 
