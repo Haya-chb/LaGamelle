@@ -21,6 +21,14 @@ echo '
 
 <form action="v-inscription.php" method="POST">
 
+<div class="progress-container">
+  <div class="step-progression" id="stepProgression"></div>
+  <div class="step-number">1</div>
+  <div class="step-number">2</div>
+  <div class="step-number">3</div>
+  <div class="step-number">4</div>
+  <div class="step-number">5</div>
+</div>
 
 <section id="etape1">
 
@@ -92,7 +100,7 @@ echo '
 
 <legend>Votre boule de poile</legend>
 
-<div class="etape4-1">
+<span class="etape4-1">
 <div>
 <label for="race">Sa race :</label>
 <br><input type="text" name="race" id="race" required>
@@ -104,15 +112,15 @@ echo '
 </div>
 
 <div>
-<label for="agee"> Son âge:</label>
+<label for="age"> Son âge:</label>
 <br><input type="number" name="age" id="age" required>
 </div>
-</div>
+</span>
 
-<div class="etape4-2">
+<span class="etape4-2">
 
 <div>
-<label for="agee"> Son anniversaire:</label>
+<label for="age"> Son anniversaire:</label>
 <br><input type="date" name="anniv" id="anniv" required>
 </div>
 
@@ -125,22 +133,25 @@ echo '
 <label for="sexe"> Son sexe:</label>
 <br><input type="text" name="sexe" id="sexe" required>
 </div>
-</div>
+
+</span>
+
 </fieldset>
 
 </section>
 
 <div>
-<input type="submit" name="action" value="Précédent" class="button">
+<input type="button" name="action" id="prevBtn" value="Précédent" class="button">
 
-<input type="submit" name="action" value="Continuer" class="button">
+<input type="button" name="action" id="nextBtn" value="Continuer" class="button">
 </div>
-<input type="submit" name="action" value="Valider" class="button dis">
+<input type="submit" name="action" value="Valider" class="button">
 
 
 
 </form>';
 ?>
 
+<script src="../assets/js/inscription.js"></script>
 </body>
 </html>
