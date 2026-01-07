@@ -7,8 +7,8 @@ class FoodController {
         $species = $_GET['species'] ?? 'all';
         $type = $_GET['type'] ?? 'all';
 
-        $foods = Food::getAll($species, $type);
+        $dangereux = Food::getAll($species, $type);
 
-        require __DIR__ . '/../vues/alimentsdangereuxV';
+        require __DIR__ . '/../vues/alimentsdangereuxV.php';
     }
 }
