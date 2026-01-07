@@ -4,12 +4,10 @@
 <meta charset="UTF-8">
 <title>Les aliments toxiques</title>
 
-<?php 
-include('../controleurs/FoodController.php');
-?>
+<?php include('../controleurs/FoodController.php'); ?>
 
 <style>
-
+/* ---------------------- Fonts ---------------------- */
 @font-face {
     font-family: 'Nobulina';
     src: url('../assets/polices/NobulinaDemo-Inktrap.woff2') format('woff2');
@@ -41,6 +39,7 @@ include('../controleurs/FoodController.php');
     font-style: normal;
 }
 
+/* ---------------------- Variables ---------------------- */
 :root{
     --bg:#FFEAD2;
     --yellow:#FFC83D;
@@ -49,6 +48,7 @@ include('../controleurs/FoodController.php');
     --accent:#E53A1D;
 }
 
+/* ---------------------- Global ---------------------- */
 *{
     margin:0;
     padding:0;
@@ -60,8 +60,6 @@ body{
     font-weight:400;
     background:var(--bg);
 }
-
-/* ---------------------- */
 
 main{
     padding:40px 30px;
@@ -83,7 +81,6 @@ h1{
     margin-bottom: 40px;
 }
 
-/* Style des select */
 .filters select {
     padding: 10px 20px;
     border-radius: 50px;
@@ -91,7 +88,7 @@ h1{
     background-color: var(--pink);
     color: black;
     font-family: 'KelsonSans', sans-serif;
-   background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon points="0,0 10,0 5,5" fill="black"/></svg>');
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon points="0,0 10,0 5,5" fill="black"/></svg>');
     background-repeat: no-repeat;
     background-position: right 15px center;
     background-size: 10px;
@@ -100,7 +97,6 @@ h1{
     appearance: none;
 }
 
-/* Style du bouton réinitialiser */
 .filters .reset-btn {
     margin-left:auto;
     padding:10px 18px;
@@ -111,8 +107,7 @@ h1{
     cursor:pointer;
 }
 
-/* cartes */
-
+/* ---------------------- Cartes ---------------------- */
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fill, minmax(230px,1fr));
@@ -129,6 +124,7 @@ h1{
     perspective: 1000px;
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
 .card-inner {
@@ -156,9 +152,7 @@ h1{
 
 .card-front {
     background: var(--red);
-    backface-visibility: hidden;
 }
-
 
 .card-back {
     background: #8f0000;
@@ -187,7 +181,6 @@ h1{
   border-radius: 999px;
   display: flex;
   align-items: center;
-
   transform: rotate(-25deg);
 }
 
@@ -214,7 +207,7 @@ h1{
 }
 
 .badge-chat {
-  background-color: #f5c24c;;
+  background-color: #f5c24c;
 }
 
 .badge-chien {
@@ -249,9 +242,6 @@ h1{
     opacity:0.9;
 }
 
-
-
-
 /* responsive */
 @media(max-width:600px){
     h1{
@@ -266,25 +256,24 @@ h1{
 </head>
 <body>
 
-<header>
-
-</header>
+<header></header>
 
 <main>
 
 <h1>Les aliments toxiques</h1>
 <p class="subtitle">
-    Vous trouverez ici une liste d’aliment à éviter dans l’alimentation de votre animal !
+    Vous trouverez ici une liste d’aliments à éviter dans l’alimentation de votre animal !
 </p>
 
-<form method="GET" class="filters">
-    <select name="species">
+<!-- Formulaire de filtre -->
+<form id="filters" class="filters">
+    <select name="species" id="species-filter">
         <option value="all">Espèce</option>
-        <option value="chat" <?= ($_GET['species'] ?? '') === 'chat' ? 'selected' : '' ?>>Chat</option>
-        <option value="chien" <?= ($_GET['species'] ?? '') === 'chien' ? 'selected' : '' ?>>Chien</option>
+        <option value="chat">Chat</option>
+        <option value="chien">Chien</option>
     </select>
 
-    <select name="type">
+    <select name="type" id="type-filter">
         <option value="all">Type d’aliment</option>
         <option value="fruit">Fruit</option>
         <option value="sucre">Sucré</option>
@@ -297,13 +286,15 @@ h1{
         <option value="autre">Autre</option>
     </select>
 
-    <button type="submit">Filtrer</button>
-    <a href="index.php" class="reset-btn">Réinitialiser</a>
+    <button type="button" id="reset-btn" class="reset-btn">Réinitialiser</button>
 </form>
 
-<section class="grid">
+<!-- Grid des cartes -->
+<section class="grid" id="grid">
 <?php foreach ($dangereux as $food): ?>
-    <div class="card">
+    <div class="card" 
+         data-species="<?= htmlspecialchars($food['species']) ?>" 
+         data-type="<?= htmlspecialchars($food['type']) ?>">
         <div class="card-inner">
 
             <div class="card-front">
@@ -330,3 +321,42 @@ h1{
     </div>
 <?php endforeach; ?>
 </section>
+
+<!-- ---------------------- JS Filtre ---------------------- -->
+<script>
+const speciesFilter = document.getElementById('species-filter');
+const typeFilter = document.getElementById('type-filter');
+const resetBtn = document.getElementById('reset-btn');
+const cards = document.querySelectorAll('.card');
+
+function filterCards() {
+    const speciesValue = speciesFilter.value;
+    const typeValue = typeFilter.value;
+
+    cards.forEach(card => {
+        const cardSpecies = card.dataset.species;
+        const cardType = card.dataset.type;
+
+        const matchesSpecies = speciesValue === 'all' || speciesValue === cardSpecies;
+        const matchesType = typeValue === 'all' || typeValue === cardType;
+
+        card.style.display = (matchesSpecies && matchesType) ? '' : 'none';
+    });
+}
+
+// Écoute les changements sur les select
+speciesFilter.addEventListener('change', filterCards);
+typeFilter.addEventListener('change', filterCards);
+
+// Réinitialiser
+resetBtn.addEventListener('click', () => {
+    speciesFilter.value = 'all';
+    typeFilter.value = 'all';
+    filterCards();
+});
+</script>
+
+</main>
+</body>
+</html>
+
