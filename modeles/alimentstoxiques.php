@@ -6,7 +6,7 @@ class Food {
     public static function getAll($species = null, $type = null) {
         $db = Database::getConnection();
 
-        $sql = "SELECT * FROM foods WHERE 1=1";
+        $sql = "SELECT * FROM dangereux WHERE 1=1";
         $params = [];
 
         if ($species && $species !== 'all') {

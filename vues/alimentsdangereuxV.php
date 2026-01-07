@@ -298,7 +298,7 @@ h1{
 </form>
 
 <section class="grid">
-<?php foreach ($foods as $food): ?>
+<?php foreach ($dangereux as $food): ?>
     <div class="card">
         <div class="card-inner">
 
