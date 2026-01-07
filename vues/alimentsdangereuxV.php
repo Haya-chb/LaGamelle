@@ -4,35 +4,39 @@
 <meta charset="UTF-8">
 <title>Les aliments toxiques</title>
 
+<?php 
+include('../controleurs/FoodController.php');
+?>
+
 <style>
 
 @font-face {
     font-family: 'Nobulina';
-    src: url('assets/polices/NobulinaDemo-Inktrap.woff2') format('woff2');
+    src: url('../assets/polices/NobulinaDemo-Inktrap.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
     font-family: 'KelsonSans';
-    src: url('assets/polices/KelsonSans-Regular.woff2') format('woff2');
+    src: url('../assets/polices/KelsonSans-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
     font-family: 'KelsonSans';
-    src: url('assets/polices/KelsonSans-Bold.woff2') format('woff2');
+    src: url('../assets/polices/KelsonSans-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
 }
 @font-face {
     font-family: 'LouisGeorge';
-    src: url('assets/polices/LouisGeorgeCafe.woff2') format('woff2');
+    src: url('../assets/polices/LouisGeorgeCafe.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
     font-family: 'LouisGeorge';
-    src: url('assets/polices/LouisGeorgeCafe-Bold.woff2') format('woff2');
+    src: url('../assets/polices/LouisGeorgeCafe-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
 }
@@ -305,13 +309,13 @@ h1{
             <div class="card-front">
                 <div class="badge <?= $food['species'] === 'chat' ? 'badge-chat' : 'badge-chien' ?>">
                     <span class="icon">
-                        <img src="assets/images/<?= $food['species'] === 'chat' ? 'icon-chat.svg' : 'icon-chien.svg' ?>">
+                        <img src="../assets/images/<?= $food['species'] === 'chat' ? 'icon-chat.svg' : 'icon-chien.svg' ?>">
                     </span>
                     <span class="badge-text">Pour <?= htmlspecialchars($food['species']) ?></span>
                 </div>
 
                 <div class="illus">
-                    <img src="<?= htmlspecialchars($food['image']) ?>" alt="<?= htmlspecialchars($food['name']) ?>">
+                    <img src="../<?= htmlspecialchars($food['image']) ?>" alt="<?= htmlspecialchars($food['name']) ?>">
                 </div>
 
                 <h3><?= htmlspecialchars($food['name']) ?></h3>
