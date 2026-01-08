@@ -1,4 +1,5 @@
 <?php
+session_start();
 // =======================
 // DETECTION D'UNE RECHERCHE ACTIVE
 // =======================
