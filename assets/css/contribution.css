@@ -36,12 +36,20 @@ input[type="checkbox"]{
 
 }
 
-
+.page-contribution {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-start; 
+    gap: 40px;
+    margin-top: 50px; 
+}
 
 
 
 @media (width >= 950px) {
-
-.page-contribution {flex-direction:row ;}
-
+  .page-contribution {
+    display: flex; 
+    flex-direction: row; 
+  }
 }
