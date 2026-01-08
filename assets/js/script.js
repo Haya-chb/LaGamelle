@@ -50,25 +50,25 @@ window.addEventListener('resize', () => {
     }
 });
 
-/*
+
 const images = [
     'assets/images/strawberry-cat.webp',
     'assets/images/lemon-cat.webp',
     'assets/images/pear-cat.webp'
 ];
 
-let currentIndex = 0;
+let currentIn = 0;
 const loaderImg = document.querySelector('.loader-img');
 const tl = gsap.timeline();
 
 // Fonction pour changer l'image toutes les 500ms
 const imageInterval = setInterval(() => {
-    currentIndex = (currentIndex + 1) % images.length;
+    currentIn = (currentIn + 1) % images.length;
     gsap.to(loaderImg, {
         opacity: 0, 
         duration: 0.2, 
         onComplete: () => {
-            loaderImg.src = images[currentIndex];
+            loaderImg.src = images[currentIn];
             gsap.to(loaderImg, { opacity: 1, duration: 0.2 });
         }
     });
@@ -86,4 +86,18 @@ tl.to("#loader", {
     duration: 1.2,
     ease: "expo.inOut"
 });
-*/
+
+// 3. Sortie du loader ET arrêt de l'intervalle
+tl.to("#loader", {
+    yPercent: -100,
+    autoAlpha: 0, // autoAlpha est mieux que opacity:0 car il met visibility:hidden
+    duration: 1.2,
+    ease: "expo.inOut",
+    onComplete: () => {
+        // TRES IMPORTANT : On arrête le changement d'images ici
+        clearInterval(imageInterval); 
+        
+        // Optionnel : on peut aussi supprimer l'élément du DOM pour libérer la mémoire
+        document.querySelector('#loader').style.display = 'none';
+    }
+});

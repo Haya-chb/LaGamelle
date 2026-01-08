@@ -15,7 +15,7 @@ include_once('controleurs/user.php');
 </head>
 
 <body>
-    <!--
+
     <div id="loader">
         <div class="loader-content">
             <div class="loader-image-container">
@@ -27,7 +27,7 @@ include_once('controleurs/user.php');
             <p>Préparation de la gamelle...</p>
         </div>
     </div>
-    -->
+
     <header>
         <a href="#" class="logo">LG</a>
         <div class="mobile-only">
@@ -230,10 +230,9 @@ include_once('controleurs/user.php');
             <div class="footer-links">
                 <h3>Informations</h3>
                 <ul>
-                    <li><a href="#">À propos</a></li>
-                    <li><a href="#">Mentions légales</a></li>
-                    <li><a href="#">Confidentialité</a></li>
-                    <li><a href="#">Crédits</a></li>
+                    <li><a href="vues/mentions-legales.php">Mentions légales</a></li>
+                    <li><a href="vues/mentions-legales.php#confidentialite">Confidentialité</a></li>
+                    <li><a href="vues/mentions-legales.php#credits">Crédits</a></li>
                 </ul>
             </div>
         </div>
@@ -242,7 +241,6 @@ include_once('controleurs/user.php');
         </div>
     </footer>
     <script src="assets/js/gsap.min.js"></script>
-    <script src="assets/js/flip.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
         const pages = document.querySelectorAll('.page');
