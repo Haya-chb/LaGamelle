@@ -151,7 +151,12 @@ echo '
 
 <div>
 <label for="sexe"> Son sexe:</label>
-<br><input type="text" name="sexe" id="sexe" required>
+<br>
+<select name="sexe" id="sexe" required>
+  <option value="">Séléctionner dans un sexe</option>
+  <option value="sexe">Dog</option>
+  <option value="sexe">Cat</option>
+</select>
 </div>
 
 </span>
@@ -170,7 +175,7 @@ echo '
 
 </form>
 
-<main>';
+</main>';
 ?>
 
     <footer class="main-footer">
