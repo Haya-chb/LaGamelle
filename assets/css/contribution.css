@@ -1,12 +1,7 @@
 
 
-span{
 
-display: flex;
-flex-direction: row;
-justify-content:space-around;
-align-items: center;
-}
+
 
 aside{
     padding: 20px;
@@ -34,18 +29,27 @@ input[type="checkbox"]{
     
 }
 
-#ingredient{
-    max-height: 100px;
+#ingredient, #ingredientQuantite, #sectionAjouter{
+    max-height: 150px;
     overflow-y: scroll;
+    border: solid var(--blanc);
 
 }
 
 .page-contribution {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center; 
     align-items: flex-start; 
     gap: 40px;
     margin-top: 50px; 
 }
 
+
+
+
+@media (width >= 950px) {
+
+.page-contribution {flex-direction:row ;}
+
+}

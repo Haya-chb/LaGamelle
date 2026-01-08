@@ -171,12 +171,10 @@ echo'<div>
 
 <div>
 <label for="recette">Étapes de la recette :</label><br>
-<textarea name="recette" id="recette" rows="10" cols="65" ></textarea>
+<textarea name="recette" id="recette" rows="15" cols="55" ></textarea>
 </div>
 
 </fieldset>
-
-
 
 
 
