@@ -18,7 +18,7 @@ session_start();
         <div class="mobile-only">
             <?php
             if (isset($_SESSION['id_utilisateur'])) {
-                echo '<form action="controleurs/recette.php" method="get">
+                echo '<form action="recette.php" method="get">
                 <label for="recherche" class="sr-only">Recherchez une recette</label>
                 <input type="search" name="recherche" placeholder="Recherchez une recette...">
             </form>';
@@ -33,12 +33,12 @@ session_start();
             <ul class="navbar">
                 <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
-                <li><a href="VeterinaireView.php">Trouver un vétérinaire</a></li>
+                <li><a href="index.php">Trouver un vétérinaire</a></li>
                 <li><a href="v-contribution.php">Proposer une recette</a></li>
             </ul>
             <?php
             if (isset($_SESSION['id_utilisateur'])) {
-                echo '<form action="controleurs/recette.php" method="get" class="pc-only">
+                echo '<form action="recette.php" method="get" class="pc-only">
                 <label for="recherche" class="sr-only">Recherchez une recette</label>
                 <input type="search" name="recherche" placeholder="Recherchez une recette...">
             </form>';
@@ -200,6 +200,9 @@ session_start();
             <p>&copy; 2026 La Gamelle - Fait avec passion pour vos animaux.</p>
         </div>
     </footer>
+
+    <script src="../assets/js/gsap.min.js"></script>
+    <script src="../assets/js/script.js"></script>
 </body>
 
 </html>

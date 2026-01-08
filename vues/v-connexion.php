@@ -15,25 +15,19 @@ include ("../controleurs/c-connexion.php");
 </head>
 <body>
     
-<header>
-        <a href="#" class="logo">LG</a>
+    <header>
+        <a href="../index.php" class="logo">LG</a>
         <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
-            <img src="assets/images/burger-menu.svg" alt="">
+            <img src="../assets/images/burger-menu.svg" alt="">
         </button>
 
         <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
-                <li><a href="vues/recette.php">Nos Recettes</a></li>
-                <li><a href="">Aliments toxiques</a></li>
-                <li><a href="">Trouver un vétérinaire</a></li>
-                <li><a href="">Proposer une recette</a></li>
+                <li><a href="recette.php">Nos Recettes</a></li>
+                <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
+                <li><a href="index.php">Trouver un vétérinaire</a></li>
+                <li><a href="v-contribution.php">Proposer une recette</a></li>
             </ul>
-          <div class="connexion">
-                        <a href="vues/v-inscription.php">Inscription</a>
-                        <a href="vues/v-connexion.php">Connexion</a>
-                    </div>
-            
-
         </nav>
     </header>
 
@@ -91,9 +85,8 @@ include ("../controleurs/c-connexion.php");
             <p>&copy; 2026 La Gamelle - Fait avec passion pour vos animaux.</p>
         </div>
     </footer>
-
-<script src="../assets/js/script.js"></script>
 <script src="../assets/js/gsap.min.js"></script>
+<script src="../assets/js/script.js"></script>
 </body>
 </html>
 

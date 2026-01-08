@@ -10,8 +10,18 @@
 </head>
 <body>
     
-<header>
-        <a href="#" class="logo">LG</a>
+    <header>
+        <a href="../index.php" class="logo">LG</a>
+        <div class="mobile-only">
+            <?php
+            if (isset($_SESSION['id_utilisateur'])) {
+                echo '<form action="recette.php" method="get">
+                <label for="recherche" class="sr-only">Recherchez une recette</label>
+                <input type="search" name="recherche" placeholder="Recherchez une recette...">
+            </form>';
+            }
+            ?>
+        </div>
         <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
             <img src="../assets/images/burger-menu.svg" alt="">
         </button>
@@ -25,14 +35,19 @@
             </ul>
             <?php
             if (isset($_SESSION['id_utilisateur'])) {
-                echo '<form action="controleurs/recette.php" method="get">
+                echo '<form action="recette.php" method="get" class="pc-only">
                 <label for="recherche" class="sr-only">Recherchez une recette</label>
                 <input type="search" name="recherche" placeholder="Recherchez une recette...">
             </form>';
 
-                echo '<div class="compte">
+                echo '<div class="compte pc-only">
                         <a href="profil.php?favoris"><img src="../assets/images/favorite-on.svg" alt="Voir mes favoris"></a>
-                        <a href="vues/profil.php"><img src="../assets/images/compte.svg" alt="Accéder à mon profil"></a>
+                        <a href="profil.php"><img src="../assets/images/compte.svg" alt="Accéder à mon profil"></a>
+                     </div>';
+
+                echo '<div class="compte mobile-only">
+                        <a href="profil.php?favoris">Favoris</a>
+                        <a href="profil.php">Compte</a>
                      </div>';
             } else {
                 echo '<div class="connexion">
@@ -90,7 +105,8 @@
             <p>&copy; 2026 La Gamelle - Fait avec passion pour vos animaux.</p>
         </div>
     </footer>
-<script src="../assets/js/script.js"></script>
+    
 <script src="../assets/js/gsap.min.js"></script>
+<script src="../assets/js/script.js"></script>
 </body>
 </html>

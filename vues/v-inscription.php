@@ -17,8 +17,8 @@ include("../controleurs/c-inscription.php");
 </head>
 <body>
   
-<header>
-        <a href="#" class="logo">LG</a>
+    <header>
+        <a href="../index.php" class="logo">LG</a>
         <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
             <img src="../assets/images/burger-menu.svg" alt="">
         </button>
@@ -27,27 +27,9 @@ include("../controleurs/c-inscription.php");
             <ul class="navbar">
                 <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
-                <li><a href="index..php">Trouver un vétérinaire</a></li>
+                <li><a href="index.php">Trouver un vétérinaire</a></li>
                 <li><a href="v-contribution.php">Proposer une recette</a></li>
             </ul>
-            <?php
-            if (isset($_SESSION['id_utilisateur'])) {
-                echo '<form action="controleurs/recette.php" method="get">
-                <label for="recherche" class="sr-only">Recherchez une recette</label>
-                <input type="search" name="recherche" placeholder="Recherchez une recette...">
-            </form>';
-
-                echo '<div class="compte">
-                        <a href="profil.php?favoris"><img src="../assets/images/favorite-on.svg" alt="Voir mes favoris"></a>
-                        <a href="vues/profil.php"><img src="../assets/images/compte.svg" alt="Accéder à mon profil"></a>
-                     </div>';
-            } else {
-                echo '<div class="connexion">
-                        <a href="v-inscription.php">Inscription</a>
-                        <a href="v-connexion.php">Connexion</a>
-                    </div>';
-            }
-            ?>
         </nav>
     </header>
 
@@ -224,9 +206,9 @@ echo '
             <p>&copy; 2026 La Gamelle - Fait avec passion pour vos animaux.</p>
         </div>
     </footer>
-
-<script src="../assets/js/inscription.js"></script>
-<script src="../assets/js/script.js"></script>
 <script src="../assets/js/gsap.min.js"></script>
+<script src="../assets/js/script.js"></script>
+<script src="../assets/js/inscription.js"></script>
+
 </body>
 </html>
