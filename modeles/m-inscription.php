@@ -26,9 +26,10 @@ $stmt = $db->prepare('INSERT INTO utilisateur (nom_utilisateur, prenom_utilisate
 
 }
 
-function ajouter_animal($db, $nom_animal, $race, $age, $sexe, $anniv, $poids, $espece) {
+function ajouter_animal($db, $id_utilisateur, $nom_animal, $race, $age, $sexe, $anniv, $poids, $espece) {
 
-$stmt = $db->prepare('INSERT INTO animal (nom_animal, race, age, sexe, anniversaire, poids, espece)  VALUES (:nom_animal, :race, :age, :sexe, :anniv, :poids, :espece)');
+$stmt = $db->prepare('INSERT INTO animal (fk_utilisateur, nom_animal, race, age, sexe, anniversaire, poids, espece)  VALUES (:id_utilisateur, :nom_animal, :race, :age, :sexe, :anniv, :poids, :espece)');
+    $stmt->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_STR);
     $stmt->bindParam(':nom_animal', $nom_animal, PDO::PARAM_STR);
     $stmt->bindParam(':race', $race, PDO::PARAM_STR);
     $stmt->bindParam(':age', $age, PDO::PARAM_STR);
@@ -37,21 +38,10 @@ $stmt = $db->prepare('INSERT INTO animal (nom_animal, race, age, sexe, anniversa
     $stmt->bindParam(':poids', $poids, PDO::PARAM_STR);
     $stmt->bindParam(':espece', $espece, PDO::PARAM_STR);
     $stmt->execute();
-    return $db->lastInsertId();
+
 }
 
 
-
-
-
-
-function animal_utilisateur($db, $id_animal, $id_utilisateur) {
-
-$stmt = $db->prepare('INSERT INTO animal_utilisateur ( fk_animal, fk_utilisateur )  VALUES (:id_animal, :id_utilisateur)');
-    $stmt->bindParam(':id_animal', $id_animal, PDO::PARAM_STR);
-    $stmt->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_STR);
-    $stmt->execute();
-}
 
 
 
