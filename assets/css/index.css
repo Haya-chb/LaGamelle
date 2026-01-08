@@ -18,14 +18,12 @@ h2 {
     height: 95vh;
     margin-bottom: 100px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    text-align: center;
 }
 
 .recents {
     margin-bottom: 50px;
-    height: fit-content;
+    min-height: fit-content;
 }
 
 .new {
@@ -280,6 +278,7 @@ h2 {
 .aliment {
     font-size: 1.2rem;
     line-height: 1.2;
+    height: fit-content;
 }
 
 .aliment a {
@@ -292,23 +291,19 @@ h2 {
 }
 
 @media (min-width: 768px) {
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        backdrop-filter: blur(5px);
-        z-index: 100;
-    }
-
     .hero {
         font-size: 1.5rem;
         height: 100vh;
+        background-image: url('../images/accueil-tablet.webp');
+
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
     }
 
     h1 {
         font-size: 12rem;
-        margin-top: 100px;
+        margin-top: 50px;
     }
 
     h2 {
@@ -319,13 +314,8 @@ h2 {
         margin-bottom: 150px;
     }
 
-    .cards {
-        width: fit-content;
-        margin: auto;
-    }
-
     .card {
-        flex: 0 0 40%;
+        flex: 0 0 60%;
     }
 
     .recette,
@@ -342,7 +332,7 @@ h2 {
 
     .badge {
         bottom: 80px;
-        left: 100px;
+        left: 150px;
         transform: rotate(-0.04turn);
     }
 
@@ -396,9 +386,14 @@ h2 {
 }
 
 @media (min-width: 1024px) {
+
     .hero {
+        text-align: start;
         background-image: url('../images/table.webp');
-        font-size: 1.5rem;
+    }
+
+    h1 {
+        font-size: 10rem;
     }
 
     .croquette-container {
@@ -421,6 +416,9 @@ h2 {
 }
 
 @media (min-width: 1200px) {
+    h1 {
+        font-size: 18rem;
+    }
 
     h2 {
         font-size: 7rem;
@@ -448,6 +446,7 @@ h2 {
     }
 
     .cards {
+        margin: auto;
         width: 1200px;
     }
 
@@ -455,8 +454,12 @@ h2 {
         flex: 0 0 32%;
     }
 
+    .nous {
+        margin-bottom: 100px;
+    }
+
     .croquette img {
-        width: 700px;
+        width: 500px;
     }
 
     .croquette-container {

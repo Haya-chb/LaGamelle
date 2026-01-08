@@ -1,4 +1,7 @@
-<?php include('../controleurs/FoodController.php'); ?>
+<?php 
+session_start();
+include('../controleurs/FoodController.php'); 
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
