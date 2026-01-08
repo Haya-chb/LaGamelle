@@ -51,9 +51,10 @@ const ajouterIngredientAuDOM = (idOuNom, estConnu, idCheckbox = null) => {
         `;
     } else {
         ligneNom = `
+            <button type="button" style="color:red; margin-left:10px;" onclick="this.parentElement.parentElement.remove()">X</button>
+
             <label>Nom de l'ingrédient : </label>
             <input type="text" name="nouveaux_ingredients_noms[]" placeholder="Ex: Farine" required>
-            <button type="button" style="color:red; margin-left:10px;" onclick="this.parentElement.parentElement.remove()">X</button>
         `;
     }
 
@@ -62,16 +63,9 @@ const ajouterIngredientAuDOM = (idOuNom, estConnu, idCheckbox = null) => {
             ${ligneNom}
         </div>
         <div style="margin-top: 8px;">
-            <label>Quantité :</label>
-            <input type="number" name="ingredients_quantites[]" step="any" style="width: 60px;" required>
-            <select name="ingredients_unites[]">
-                <option value="g">g</option>
-                <option value="cl">cl</option>
-                <option value="ml">ml</option>
-                <option value="cuillère à soupe">cuillère à soupe</option>
-                <option value="cuillère à café">cuillère à café</option>
-                <option value="unite">unité(s)</option>
-            </select>
+            <label>Quantité (Préciser l'unités ex: cl, g) :</label>
+            <input type="number" name="ingredients_quantites[]" step="any"">
+            
         </div>
     `;
 
