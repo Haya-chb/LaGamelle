@@ -40,4 +40,12 @@ input[type="checkbox"]{
 
 }
 
+.page-contribution {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: flex-start; 
+    gap: 40px;
+    margin-top: 50px; 
+}
 

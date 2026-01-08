@@ -29,7 +29,7 @@ include("../controleurs/c-contribution.php");
                 <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>
-                <li><a href="v-contribution.php" class="active>Proposer une recette</a></li>
+                <li><a href="v-contribution.php" class="active">Proposer une recette</a></li>
             </ul>
             <?php
             if (isset($_SESSION['id_utilisateur'])) {
@@ -48,10 +48,12 @@ include("../controleurs/c-contribution.php");
                         <a href="v-connexion.php">Connexion</a>
                     </div>';
             }
-            ?>
+                ?>
         </nav>
+
     </header>
-<span>
+
+<div class="page-contribution">
 
 
 <aside>
@@ -192,7 +194,7 @@ echo'<div>
 
 </main>
 
-</span>
+</div>
 
 <script src="../assets/js/contribution.js"></script>
 <script src="../assets/js/inscription.js"></script>

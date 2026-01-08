@@ -14,26 +14,37 @@ include ("../controleurs/c-connexion.php");
     <title>Connexion</title>
 </head>
 <body>
-    
 <header>
         <a href="#" class="logo">LG</a>
         <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
-            <img src="assets/images/burger-menu.svg" alt="">
+            <img src="../assets/images/burger-menu.svg" alt="">
         </button>
 
         <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
-                <li><a href="vues/recette.php">Nos Recettes</a></li>
-                <li><a href="">Aliments toxiques</a></li>
-                <li><a href="">Trouver un vétérinaire</a></li>
-                <li><a href="">Proposer une recette</a></li>
+                <li><a href="recette.php">Nos Recettes</a></li>
+                <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
+                <li><a href="index..php">Trouver un vétérinaire</a></li>
+                <li><a href="v-contribution.php">Proposer une recette</a></li>
             </ul>
-          <div class="connexion">
-                        <a href="vues/v-inscription.php">Inscription</a>
-                        <a href="vues/v-connexion.php">Connexion</a>
-                    </div>
-            
+            <?php
+            if (isset($_SESSION['id_utilisateur'])) {
+                echo '<form action="controleurs/recette.php" method="get">
+                <label for="recherche" class="sr-only">Recherchez une recette</label>
+                <input type="search" name="recherche" placeholder="Recherchez une recette...">
+            </form>';
 
+                echo '<div class="compte">
+                        <a href="profil.php?favoris"><img src="../assets/images/favorite-on.svg" alt="Voir mes favoris"></a>
+                        <a href="vues/profil.php"><img src="../assets/images/compte.svg" alt="Accéder à mon profil"></a>
+                     </div>';
+            } else {
+                echo '<div class="connexion">
+                        <a href="v-inscription.php">Inscription</a>
+                        <a href="v-connexion.php">Connexion</a>
+                    </div>';
+            }
+            ?>
         </nav>
     </header>
 
