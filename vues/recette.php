@@ -74,35 +74,49 @@ include_once('../controleurs/user.php');
                     <label for="niveau" class="sr-only">Niveau de difficulté</label>
                     <select name="niveau" id="niveau">
                         <option value="">Difficulté</option>
-                        <option value="1">Facile</option>
-                        <option value="2">Moyen</option>
-                        <option value="3">Difficile</option>
+                        <option value="Facile">Facile</option>
+                        <option value="Moyen">Moyen</option>
+                        <option value="Difficile">Difficile</option>
                     </select>
                     <input type="submit" value="Filtrer">
                 </form>
                 <a href="../vues/recette.php" class="btn-reset">Réinitialiser</a>
             </div>
         </section>
+    
         <section class="recettes">
             <?php
             if (!empty($recettes)) {
                 foreach ($recettes as $recette) {
-                    echo "<div class='recette'><div class='img'></div>
-                    <img src='../assets/images/pin.png' alt='' class='pin'>
-                <h2>{$recette['nom_recette']}</h2>
-                <span class='temps'><img src='../assets/images/clock.png' alt=''> {$recette['temps']} min</span>
-                <div class='badge'>";
+                    $id = (int)$recette['id_recette'];
+                    $imgSrc = ($recette['image_recette']);
+                    $nom = htmlspecialchars($recette['nom_recette']);
+                    $temps = (int)$recette['temps'];
+                    $animal = htmlspecialchars($recette['animal']);
 
+                    echo "<div class='recette'>";
+                    echo "<a class='recette-link' href='recette-detail.php?id={$id}'>
+                            <div class='img'><img width='219px' src='{$imgSrc}' alt='{$nom}'></div>
+                            <img src='../assets/images/pin.png' alt='' class='pin'>
+                            <h2>{$nom}</h2>
+                            <span class='temps'><img src='../assets/images/clock.png' alt=''> {$temps} min</span>
+                            <div class='badge'>";
+                    
                     if ($recette['animal'] == 'chien') {
-                        echo "<img src='../assets/images/dog.png' alt=''><p>Pour {$recette['animal']}</p>
-                </div>";
+                        echo "<img src='../assets/images/dog.png' alt=''><p>Pour {$animal}</p></div>";
                     } else if ($recette['animal'] == 'chat') {
-                        echo "<img src='../assets/images/cat.png' alt=''><p>Pour {$recette['animal']}</p>
-                </div>";
+                        echo "<img src='../assets/images/cat.png' alt=''><p>Pour {$animal}</p></div>";
+                    } else {
+                        echo "</div>";
                     }
-                    echo '<button class="btn-favoris" data-recette="' . $recette["id_recette"] . '"><img src="../assets/images/favorite-off.svg" alt="">
-                     <span class="sr-only">Ajouter aux favoris</span></button>
-                     </div>';
+
+                    echo "</a>";
+
+                    // bouton favoris en dehors de la balise <a>
+                    echo '<button class="btn-favoris" data-recette="' . $id . '"><img src="../assets/images/favorite-off.svg" alt="">
+                         <span class="sr-only">Ajouter aux favoris</span></button>';
+
+                    echo "</div>";
                 }
             } else {
                 echo '<p class="rien"> Aucun résultat </p>';
