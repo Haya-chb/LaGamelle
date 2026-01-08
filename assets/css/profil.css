@@ -323,14 +323,17 @@ input,
 
 .section {
     display: none;
+    opacity: 0; /* Par défaut pour l'animation */
 }
 
 .section.active {
     display: grid;
+    opacity: 1; /* Par défaut pour l'animation */
 }
 
 .section.flex.active {
     display: flex;
+    opacity: 1; /* Par défaut pour l'animation */
 }
 
 .nav-btn.active {

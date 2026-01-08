@@ -21,8 +21,30 @@ if (!$recette) {
     exit();
 }
 
-$imgSrc = ($recette['image_recette']);
+// Handle comment submission
+$comment_message = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id_utilisateur'])) {
+    $commentaire = trim($_POST['commentaire'] ?? '');
+    $note = intval($_POST['note'] ?? 0);
+    $fk_utilisateur = $_SESSION['id_utilisateur'];
+    
+    if (!empty($commentaire) && $note >= 1 && $note <= 5) {
+        try {
+            $stmtInsert = $db->prepare("INSERT INTO avis (commentaire, note, fk_utilisateur, fk_recette) VALUES (?, ?, ?, ?)");
+            $stmtInsert->execute([$commentaire, $note, $fk_utilisateur, $id_recette]);
+            // Redirect to avoid resubmission
+            header('Location: recette-detail.php?id=' . $id_recette);
+            exit();
+        } catch (Exception $e) {
+            $comment_message = 'Erreur lors de l\'ajout du commentaire.';
+        }
+    } else {
+        $comment_message = 'Veuillez remplir tous les champs correctement.';
+    }
+}
+
 // Load author (username) for this recipe
+$imgSrc = ($recette['image_recette']);
 $author = null;
 try {
     if (!empty($recette['fk_utilisateur'])) {
@@ -42,6 +64,15 @@ try {
 } catch (Exception $e) {
     $ingredients = [];
 }
+// Load comments for this recipe from the database
+$commentaires = [];
+try {
+    $stmtComments = $db->prepare("SELECT a.id_avis, a.commentaire, a.note, a.fk_utilisateur, u.pseudo, u.nom_utilisateur FROM avis a JOIN utilisateur u ON a.fk_utilisateur = u.id_utilisateur WHERE a.fk_recette = ? ORDER BY a.id_avis DESC");
+    $stmtComments->execute([$id_recette]);
+    $commentaires = $stmtComments->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    $commentaires = [];
+}
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +85,61 @@ try {
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/recette.css">
 </head>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/recette.css">
+</head>
+
+<style>
+
+h2 {
+
+    padding-left: 30px;
+    padding-bottom: 10px;
+    padding-top: 30px;
+    font-size: 2.5rem;
+}
+
+h1 {
+
+    font-size: 5rem;
+    margin-bottom: 10px;
+}
+
+
+.publie-par {
+    margin-top: -20px;
+    font-size: 1.2rem;
+}
+
+.img_detail {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.login-required {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.btn-toggle {
+    background: var(--rouge);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px 0 16px 30px;
+    font-family: 'Kelson Sans', sans-serif;
+}
+
+.hidden { display: none; }
+</style>
 
 <body>
     <header>
@@ -76,7 +162,7 @@ try {
         <section class="recette-detail">
             <a href="recette.php" class="btn-back">← Retour</a>
             <h1><?= htmlspecialchars($recette['nom_recette']) ?></h1>
-            <h2>Publié par <strong><?= htmlspecialchars($author['pseudo'] ?? 'Inconnu') ?></strong></h2>
+            <p class="publie-par">Publié par <strong><?= htmlspecialchars($author['pseudo'] ?? 'Inconnu') ?></strong></p>
             <img class="img_detail" src="<?= $imgSrc ?>" alt="">
             <div class="recette-info">
                 <span><img src="../assets/images/<?= htmlspecialchars($recette['animal'])?>.png" alt=""> Pour <?= htmlspecialchars($recette['animal']) ?></span>
@@ -93,13 +179,13 @@ try {
                         <?php
                             $imgPath = htmlspecialchars(str_replace('\\', '/', $ingredient['image_ingredient'] ?? ''));
                         ?>
-                        <li class="ingredient-item">
+                        <div class="ingredient-item">
                             <?php if (!empty($imgPath)): ?>
                                 <img class="ingredient-img" src="<?= $imgPath ?>" alt="<?= htmlspecialchars($ingredient['nom_ingredient']) ?>">
                             <?php endif; ?>
                             <span class="ingredient-qty"><?= htmlspecialchars($ingredient['quantite_ingredient']) ?></span>
                             <span class="ingredient-name"><?= htmlspecialchars($ingredient['nom_ingredient']) ?></span>
-                        </li>
+                            </div>
                     <?php endforeach; ?>
                 </ul>
 
@@ -112,10 +198,122 @@ try {
                 </section>
                 
             </div>
+
+            <h1>Les commentaires</h1>
+
+            <?php if (isset($_SESSION['id_utilisateur'])): ?>
+                <div class="commentaire-form">
+                    <?php if (!empty($comment_message)): ?>
+                        <p class="form-message"><?= htmlspecialchars($comment_message) ?></p>
+                    <?php endif; ?>
+                    <form method="POST" class="formulaire-avis">
+                        <div class="form-group">
+                            <label for="note">Note :</label>
+                            <select id="note" name="note" required>
+                                <option value="">Sélectionnez une note</option>
+                                <option value="1">⭐ 1/5</option>
+                                <option value="2">⭐⭐ 2/5</option>
+                                <option value="3">⭐⭐⭐ 3/5</option>
+                                <option value="4">⭐⭐⭐⭐ 4/5</option>
+                                <option value="5">⭐⭐⭐⭐⭐ 5/5</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="commentaire">Votre commentaire :</label>
+                            <textarea id="commentaire" name="commentaire" rows="4" placeholder="Partagez votre avis sur cette recette..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Poster votre commentaire</button>
+                    </form>
+                </div>
+            <?php else: ?>
+                <p class="login-required">Veuillez <a style="color: var(--bleu)" href="v-connexion.php">vous connecter</a> pour ajouter un commentaire.</p>
+            <?php endif; ?>
+
+            <div class="recette-commentaires">
+                <?php if (!empty($commentaires)): ?>
+                    <?php foreach ($commentaires as $commentaire): ?>
+                        <div class="commentaire-item">
+                            <div class="commentaire-header">
+                                <div class="commentaire-user">
+                                    <strong><?= htmlspecialchars($commentaire['pseudo']) ?></strong>
+                                </div>
+                                <div class="commentaire-note">
+                                    <span class="note-stars"><?= str_repeat('⭐', intval($commentaire['note'])) ?></span>
+                                    <span class="note-value"><?= htmlspecialchars($commentaire['note']) ?>/5</span>
+                                </div>
+                            </div>
+                            <p class="commentaire-text"><?= nl2br(htmlspecialchars($commentaire['commentaire'])) ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="no-comments">Aucun commentaire pour le moment. Soyez le premier à commenter cette recette !</p>
+                <?php endif; ?>
+            </div>
         </section>
     </main>
 
     <script src="../assets/js/script.js"></script>
+    <script>
+        // Randomize background colors of comment items using CSS variables
+        // and provide toggle show/hide for comments
+        document.addEventListener('DOMContentLoaded', function() {
+            const colors = ['--rouge', '--orange', '--jaune', '--rose', '--vert', '--bleu'];
+            const commentItems = document.querySelectorAll('.commentaire-item');
+            
+            commentItems.forEach(item => {
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                const colorValue = getComputedStyle(document.documentElement).getPropertyValue(randomColor).trim();
+                item.style.backgroundColor = colorValue;
+                
+                // Set text color to white if the background is rouge
+                if (randomColor === '--rouge') {
+                    item.style.color = 'white';
+                }
+            });
+
+            const toggleBtn = document.getElementById('toggle-comments-btn');
+            const commentsWrapper = document.getElementById('comments-wrapper');
+            if (toggleBtn && commentsWrapper) {
+                toggleBtn.addEventListener('click', () => {
+                    const hidden = commentsWrapper.classList.toggle('hidden');
+                    toggleBtn.textContent = hidden ? 'Afficher les commentaires' : 'Masquer les commentaires';
+                });
+            }
+        });
+    </script>
+
+    <footer class="main-footer">
+        <div class="footer-wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="footer-container">
+            <div class="footer-links">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="index.php">Accueil</a></li>
+                    <li><a href="vues/recette.php">Nos Recettes</a></li>
+                    <li><a href="vues/alimentsdangereuxV.php">Aliments toxiques</a></li>
+                    <li><a href="vues/VeterinaireView.php">Vétérinaires</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3>Informations</h3>
+                <ul>
+                    <li><a href="vues/mentions-legales.php">Mentions légales</a></li>
+                    <li><a href="vues/mentions-legales.php#confidentialite">Confidentialité</a></li>
+                    <li><a href="vues/mentions-legales.php#credits">Crédits</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 La Gamelle - Fait avec passion pour vos animaux.</p>
+        </div>
 </body>
 
 </html>

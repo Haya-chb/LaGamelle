@@ -49,6 +49,12 @@
     --noir: #010101;
 }
 
+html {
+    scrollbar-color: var(--noir) transparent;
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -72,6 +78,54 @@ body {
     border-width: 0;
 }
 
+/* --- Overlay de chargement --- */
+#loader {
+    position: fixed;
+    inset: 0;
+    background-color: var(--beige);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    overflow: hidden;
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.illustration-container {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.loader-img {
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: contain;
+    opacity: 1; 
+}
+
+.progress-bar {
+    width: 150px;
+    height: 2px;
+    background: var(--noir);
+    border-radius: 10px;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--jaune);
+}
+
 h1,
 h2,
 h3 {
@@ -83,6 +137,12 @@ a {
     text-decoration: none;
     color: #000;
     transition: all 0.3s ease;
+}
+
+
+.pc-only,
+.compte.pc-only {
+    display: none;
 }
 
 /* mobile-first */
@@ -105,18 +165,12 @@ nav {
     flex-direction: column;
     gap: 30px;
 
-    transform: translateY(-100%);
     opacity: 0;
-
-    transition:
-        transform 1s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.3s ease;
-
+    visibility: hidden;
     pointer-events: none;
 }
 
 nav.active {
-    transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
 }
@@ -143,7 +197,8 @@ input[type="search"]::placeholder {
 }
 
 .navbar,
-.connexion {
+.connexion,
+.compte.mobile-only {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -222,11 +277,9 @@ h2 {
 .recette h2 {
     font-size: 1.5rem;
     font-family: 'Kelson Sans', sans-serif;
-
 }
 
 .temps,
-
 .badge {
     display: flex;
     align-items: center;
@@ -249,15 +302,26 @@ h2 {
     transform: rotate(0.06turn);
 }
 
+.badge {
+    background-color: var(--jaune);
+    width: fit-content;
+    padding: 3px 10px 3px 3px;
+    border-radius: 20px;
+    color: #000;
+    font-family: 'Kelson Sans', sans-serif;
+    position: absolute;
+    bottom: 40px;
+    left: 120px;
+    transform: rotate(-0.04turn);
+}
 
+.badge img,
 .btn-favoris img,
 .btn-supp img {
     background-color: var(--rouge);
     border-radius: 50%;
     padding: 3px;
 }
-
-
 
 .btn-favoris img,
 .btn-supp img {
@@ -287,7 +351,169 @@ h2 {
     width: 35px;
 }
 
+
+footer {
+    background-color: var(--bleu);
+    font-family: 'Kelson Sans', sans-serif;
+    font-size: 1.2rem;
+}
+
+.main-footer {
+    position: relative;
+    padding-top: 60px;
+    margin-top: 60px;
+    color: #fff;
+    text-align: center;
+}
+
+/* La vague décorative */
+.footer-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.footer-wave svg {
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 40px;
+}
+
+.footer-wave .shape-fill {
+    fill: var(--beige);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.footer-links h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #fff;
+    font-family: 'Kelson Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 12px;
+}
+
+.footer-links ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom {
+    padding: 25px 20px;
+    margin-top: 40px;
+    border-top: 1.5px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.85rem;
+    opacity: 0.8;
+    text-align: center;
+}
+
+.commentaire-item {
+
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: var(--jaune);
+    border-radius: 5px;
+}
+
+.ingredient-item {
+
+        background-color: var(--jaune);
+        max-width: fit-content;
+        padding: 5px 10px;
+        margin-bottom: 8px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+
+
+    }
+
+    .recette-contenu {
+        background: linear-gradient(135deg, var(--beige) 0%, rgba(255, 232, 206, 0.5) 100%);
+        padding: 2rem;
+        border-radius: 12px;
+        margin: 2rem 0;
+        border-left: 5px solid var(--orange);
+    }
+
+    .recette-contenu p {
+        font-family: 'Kelson Sans', sans-serif;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--noir);
+        text-align: justify;
+        margin: 0;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+    }
+
+
+@media (min-width: 768px) {
+    .main-footer {
+        text-align: left;
+        padding-top: 80px;
+    }
+
+    .footer-wave svg {
+        height: 70px;
+    }
+
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .footer-brand {
+        flex: 2;
+    }
+
+    .footer-links {
+        flex: 1;
+    }
+
+    .footer-brand p {
+        margin: 15px 0 0;
+    }
+
+    input[type="search"] {
+        width: 500px;
+    }
+}
+
 @media (min-width: 850px) {
+    .mobile-only,
+    .compte .mobile-only {
+        display: none !important;
+    }
+
+    .pc-only{
+        display: flex;
+    }
     header {
         flex-direction: row;
         justify-content: start;
@@ -299,18 +525,17 @@ h2 {
     }
 
     nav {
+        background: transparent;
         position: static;
-        background-color: transparent;
-
         font-size: 1rem;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         width: 100%;
-
-        transform: none;
-        opacity: 1;
-        pointer-events: auto;
     }
 
     .navbar,
@@ -325,7 +550,9 @@ h2 {
         position: relative;
     }
 
-    nav li{text-align: center;}
+    nav li {
+        text-align: center;
+    }
 
     nav a.active {
         border-bottom: #000 2px solid;
@@ -351,7 +578,15 @@ h2 {
     }
 }
 
-@media (min-width: 950px) {
+@media (min-width: 900px) {
+    .pc-only, .compte.pc-only {
+        display: flex;
+    }
+
+        input[type="search"] {
+        width: 250px;
+    }
+
     nav {
         font-size: 1.05rem;
     }

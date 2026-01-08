@@ -31,11 +31,8 @@ if (isset($_POST['action']) && $_POST['action'] === 'Valider') {
     } else {
          $id_utilisateur = ajouter_utilisateur($db, $nom, $prenom, $mail, $telephone, $pseudo, $hash);
 
-        $id_animal =ajouter_animal($db, $nom_animal, $race, $age, $sexe, $anniv, $poids, $espece);
+        $id_animal =ajouter_animal($db, $id_utilisateur, $nom_animal, $race, $age, $sexe, $anniv, $poids, $espece);
 
-        animal_utilisateur($db, $id_animal, $id_utilisateur);
-
-        
         echo '<p> Inscription réussie. Vous pouvez vous connecter.</p>';
     }
 }
