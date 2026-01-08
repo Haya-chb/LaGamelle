@@ -1,7 +1,7 @@
 section {
     font-family: 'Kelson Sans', sans-serif;
     padding: 10px;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 h2 {
@@ -17,6 +17,10 @@ h2 {
     font-weight: bold;
     height: 95vh;
     margin-bottom: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .recents {
@@ -36,6 +40,15 @@ h2 {
     width: 340px;
     height: 450px;
     transform-style: preserve-3d;
+
+    user-select: none;
+    -webkit-user-drag: none;
+    transition: transform 0.6s ease-in-out;
+    touch-action: none;
+}
+
+.page img {
+    pointer-events: none;
 }
 
 .page {
@@ -73,12 +86,42 @@ h2 {
     position: absolute;
     inset: 0;
     backface-visibility: hidden;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .front.recette {
     position: absolute;
     margin-top: 0;
+}
+
+.couverture .front {
+    padding: 30px;
+}
+
+.front.recette .img {
+    border-radius: 10px;
+    background-color: var(--jaune);
+    position: relative;
+    left: 20px;
+    bottom: 20px;
+    transform: rotate(0turn);
+}
+
+.front.recette a {
+    color: #fff;
+    font-size: 1.1rem;
+    display: inline-block;
+    margin-top: 25px;
+}
+
+.badge {
+    bottom: 70px;
+    left: 120px;
+    transform: rotate(-0.03turn);
+}
+
+.front.recette a:hover {
+    color: var(--noir);
 }
 
 .back {
@@ -186,6 +229,9 @@ h2 {
 
 .croquette {
     margin-bottom: 100px;
+    background-color: var(--vert);
+    padding-top: 50px;
+    border-radius: 50px 50px 0 0;
 }
 
 .croquette img {
@@ -195,6 +241,11 @@ h2 {
     background-color: var(--vert);
     border-radius: 20px;
     padding: 10px 0;
+}
+
+.croquette h2 {
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .croquette h3 {
@@ -216,8 +267,7 @@ h2 {
 }
 
 .croquette-container div a {
-    background-color: var(--rose);
-    color: black;
+    border: 2px solid var(--noir);
     margin: 25px 0;
 }
 
@@ -285,10 +335,31 @@ h2 {
         height: 32rem;
     }
 
+    .front.recette .img {
+        height: 290px;
+        width: 290px;
+    }
+
+    .badge {
+        bottom: 80px;
+        left: 100px;
+        transform: rotate(-0.04turn);
+    }
+
+    .front.recette h2 {
+        margin-top: 12px;
+        font-size: 2rem;
+        font-family: 'Kelson Sans', sans-serif;
+    }
+
+    .couverture img {
+        margin-bottom: 30px;
+        margin-top: 50px;
+    }
+
     .croquette h2 {
-        font-size: 4rem;
+        font-size: 5rem;
         text-align: center;
-        width: 900px;
         margin: 20px auto;
     }
 
@@ -301,7 +372,6 @@ h2 {
     .croquette-container {
         font-size: 1.2rem;
         display: flex;
-        align-items: center;
         justify-content: space-between;
         gap: 20px;
     }
@@ -356,6 +426,10 @@ h2 {
         font-size: 7rem;
     }
 
+    .croquette h2 {
+        width: 900px;
+    }
+
     .recette,
     .couverture,
     .back {
@@ -371,12 +445,6 @@ h2 {
 
     .couverture img {
         width: 250px;
-        margin-bottom: 30px;
-        margin-top: 50px;
-    }
-
-    .couverture .front {
-        padding: 30px;
     }
 
     .cards {

@@ -7,20 +7,53 @@ $hasSearch =
     || (!empty($_GET['city']) && trim($_GET['city']) !== '');
 ?>
 
-<link rel="stylesheet" href="../assets/css/veterinaire.css">
+<!DOCTYPE html>
+<html lang="fr">
 
-<header>
-        <a href="#" class="logo">LG</a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annuaire des vétérinaire | La Gamelle</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="../assets/css/veterinaire.css">
+    <style>
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .results {
+            width: 40%;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        #map {
+            width: 60%;
+            height: 600px;
+        }
+
+        .card-vet {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="../index.php" class="logo">LG</a>
         <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
-            <img src="assets/images/burger-menu.svg" alt="">
+            <img src="../assets/images/burger-menu.svg" alt="">
         </button>
 
         <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
-                <li><a href="vues/recette.php">Nos Recettes</a></li>
-                <li><a href="">Aliments toxiques</a></li>
-                <li><a href="">Trouver un vétérinaire</a></li>
-                <li><a href="">Proposer une recette</a></li>
+                <li><a href="recette.php">Nos Recettes</a></li>
+                <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
+                <li><a href="VeterinaireView.php" class="active">Trouver un vétérinaire</a></li>
+                <li><a href="v-contribution.php">Proposer une recette</a></li>
             </ul>
             <?php
             if (isset($_SESSION['id_utilisateur'])) {
@@ -30,202 +63,187 @@ $hasSearch =
             </form>';
 
                 echo '<div class="compte">
-                        <a href="vues/profil.php?favoris"><img src="assets/images/favorite-on.svg" alt="Voir mes favoris"></a>
-                        <a href="vues/profil.php"><img src="assets/images/compte.svg" alt="Accéder à mon profil"></a>
+                        <a href="profil.php?favoris"><img src="../assets/images/favorite-on.svg" alt="Voir mes favoris"></a>
+                        <a href="vues/profil.php"><img src="../assets/images/compte.svg" alt="Accéder à mon profil"></a>
                      </div>';
             } else {
                 echo '<div class="connexion">
-                        <a href="vues/v-inscription.php">Inscription</a>
-                        <a href="vues/v-connexion.php">Connexion</a>
+                        <a href="v-inscription.php">Inscription</a>
+                        <a href="v-connexion.php">Connexion</a>
                     </div>';
             }
-
             ?>
         </nav>
     </header>
 
-<!-- BARRE DE RECHERCHE -->
-<form method="GET" action="index.php" class="form">
-    <input type="hidden" name="page" value="veterinaires">
-    <input type="hidden" name="action" value="index">
+    <main>
+        <!-- BARRE DE RECHERCHE -->
+        <form method="GET" action="index.php" class="form">
+            <input type="hidden" name="page" value="veterinaires">
+            <input type="hidden" name="action" value="index">
 
-    <!-- INPUT NOM -->
-    <div class="input-wrapper left">
-        <img src="../assets/images/person.svg" alt="" class="input-icon">
-        <input
-            type="text"
-            name="name"
-            placeholder="       Nom ou prénom"
-            value="<?= htmlspecialchars($_GET['name'] ?? '') ?>"
-        >
-    </div>
-
-    <!-- INPUT VILLE -->
-    <div class="input-wrapper right">
-        <img src="../assets/images/loca.svg" alt="" class="input-icon">
-        <input
-            type="text"
-            name="city"
-            placeholder=".      Ville"
-            value="<?= htmlspecialchars($_GET['city'] ?? '') ?>"
-        >
-    </div>
-
-    <button type="submit">Rechercher</button>
-</form>
-
-
-<!-- BOUTON EFFACER LA RECHERCHE (AFFICHE UNIQUEMENT SI RECHERCHE) -->
-<?php if ($hasSearch): ?>
-    <form method="GET" action="index.php" class="vet-reset-form">
-        <input type="hidden" name="page" value="veterinaires">
-        <input type="hidden" name="action" value="index">
-
-        <button type="submit" class="vet-reinitialiser">
-            Effacer la recherche
-        </button>
-    </form>
-<?php endif; ?>
-
-<div class="container">
-    <!-- LISTE -->
-    <div class="results" id="vet-list">
-        <?php foreach ($veterinaires as $vet): ?>
-            <div class="card-vet" id="vet-<?= $vet['id'] ?>">
-                <h3><?= htmlspecialchars($vet['prenom'] . ' ' . $vet['nom']) ?></h3>
-                <div class="separator"></div>
-                <p>
-                    <?= htmlspecialchars($vet['adresse']) ?><br>
-                    <?= htmlspecialchars($vet['code_postal']) ?> <?= htmlspecialchars($vet['ville']) ?><br>
-                    <?= htmlspecialchars($vet['telephone']) ?>
-                </p>
-                <div class="note">⭐ <?= htmlspecialchars($vet['note']) ?></div>
-                <a href="index.php?page=veterinaires&action=show&id=<?= $vet['id'] ?>">
-    <button>Accéder à la fiche</button>
-</a>
+            <!-- INPUT NOM -->
+            <div class="input-wrapper left">
+                <img src="../assets/images/person.svg" alt="" class="input-icon">
+                <input type="text" name="name" placeholder="       Nom ou prénom"
+                    value="<?= htmlspecialchars($_GET['name'] ?? '') ?>">
             </div>
-        <?php endforeach; ?>
-    </div>
 
-    <!-- CARTE -->
-    <div id="map"></div>
-</div>
+            <!-- INPUT VILLE -->
+            <div class="input-wrapper right">
+                <img src="../assets/images/loca.svg" alt="" class="input-icon">
+                <input type="text" name="city" placeholder=".      Ville"
+                    value="<?= htmlspecialchars($_GET['city'] ?? '') ?>">
+            </div>
 
-<!-- Leaflet CSS/JS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+            <button type="submit">Rechercher</button>
+        </form>
 
-<style>
-.container { display: flex; gap: 20px; }
-.results { width: 40%; max-height: 600px; overflow-y: auto; }
-#map { width: 60%; height: 600px; }
-.card-vet { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
-</style>
 
-<script>
-// =======================
-// DONNEES PASSEES DEPUIS PHP
-// =======================
-const veterinaireData = <?= json_encode($veterinaires) ?>;
+        <!-- BOUTON EFFACER LA RECHERCHE (AFFICHE UNIQUEMENT SI RECHERCHE) -->
+        <?php if ($hasSearch): ?>
+            <form method="GET" action="index.php" class="vet-reset-form">
+                <input type="hidden" name="page" value="veterinaires">
+                <input type="hidden" name="action" value="index">
 
-// =======================
-// INITIALISATION DE LA MAP
-// =======================
-const map = L.map('map').setView([46.8, 2.3], 6);
+                <button type="submit" class="vet-reinitialiser">
+                    Effacer la recherche
+                </button>
+            </form>
+        <?php endif; ?>
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-}).addTo(map);
+        <div class="container">
+            <!-- LISTE -->
+            <div class="results" id="vet-list">
+                <?php foreach ($veterinaires as $vet): ?>
+                    <div class="card-vet" id="vet-<?= $vet['id'] ?>">
+                        <h3><?= htmlspecialchars($vet['prenom'] . ' ' . $vet['nom']) ?></h3>
+                        <div class="separator"></div>
+                        <p>
+                            <?= htmlspecialchars($vet['adresse']) ?><br>
+                            <?= htmlspecialchars($vet['code_postal']) ?>     <?= htmlspecialchars($vet['ville']) ?><br>
+                            <?= htmlspecialchars($vet['telephone']) ?>
+                        </p>
+                        <div class="note">⭐ <?= htmlspecialchars($vet['note']) ?></div>
+                        <a href="index.php?page=veterinaires&action=show&id=<?= $vet['id'] ?>">
+                            <button>Accéder à la fiche</button>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
 
-// =======================
-// ICONES
-// =======================
-const defaultIcon = L.icon({
-    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
-});
+            <!-- CARTE -->
+            <div id="map"></div>
+        </div>
+    </main>
 
-const selectedIcon = L.icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
-});
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // =======================
+        // DONNEES PASSEES DEPUIS PHP
+        // =======================
+        const veterinaireData = <?= json_encode($veterinaires) ?>;
 
-// =======================
-// VARIABLES
-// =======================
-let currentSelectedMarker = null;
-const allMarkers = [];
+        // =======================
+        // INITIALISATION DE LA MAP
+        // =======================
+        const map = L.map('map').setView([46.8, 2.3], 6);
 
-// =======================
-// RESET FUNCTION
-// =======================
-function resetSelection() {
-    if (currentSelectedMarker) {
-        currentSelectedMarker.setIcon(defaultIcon);
-        currentSelectedMarker = null;
-    }
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
 
-    document.querySelectorAll('.card-vet').forEach(card => {
-        card.style.display = 'block';
-    });
-}
+        // =======================
+        // ICONES
+        // =======================
+        const defaultIcon = L.icon({
+            iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
+        });
 
-// =======================
-// CREATION DES MARKERS
-// =======================
-veterinaireData.forEach(vet => {
-    if (!vet.latitude || !vet.longitude) return;
+        const selectedIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
+        });
 
-    const lat = parseFloat(vet.latitude);
-    const lng = parseFloat(vet.longitude);
+        // =======================
+        // VARIABLES
+        // =======================
+        let currentSelectedMarker = null;
+        const allMarkers = [];
 
-    if (isNaN(lat) || isNaN(lng)) return;
+        // =======================
+        // RESET FUNCTION
+        // =======================
+        function resetSelection() {
+            if (currentSelectedMarker) {
+                currentSelectedMarker.setIcon(defaultIcon);
+                currentSelectedMarker = null;
+            }
 
-    const marker = L.marker([lat, lng], { icon: defaultIcon }).addTo(map);
-    allMarkers.push(marker);
-
-    marker.on('click', (e) => {
-        L.DomEvent.stopPropagation(e);
-
-        if (currentSelectedMarker) {
-            currentSelectedMarker.setIcon(defaultIcon);
+            document.querySelectorAll('.card-vet').forEach(card => {
+                card.style.display = 'block';
+            });
         }
 
-        marker.setIcon(selectedIcon);
-        currentSelectedMarker = marker;
+        // =======================
+        // CREATION DES MARKERS
+        // =======================
+        veterinaireData.forEach(vet => {
+            if (!vet.latitude || !vet.longitude) return;
 
-        document.querySelectorAll('.card-vet').forEach(card => card.style.display = 'none');
+            const lat = parseFloat(vet.latitude);
+            const lng = parseFloat(vet.longitude);
 
-        const selectedCard = document.getElementById(`vet-${vet.id}`);
-        if (selectedCard) {
-            selectedCard.style.display = 'block';
-            selectedCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (isNaN(lat) || isNaN(lng)) return;
+
+            const marker = L.marker([lat, lng], { icon: defaultIcon }).addTo(map);
+            allMarkers.push(marker);
+
+            marker.on('click', (e) => {
+                L.DomEvent.stopPropagation(e);
+
+                if (currentSelectedMarker) {
+                    currentSelectedMarker.setIcon(defaultIcon);
+                }
+
+                marker.setIcon(selectedIcon);
+                currentSelectedMarker = marker;
+
+                document.querySelectorAll('.card-vet').forEach(card => card.style.display = 'none');
+
+                const selectedCard = document.getElementById(`vet-${vet.id}`);
+                if (selectedCard) {
+                    selectedCard.style.display = 'block';
+                    selectedCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+
+                map.flyTo([lat, lng], 14, { duration: 1.0 });
+            });
+        });
+
+        // =======================
+        // ZOOM AUTO AU CHARGEMENT
+        // =======================
+        if (allMarkers.length > 0) {
+            const group = new L.featureGroup(allMarkers);
+            map.fitBounds(group.getBounds().pad(0.2));
         }
 
-        map.flyTo([lat, lng], 14, { duration: 1.0 });
-    });
-});
-
-// =======================
-// ZOOM AUTO AU CHARGEMENT
-// =======================
-if (allMarkers.length > 0) {
-    const group = new L.featureGroup(allMarkers);
-    map.fitBounds(group.getBounds().pad(0.2));
-}
-
-// =======================
-// RESET AU CLIC SUR LA MAP
-// =======================
-map.on('click', (e) => {
-    if (e.originalEvent.target.closest('.leaflet-marker-icon')) return;
-    resetSelection();
-});
-</script>
-
+        // =======================
+        // RESET AU CLIC SUR LA MAP
+        // =======================
+        map.on('click', (e) => {
+            if (e.originalEvent.target.closest('.leaflet-marker-icon')) return;
+            resetSelection();
+        });
+    </script>
+</body>
+</html>

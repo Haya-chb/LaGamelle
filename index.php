@@ -37,9 +37,9 @@ include_once('controleurs/user.php');
         <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
                 <li><a href="vues/recette.php">Nos Recettes</a></li>
-                <li><a href="vues/">Aliments toxiques</a></li>
+                <li><a href="vues/alimentsdangereuxV.php">Aliments toxiques</a></li>
                 <li><a href="vues/VeterinaireView.php">Trouver un vétérinaire</a></li>
-                <li><a href="vues/">Proposer une recette</a></li>
+                <li><a href="vues/v-contribution.php">Proposer une recette</a></li>
             </ul>
             <?php
             if (isset($_SESSION['id_utilisateur'])) {
@@ -58,7 +58,6 @@ include_once('controleurs/user.php');
                         <a href="vues/v-connexion.php">Connexion</a>
                     </div>';
             }
-
             ?>
         </nav>
     </header>
@@ -107,6 +106,7 @@ include_once('controleurs/user.php');
                                     <img src="assets/images/favorite-off.svg" alt="">
                                     <span class="sr-only">Ajouter aux favoris</span>
                                 </button>
+                                <a href="">Voir la recette</a>
                             </div>
 
                             <div class="page-face back">
@@ -115,7 +115,7 @@ include_once('controleurs/user.php');
                     <?php endforeach; ?>
                     <button id="btn-reset" class="btn-reset">Revenir au début</button>
                 </div>
-                    </div>
+            </div>
         </section>
 
         <section class="nous">
@@ -197,19 +197,41 @@ include_once('controleurs/user.php');
         </section>
     </main>
 
-    <footer>
-        <ul>
-            <li><a href="">À propos</a></li>
-            <li><a href="">Mentions légales</a></li>
-            <li><a href="">Politiques de confidentialité</a></li>
-            <li><a href="">Crédits</a></li>
-        </ul>
-    </footer>
+<footer class="main-footer">
+    <div class="footer-wave">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+    </div>
+    <div class="footer-container">
+        <div class="footer-links">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="index.php">Accueil</a></li>
+                <li><a href="vues/recette.php">Nos Recettes</a></li>
+                <li><a href="vues/alimentsdangereuxV.php">Aliments toxiques</a></li>
+                <li><a href="vues/VeterinaireView.php">Vétérinaires</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-links">
+            <h3>Informations</h3>
+            <ul>
+                <li><a href="#">À propos</a></li>
+                <li><a href="#">Mentions légales</a></li>
+                <li><a href="#">Confidentialité</a></li>
+                <li><a href="#">Crédits</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 La Gamelle - Fait avec passion pour vos animaux.</p>
+    </div>
+</footer>
     <script src="assets/js/gsap.min.js"></script>
     <script src="assets/js/flip.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
-        //Livre de recette
         const pages = document.querySelectorAll('.page');
         const book = document.querySelector('.book');
 
@@ -217,105 +239,100 @@ include_once('controleurs/user.php');
         let isDragging = false;
         let startX = 0;
 
-        function updatePageFlip(distance) {
-            const bookWidth = book.offsetWidth; // Largeur totale du livre
+        // Souris
+        book.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', doDrag);
+        window.addEventListener('mouseup', endDrag);
 
-            // 1. Calculer le pourcentage de progression (entre 0 et 1)
-            // On divise la distance parcourue par la largeur totale
-            let progress = distance / bookWidth;
+        // Tactile (Mobile)
+        book.addEventListener('touchstart', (e) => startDrag(e.touches[0]));
+        window.addEventListener('touchmove', (e) => doDrag(e.touches[0]));
+        window.addEventListener('touchend', endDrag);
 
-            // Sécurité : on bloque entre 0 (0%) et 1 (100%)
-            progress = Math.max(0, Math.min(1, progress));
-
-            // 2. Convertir le progrès en degrés (de 0 à -180)
-            const angle = progress * -180;
-
-            // 3. Appliquer avec GSAP (sur la page actuellement ciblée)
-            const currentPageElement = pages[currentIndex];
-
-            gsap.set(currentPageElement, {
-                rotationY: angle,
-                // Optionnel : ajouter un léger mouvement sur Z pour éviter que les pages se rentrent dedans
-                translateZ: progress > 0.5 ? 1 : 0
-            });
-        }
-
-        book.addEventListener('mousedown', (e) => {
+        function startDrag(e) {
             if (currentIndex >= pages.length) return;
             isDragging = true;
             startX = e.clientX;
             pages[currentIndex].style.cursor = 'grabbing';
-        })
+        }
 
-        window.addEventListener('mousemove', (e) => {
+        function doDrag(e) {
             if (!isDragging || currentIndex >= pages.length) return;
 
             const currentX = e.clientX;
             const distance = startX - currentX;
-
-            // On calcule l'angle (entre 0 et -180)
             let progress = distance / book.offsetWidth;
             progress = Math.max(0, Math.min(1, progress));
+
             const angle = progress * -180;
 
-            // On applique la rotation en temps réel
+            // Rotation de la page
             gsap.set(pages[currentIndex], { rotationY: angle });
-        });
 
-        window.addEventListener('mouseup', (e) => {
+            if (currentIndex === 0) {
+                let moveX = progress * 25;
+                gsap.set(book, { x: `${moveX}%` });
+            }
+        }
+
+        function endDrag(e) {
             if (!isDragging || currentIndex >= pages.length) return;
             isDragging = false;
 
-            const distance = startX - e.clientX;
-            const threshold = book.offsetWidth / 4; // On tourne si on a fait 1/4 du chemin
             const currentPage = pages[currentIndex];
+            // récupère la rotation actuelle
+            const currentRotation = gsap.getProperty(currentPage, "rotationY");
 
-            if (distance > threshold) {
-                // SUCCÈS : On finit de tourner la page
+            if (currentRotation < -45) {
                 gsap.to(currentPage, {
                     rotationY: -180,
                     duration: 0.6,
                     ease: "power2.out",
                     onComplete: () => {
-                        // On baisse le z-index pour ne pas gêner le clic sur la page suivante
                         currentPage.style.zIndex = 0;
                         currentIndex++;
                     }
                 });
+
+                // Maintenir le livre centré si on a ouvert la couverture
+                if (currentIndex === 0) {
+                    gsap.to(book, { x: "25%", duration: 0.6 });
+                }
             } else {
-                // ÉCHEC : La page revient en place
+                // Retour à la position initiale
                 gsap.to(currentPage, {
                     rotationY: 0,
                     duration: 0.4,
                     ease: "back.out(2)"
                 });
+
+                if (currentIndex === 0) {
+                    gsap.to(book, { x: "0%", duration: 0.4 });
+                }
             }
             currentPage.style.cursor = 'grab';
-        });
+        }
 
+        // Reset
         const resetBtn = document.getElementById('btn-reset');
-
         resetBtn.addEventListener('click', () => {
-            if (currentIndex === 0) return; // Déjà au début
+            if (currentIndex === 0) return;
 
-            // On crée une timeline pour que le retour soit fluide
             const resetTl = gsap.timeline();
 
-            // On boucle sur toutes les pages tournées, en partant de la dernière
+            //le livre à sa position initiale
+            resetTl.to(book, { x: "0%", duration: 0.5 }, 0);
+
             for (let i = currentIndex - 1; i >= 0; i--) {
                 resetTl.to(pages[i], {
                     rotationY: 0,
                     duration: 0.4,
                     ease: "power2.inOut",
                     onStart: () => {
-                        // Important : On redonne le z-index AVANT que la page ne recouvre les autres
-                        // Utilise la formule de ton PHP : count - index
                         pages[i].style.zIndex = pages.length - i;
                     }
-                }, "-=0.2"); // Le "-=0.2" crée un effet de cascade (les pages se referment l'une après l'autre)
+                }, "-=0.2");
             }
-
-            // On n'oublie pas de remettre l'index à zéro
             currentIndex = 0;
         });
     </script>

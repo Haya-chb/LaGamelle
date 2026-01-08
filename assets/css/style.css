@@ -52,6 +52,7 @@
 html {
     scrollbar-color: var(--noir) transparent;
     scrollbar-width: thin;
+    scroll-behavior: smooth;
 }
 
 * {
@@ -269,7 +270,6 @@ h2 {
 .recette h2 {
     font-size: 1.5rem;
     font-family: 'Kelson Sans', sans-serif;
-
 }
 
 .temps,
@@ -344,6 +344,113 @@ h2 {
     width: 35px;
 }
 
+
+footer {
+    background-color: var(--bleu);
+    font-family: 'Kelson Sans', sans-serif;
+    font-size: 1.2rem;
+}
+
+.main-footer {
+    position: relative;
+    padding-top: 60px;
+    margin-top: 60px;
+    color: #fff;
+    text-align: center;
+}
+
+/* La vague décorative */
+.footer-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.footer-wave svg {
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 40px;
+}
+
+.footer-wave .shape-fill {
+    fill: var(--beige);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.footer-links h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #fff;
+    font-family: 'Kelson Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 12px;
+}
+
+.footer-links ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom {
+    padding: 25px 20px;
+    margin-top: 40px;
+    border-top: 1.5px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.85rem;
+    opacity: 0.8;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .main-footer {
+        text-align: left;
+        padding-top: 80px;
+    }
+
+    .footer-wave svg {
+        height: 70px;
+    }
+
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .footer-brand {
+        flex: 2;
+    }
+
+    .footer-links {
+        flex: 1;
+    }
+
+    .footer-brand p {
+        margin: 15px 0 0;
+    }
+}
+
 @media (min-width: 850px) {
     header {
         flex-direction: row;
@@ -359,10 +466,10 @@ h2 {
         background: transparent;
         position: static;
         font-size: 1rem;
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-        transform: none !important;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;

@@ -25,13 +25,13 @@ include_once('../controleurs/user.php');
         <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
                 <li><a href="recette.php" class="active">Nos Recettes</a></li>
-                <li><a href="">Aliments toxiques</a></li>
-                <li><a href="">Trouver un vétérinaire</a></li>
-                <li><a href="">Proposer une recette</a></li>
+                <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
+                <li><a href="VeterinaireView.php">Trouver un vétérinaire</a></li>
+                <li><a href="v-contribution.php">Proposer une recette</a></li>
             </ul>
             <div class="connexion pc-only">
-                <a href="">Inscription</a>
-                <a href="">Connexion</a>
+                <a href="v-inscription.php">Inscription</a>
+                <a href="v-connexion.php">Connexion</a>
             </div>
         </nav>
     </header>

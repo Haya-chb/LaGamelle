@@ -479,5 +479,4 @@ require '../controleurs/animal.php';
     </script>
 
 </body>
-
 </html>
