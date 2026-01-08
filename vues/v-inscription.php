@@ -12,7 +12,7 @@ include("../controleurs/c-inscription.php");
   <link rel="stylesheet" href="../assets/css/inscription.css">
   <link rel="stylesheet" href="../assets/css/form.css">
   <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/form.css">
+  
   <title>Inscription</title>
 </head>
 <body>
@@ -27,7 +27,7 @@ include("../controleurs/c-inscription.php");
             <ul class="navbar">
                 <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
-                <li><a href="VeterinaireView.php">Trouver un vétérinaire</a></li>
+                <li><a href="index..php">Trouver un vétérinaire</a></li>
                 <li><a href="v-contribution.php">Proposer une recette</a></li>
             </ul>
             <?php

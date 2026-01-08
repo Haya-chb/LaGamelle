@@ -57,7 +57,8 @@ include ("../controleurs/c-connexion.php");
 ?>
 
 </main>
-
+<script src="../assets/js/script.js"></script>
+<script src="../assets/js/gsap.min.js"></script>
 </body>
 </html>
 

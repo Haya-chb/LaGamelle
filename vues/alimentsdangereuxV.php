@@ -17,7 +17,7 @@ include('../controleurs/FoodController.php');
 <body>
     <header>
         <a href="../index.php" class="logo">LG</a>
-        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
             <img src="../assets/images/burger-menu.svg" alt="">
         </button>
 
@@ -48,6 +48,7 @@ include('../controleurs/FoodController.php');
             ?>
         </nav>
     </header>
+
 
     <main>
         <section class="dangereux">
@@ -156,6 +157,7 @@ include('../controleurs/FoodController.php');
             filterCards();
         });
     </script>
-
+<script src="../assets/js/script.js"></script>
+<script src="../assets/js/gsap.min.js"></script>
 </body>
 </html>

@@ -16,6 +16,7 @@ $hasSearch =
     <title>Annuaire des vétérinaire | La Gamelle</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="../assets/css/veterinaire.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <style>
         .container {
             display: flex;
@@ -41,9 +42,11 @@ $hasSearch =
     </style>
 </head>
 
-<body>
-    <header>
-        <a href="../index.php" class="logo">LG</a>
+
+
+     
+<header>
+        <a href="#" class="logo">LG</a>
         <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
             <img src="../assets/images/burger-menu.svg" alt="">
         </button>
@@ -52,7 +55,7 @@ $hasSearch =
             <ul class="navbar">
                 <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
-                <li><a href="VeterinaireView.php" class="active">Trouver un vétérinaire</a></li>
+                <li><a href="VeterinaireView.php">Trouver un vétérinaire</a></li>
                 <li><a href="v-contribution.php">Proposer une recette</a></li>
             </ul>
             <?php
@@ -116,7 +119,7 @@ $hasSearch =
             <!-- LISTE -->
             <div class="results" id="vet-list">
                 <?php foreach ($veterinaires as $vet): ?>
-                    <div class="card-vet" id="vet-<?= $vet['id'] ?>">
+                    <div class="card-vet" id="vet-<?= $vet['id_veterinaire'] ?>">
                         <h3><?= htmlspecialchars($vet['prenom'] . ' ' . $vet['nom']) ?></h3>
                         <div class="separator"></div>
                         <p>
@@ -125,7 +128,7 @@ $hasSearch =
                             <?= htmlspecialchars($vet['telephone']) ?>
                         </p>
                         <div class="note">⭐ <?= htmlspecialchars($vet['note']) ?></div>
-                        <a href="index.php?page=veterinaires&action=show&id=<?= $vet['id'] ?>">
+                        <a href="index.php?page=veterinaires&action=show&id=<?= $vet['id_veterinaire'] ?>">
                             <button>Accéder à la fiche</button>
                         </a>
                     </div>
@@ -245,5 +248,7 @@ $hasSearch =
             resetSelection();
         });
     </script>
+    <script src="../assets/js/script.js"></script>
+<script src="../assets/js/gsap.min.js"></script>
 </body>
 </html>
