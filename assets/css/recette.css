@@ -5,19 +5,32 @@ main {
 .filtres {
     position: fixed;
     inset: 0;
-    background: var(--bleu);
-    padding: 2rem 1.5rem;
+    background: var(--jaune);
+    padding: 3rem 1.5rem;
     display: flex;
     flex-direction: column;
-    align-items: start;
-    gap: 1.2rem;
-    transform: translateY(100%);
-    transition: transform 0.4s ease;
-    z-index: 100;
+    align-items: center;
+    gap: 1.5rem;
+    transform: translateX(100%);
+    z-index: 1000;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-close-filtres {
+    position: absolute;
+    bottom: 70px;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-close-filtres img {
+    width: 20%;
 }
 
 .filtres.active {
-    transform: translateY(50%);
+    transform: translateX(0);
 }
 
 .btn-filtres {
@@ -31,19 +44,43 @@ main {
     cursor: pointer;
 }
 
-select {
-    background-color: var(--rose);
-    border: none;
-    font-family: 'Kelson Sans', sans-serif;
-    padding: 3px 20px;
-    border-radius: 50px;
+.filtres form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 90%;
 }
 
-.btn-reset {
+select {
+    width: 100%;
+    background-color: var(--rose);
+    border: none;
+    font-size: 1.2rem;
+    padding: 0 15px;
+    font-family: 'Kelson Sans', sans-serif;
+    border-radius: 30px;
+    border: 2px solid var(--noir);
+}
+
+.btn-reset,
+form input[type="submit"] {
     font-family: 'Kelson Sans', sans-serif;
     padding: 5px 20px;
-    background-color: var(--orange);
+    background: none;
+    border: 3px solid var(--rouge);
+    color: var(--noir);
     border-radius: 20px;
+    font-size: 1.2rem;
+    width: 90%;
+    text-align: center;
+}
+
+form input[type="submit"] {
+    background-color: var(--rouge);
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -59,8 +96,14 @@ select {
 }
 
 @media (min-width: 820px) {
-    .btn-filtres {
+    .btn-filtres,.btn-close-filtres {
         display: none;
+    }
+
+    .btn-reset,
+    form input[type="submit"] {
+        width: fit-content;
+        font-size: 1rem;
     }
 
     .filtres {
@@ -70,11 +113,27 @@ select {
         align-items: center;
         justify-content: space-between;
         background: transparent;
-        padding: 0;
-        margin-top: 20px;
+        padding: 20px 0;
+        margin: 20px 0;
+        box-shadow: none;
+        gap: 20px;
     }
 
-    select{
-        font-size: 1.1rem;
+    .filtres form {
+        flex-direction: row;
+        align-items: center;
+        width: auto;
+        max-width: none;
+        gap: 15px;
+    }
+
+    select {
+        background-color: var(--rose);
+        border: none;
+        font-family: 'Kelson Sans', sans-serif;
+        padding: 3px 20px;
+        border-radius: 50px;
+        font-size: 1rem;
+        width: fit-content;
     }
 }

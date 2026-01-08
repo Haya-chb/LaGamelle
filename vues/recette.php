@@ -46,6 +46,7 @@ include_once('../controleurs/user.php');
             </button>
 
             <div class="filtres">
+                <button class="btn-close-filtres"><img src="../assets/images/close.svg" alt="Fermer les filtres"></button>
                 <form id="filtres-form" method="get">
                     <label for="animal" class="sr-only">Pour quel animal ?</label>
                     <select name="animal" id="animal">
@@ -111,7 +112,8 @@ include_once('../controleurs/user.php');
             ?>
         </section>
     </main>
-
+    <script src="../assets/js/gsap.min.js"></script>
+    <script src="../assets/js/flip.min.js"></script>
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/recette.js"></script>
     <script src="../assets/js/favoris.js"></script>
@@ -125,6 +127,7 @@ include_once('../controleurs/user.php');
                 btn.innerHTML = '<img src="../assets/images/favorite-on.svg" alt="">';
             }
         });
+        
     </script>
 </body>
 

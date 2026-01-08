@@ -28,9 +28,14 @@ require '../controleurs/animal.php';
                 <li><a href="">Trouver un vétérinaire</a></li>
                 <li><a href="">Proposer une recette</a></li>
             </ul>
-            <div class="connexion pc-only">
-                <a href="">Inscription</a>
-                <a href="">Connexion</a>
+            <form action="controleurs/recette.php" method="get">
+                <label for="recherche" class="sr-only">Recherchez une recette</label>
+                <input type="search" name="recherche" placeholder="Recherchez une recette...">
+            </form>
+            <div class="compte">
+                <a href="vues/profil.php?favoris"><img src="../assets/images/favorite-on.svg"
+                        alt="Voir mes favoris"></a>
+                <a href="vues/profil.php"><img src="../assets/images/compte.svg" alt="Accéder à mon profil"></a>
             </div>
         </nav>
     </header>
@@ -322,13 +327,13 @@ require '../controleurs/animal.php';
             </div>
         </section>
     </main>
-
+    <script src="../assets/js/gsap.min.js"></script>
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/favoris.js"></script>
     <script>
         //Btn de mofif et ajout
         let updateGardien = document.querySelector('.gardien-modif');
-        let updateCompagnon = document.querySelector('.compagnon-modif');
+        let updateCompagnon = document.querySelector('#compagnon-modif');
         let ajoutCompagnon = document.querySelector('#addBtn');
 
         let modal = document.querySelector('.modal');
@@ -409,27 +414,48 @@ require '../controleurs/animal.php';
 
         function showSection(target) {
             history.pushState(null, '', `?${target}`);
-            // reset sections
+
+            //Reset et Activation
             sections.forEach(section => section.classList.remove('active'));
-
-            // reset boutons
             buttons.forEach(btn => btn.classList.remove('active'));
-
-            // bouton actif
             const activeBtn = document.querySelector(`[data-target="${target}"]`);
             if (activeBtn) activeBtn.classList.add('active');
 
-            // sections liées
-            document.querySelectorAll(`.${target}`).forEach(el =>
-                el.classList.add('active')
-            );
+            const targets = document.querySelectorAll(`.${target}, .head-${target}, .${target}-modif`);
+            targets.forEach(el => el.classList.add('active'));
 
-            document.querySelectorAll(`.head-${target}`).forEach(el =>
-                el.classList.add('active')
-            );
+            //Animation GSAP
+            const tl = gsap.timeline();
 
-            document.querySelectorAll(`.${target}-modif`).forEach(el =>
-                el.classList.add('active')
+            //le header et les blocs de contenu
+            const head = document.querySelector(`.head-${target}.active`);
+            const content = document.querySelectorAll(`.section.${target}.active > div, .section.${target}.active > h2, .section.${target}.active .recette`);
+
+            // Animation du Header
+            if (head) {
+                tl.fromTo(head,
+                    { opacity: 0, y: -20 },
+                    { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+                );
+            }
+
+            // L'effet de cascade
+            tl.fromTo(content,
+                {
+                    opacity: 0,
+                    y: -10,
+                    clipPath: "inset(0% 0% 100% 0%)"
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    clipPath: "inset(0% 0% 0% 0%)",
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: "power3.out",
+                    clearProps: "clip-path"
+                },
+                "-=0.2"
             );
         }
 

@@ -49,6 +49,11 @@
     --noir: #010101;
 }
 
+html {
+    scrollbar-color: var(--noir) transparent;
+    scrollbar-width: thin;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -72,6 +77,54 @@ body {
     border-width: 0;
 }
 
+/* --- Overlay de chargement --- 
+#loader {
+    position: fixed;
+    inset: 0;
+    background-color: var(--beige);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    overflow: hidden;
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.illustration-container {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.loader-img {
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: contain;
+    opacity: 1; 
+}
+
+.progress-bar {
+    width: 150px;
+    height: 2px;
+    background: var(--noir);
+    border-radius: 10px;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--jaune);
+}
+*/
 h1,
 h2,
 h3 {
@@ -105,18 +158,12 @@ nav {
     flex-direction: column;
     gap: 30px;
 
-    transform: translateY(-100%);
     opacity: 0;
-
-    transition:
-        transform 1s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.3s ease;
-
+    visibility: hidden;
     pointer-events: none;
 }
 
 nav.active {
-    transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
 }
@@ -309,18 +356,17 @@ h2 {
     }
 
     nav {
+        background: transparent;
         position: static;
-        background-color: transparent;
-
         font-size: 1rem;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: none !important;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         width: 100%;
-
-        transform: none;
-        opacity: 1;
-        pointer-events: auto;
     }
 
     .navbar,
@@ -335,7 +381,9 @@ h2 {
         position: relative;
     }
 
-    nav li{text-align: center;}
+    nav li {
+        text-align: center;
+    }
 
     nav a.active {
         border-bottom: #000 2px solid;

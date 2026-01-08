@@ -1,0 +1,397 @@
+section {
+    font-family: 'Kelson Sans', sans-serif;
+    padding: 10px;
+    height: 100vh;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+.hero {
+    background-image: url('../images/accueil-mobile.webp');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    font-size: 1.1rem;
+    font-weight: bold;
+    height: 95vh;
+    margin-bottom: 100px;
+}
+
+.recents {
+    margin-bottom: 50px;
+    height: fit-content;
+}
+
+.new {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+    perspective: 2000px;
+}
+
+.book {
+    position: relative;
+    width: 340px;
+    height: 450px;
+    transform-style: preserve-3d;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    cursor: grab;
+}
+
+.couverture {
+    z-index: 5;
+    background-color: var(--bleu);
+    width: 260px;
+    height: 350px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.couverture img {
+    width: 200px;
+    display: block;
+    margin: auto;
+}
+
+.couverture h3 {
+    color: #fff;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.page-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 20px;
+}
+
+.front.recette {
+    position: absolute;
+    margin-top: 0;
+}
+
+.back {
+    transform: rotateY(180deg);
+    background-color: var(--bleu);
+    background-image:
+        radial-gradient(circle at center, var(--beige) 10px, transparent 10px),
+        linear-gradient(#FFBADD 3px, transparent 3px);
+    background-size:
+        50px 50px,
+        90% 40px;
+    background-repeat:
+        repeat-x,
+        repeat-y;
+    background-position:
+        center top,
+        center top;
+    width: 260px;
+    height: 350px;
+}
+
+.couverture .back {
+    background-image: none;
+}
+
+.btn-reset {
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: var(--orange);
+    border: none;
+    border-radius: 30px;
+    font-family: 'Kelson Sans', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.btn-reset:hover {
+    transform: scale(1.05);
+}
+
+.nous {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    padding: 10px;
+}
+
+.nous h2 {
+    margin-bottom: 20px;
+}
+
+.cards {
+    font-family: 'Louis George Cafe', sans-serif;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    flex: 0 0 95%;
+    scroll-snap-align: center;
+    background-color: var(--bleu);
+    min-height: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-family: 'Kelson Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.card:nth-child(2) {
+    background-color: var(--vert);
+}
+
+.card img {
+    display: block;
+    margin: auto;
+    border-radius: 20px;
+}
+
+.card h3 {
+    font-size: 3.5rem;
+}
+
+.card a,
+.croquette-container div a {
+    background-color: var(--noir);
+    padding: 5px 20px;
+    margin: 20px auto 0;
+    border-radius: 20px;
+    color: #fff;
+    transition: all 0.3s ease;
+    font-family: 'Louis George Cafe', sans-serif;
+    text-align: center;
+}
+
+.croquette {
+    margin-bottom: 100px;
+}
+
+.croquette img {
+    display: block;
+    margin: auto;
+    width: 360px;
+    background-color: var(--vert);
+    border-radius: 20px;
+    padding: 10px 0;
+}
+
+.croquette h3 {
+    font-family: 'Kelson Sans', sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.croquette-container {
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: 'Louis George Cafe', sans-serif;
+}
+
+.croquette-container div p {
+    margin-bottom: 20px;
+}
+
+.croquette-container div a {
+    background-color: var(--rose);
+    color: black;
+    margin: 25px 0;
+}
+
+.aliment img {
+    width: 350px;
+    display: block;
+    margin: auto;
+}
+
+.aliment {
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+.aliment a {
+    background-color: var(--rose);
+    font-weight: bold;
+    padding: 5px 20px;
+    border-radius: 50px;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+@media (min-width: 768px) {
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        backdrop-filter: blur(5px);
+        z-index: 100;
+    }
+
+    .hero {
+        font-size: 1.5rem;
+        height: 100vh;
+    }
+
+    h1 {
+        font-size: 12rem;
+        margin-top: 100px;
+    }
+
+    h2 {
+        font-size: 5rem;
+    }
+
+    .recents {
+        margin-bottom: 150px;
+    }
+
+    .cards {
+        width: fit-content;
+        margin: auto;
+    }
+
+    .card {
+        flex: 0 0 40%;
+    }
+
+    .recette,
+    .couverture,
+    .back {
+        width: 24rem;
+        height: 32rem;
+    }
+
+    .croquette h2 {
+        font-size: 4rem;
+        text-align: center;
+        width: 900px;
+        margin: 20px auto;
+    }
+
+    .croquette h3 {
+        font-family: 'Kelson Sans', sans-serif;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+
+    .croquette-container {
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .croquette img {
+        width: 500px;
+    }
+
+    .gauche,
+    .droite {
+        flex-basis: 30%;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 600px;
+    }
+
+    .aliment-container {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero {
+        background-image: url('../images/table.webp');
+        font-size: 1.5rem;
+    }
+
+    .croquette-container {
+        flex-direction: row;
+    }
+
+    .aliment-container {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+
+        font-size: 1.5rem;
+    }
+
+    .aliment-container img {
+        width: 500px;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    h2 {
+        font-size: 7rem;
+    }
+
+    .recette,
+    .couverture,
+    .back {
+        width: 28rem;
+        height: 36rem;
+    }
+
+    .couverture h3 {
+        width: 70%;
+        margin: auto;
+        font-size: 4rem;
+    }
+
+    .couverture img {
+        width: 250px;
+        margin-bottom: 30px;
+        margin-top: 50px;
+    }
+
+    .couverture .front {
+        padding: 30px;
+    }
+
+    .cards {
+        width: 1200px;
+    }
+
+    .card {
+        flex: 0 0 32%;
+    }
+
+    .croquette img {
+        width: 700px;
+    }
+
+    .croquette-container {
+        font-size: 1.5rem;
+    }
+}
