@@ -35,10 +35,14 @@ include_once('../controleurs/user.php');
 
         <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
-                <li><a href="recette.php" class="active" >Nos Recettes</a></li>
+                <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>
-                <li><a href="v-contribution.php">Proposer une recette</a></li>
+                <?php
+                if (isset($_SESSION['id_utilisateur'])) {
+                    echo ' <li><a href="v-contribution.php">Proposer une recette</a></li>';
+                } ?>
+
             </ul>
             <?php
             if (isset($_SESSION['id_utilisateur'])) {

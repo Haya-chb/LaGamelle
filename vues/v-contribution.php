@@ -1,7 +1,6 @@
 <?php
 session_start();
 include("../controleurs/c-contribution.php");
-
 ?>
 
 

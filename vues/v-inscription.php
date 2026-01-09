@@ -28,7 +28,6 @@ include("../controleurs/c-inscription.php");
                 <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>
-                <li><a href="v-contribution.php">Proposer une recette</a></li>
             </ul>
         </nav>
     </header>
