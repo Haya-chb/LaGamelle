@@ -50,11 +50,12 @@ window.addEventListener('resize', () => {
     }
 });
 
+const cleanBase = BASE_URL.endsWith('/') ? BASE_URL : BASE_URL + '/';
 
 const images = [
-    'assets/images/strawberry-cat.webp',
-    'assets/images/lemon-cat.webp',
-    'assets/images/pear-cat.webp'
+   cleanBase + 'assets/images/strawberry-cat.webp',
+   cleanBase + 'assets/images/lemon-cat.webp',
+   cleanBase + 'assets/images/pear-cat.webp'
 ];
 
 let currentIn = 0;
@@ -68,7 +69,7 @@ const imageInterval = setInterval(() => {
         opacity: 0, 
         duration: 0.2, 
         onComplete: () => {
-            loaderImg.src = images[currentIn];
+            loaderImg.src = images[currentIn]; 
             gsap.to(loaderImg, { opacity: 1, duration: 0.2 });
         }
     });
