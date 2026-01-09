@@ -37,7 +37,7 @@ class Veterinaire
         global $db; // Utilisation de la connexion définie dans connexion.php
 
         $stmt = $db->prepare(
-            "SELECT * FROM veterinaires WHERE id_veterinaire = :id LIMIT 1"
+            "SELECT * FROM veterinaires WHERE id = :id LIMIT 1"
         );
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -47,4 +47,3 @@ class Veterinaire
         return $vet ?: null;
     }
 }
-
