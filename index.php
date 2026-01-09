@@ -48,7 +48,7 @@ include_once('controleurs/user.php');
             <ul class="navbar">
                 <li><a href="vues/recette.php">Nos Recettes</a></li>
                 <li><a href="vues/alimentsdangereuxV.php">Aliments toxiques</a></li>
-                <li><a href="vues/VeterinaireView.php">Trouver un vétérinaire</a></li>
+                <li><a href="vues/index.php">Trouver un vétérinaire</a></li>
                 <li><a href="vues/v-contribution.php">Proposer une recette</a></li>
             </ul>
             <?php
