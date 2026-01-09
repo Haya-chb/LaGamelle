@@ -188,6 +188,10 @@ ol {
         justify-items: center
     }
 
+    .comments h2{
+        font-size: 4.75rem;
+    }
+
     .commentaire form {
         max-width: 1200px;
         width: 800px;

@@ -157,7 +157,7 @@ switch ($niveau) {
             </div>
         </section>
 
-        <section class="comments*">
+        <section class="comments">
             <h2>Les commentaires</h2>
             <button id="toggle-comments-btn">Masquer les commentaires</button>
 
@@ -180,7 +180,7 @@ switch ($niveau) {
                         </div>
                         <div class="form-group">
                             <label for="commentaire">Votre commentaire :</label><br>
-                            <textarea id="commentaire" name="commentaire" 
+                            <textarea id="commentaire" name="commentaire"
                                 placeholder="Partagez votre avis sur cette recette..." required></textarea>
                         </div>
                         <button type="submit" class="btn-submit">Poster votre commentaire</button>
@@ -228,34 +228,36 @@ switch ($niveau) {
             <p>&copy; 2026 La Gamelle - Fait avec passion pour vos animaux.</p>
         </div>
     </footer>
-    <!--  <script src="../assets/js/script.js"></script> -->
-    <script>/*
-// Randomize background colors of comment items using CSS variables
-// and provide toggle show/hide for comments
-document.addEventListener('DOMContentLoaded', function () {
-const colors = ['--rouge', '--orange', '--jaune', '--rose', '--vert', '--bleu'];
-const commentItems = document.querySelectorAll('.commentaire-item');
 
-commentItems.forEach(item => {
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    const colorValue = getComputedStyle(document.documentElement).getPropertyValue(randomColor).trim();
-    item.style.backgroundColor = colorValue;
+    <script src="../assets/js/gsap.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script>
+        // Randomize background colors of comment items using CSS variables
+        // and provide toggle show/hide for comments
+        document.addEventListener('DOMContentLoaded', function () {
+            const colors = ['--rouge', '--orange', '--jaune', '--rose', '--vert', '--bleu'];
+            const commentItems = document.querySelectorAll('.commentaire-item');
 
-    // Set text color to white if the background is rouge
-    if (randomColor === '--rouge') {
-        item.style.color = 'white';
-    }
-});
+            commentItems.forEach(item => {
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                const colorValue = getComputedStyle(document.documentElement).getPropertyValue(randomColor).trim();
+                item.style.backgroundColor = colorValue;
 
-const toggleBtn = document.getElementById('toggle-comments-btn');
-const commentsWrapper = document.getElementById('comments-wrapper');
-if (toggleBtn && commentsWrapper) {
-    toggleBtn.addEventListener('click', () => {
-        const hidden = commentsWrapper.classList.toggle('hidden');
-        toggleBtn.textContent = hidden ? 'Afficher les commentaires' : 'Masquer les commentaires';
-    });
-}
-});*/
+                // Set text color to white if the background is rouge
+                if (randomColor === '--rouge') {
+                    item.style.color = 'white';
+                }
+            });
+
+            const toggleBtn = document.getElementById('toggle-comments-btn');
+            const commentsWrapper = document.getElementById('comments-wrapper');
+            if (toggleBtn && commentsWrapper) {
+                toggleBtn.addEventListener('click', () => {
+                    const hidden = commentsWrapper.classList.toggle('hidden');
+                    toggleBtn.textContent = hidden ? 'Afficher les commentaires' : 'Masquer les commentaires';
+                });
+            }
+        });
     </script>
 </body>
 
