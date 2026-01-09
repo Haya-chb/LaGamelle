@@ -17,6 +17,18 @@ include_once('../controleurs/user.php');
 </head>
 
 <body>
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-image-container">
+                <img src="../assets/images/strawberry-cat.webp" alt="Chargement..." class="loader-img">
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p>Préparation des recettes...</p>
+        </div>
+    </div>
+
     <header>
         <a href="../index.php" class="logo">LG</a>
         <div class="mobile-only">
@@ -81,7 +93,8 @@ include_once('../controleurs/user.php');
             </button>
 
             <div class="filtres">
-                <button class="btn-close-filtres"><img src="../assets/images/close.svg" alt="Fermer les filtres"></button>
+                <button class="btn-close-filtres"><img src="../assets/images/close.svg"
+                        alt="Fermer les filtres"></button>
                 <form id="filtres-form" method="get">
                     <label for="animal" class="sr-only">Pour quel animal ?</label>
                     <select name="animal" id="animal">
@@ -119,15 +132,15 @@ include_once('../controleurs/user.php');
                 <a href="../vues/recette.php" class="btn-reset">Réinitialiser</a>
             </div>
         </section>
-    
+
         <section class="recettes">
             <?php
             if (!empty($recettes)) {
                 foreach ($recettes as $recette) {
-                    $id = (int)$recette['id_recette'];
+                    $id = (int) $recette['id_recette'];
                     $imgSrc = ($recette['image_recette']);
                     $nom = htmlspecialchars($recette['nom_recette']);
-                    $temps = (int)$recette['temps'];
+                    $temps = (int) $recette['temps'];
                     $animal = htmlspecialchars($recette['animal']);
 
                     echo "<div class='recette'>";
@@ -137,7 +150,7 @@ include_once('../controleurs/user.php');
                             <h2>{$nom}</h2>
                             <span class='temps'><img src='../assets/images/clock.png' alt=''> {$temps} min</span>
                             <div class='badge'>";
-                    
+
                     if ($recette['animal'] == 'chien') {
                         echo "<img src='../assets/images/dog.png' alt=''><p>Pour {$animal}</p></div>";
                     } else if ($recette['animal'] == 'chat') {
@@ -162,7 +175,7 @@ include_once('../controleurs/user.php');
         </section>
     </main>
 
-        <footer class="main-footer">
+    <footer class="main-footer">
         <div class="footer-wave">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
                 preserveAspectRatio="none">
@@ -195,8 +208,12 @@ include_once('../controleurs/user.php');
             <p>&copy; 2026 La Gamelle - Fait avec passion pour vos animaux.</p>
         </div>
     </footer>
+
+    <script>
+        const BASE_URL = "<?php echo str_replace('/vues', '', dirname($_SERVER['PHP_SELF'])); ?>/";
+    </script>
+
     <script src="../assets/js/gsap.min.js"></script>
-    <script src="../assets/js/flip.min.js"></script>
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/recette.js"></script>
     <script src="../assets/js/favoris.js"></script>
@@ -210,7 +227,7 @@ include_once('../controleurs/user.php');
                 btn.innerHTML = '<img src="../assets/images/favorite-on.svg" alt="">';
             }
         });
-        
+
     </script>
 </body>
 
