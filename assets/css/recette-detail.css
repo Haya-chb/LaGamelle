@@ -9,6 +9,7 @@ h1 {
 
 section {
     margin-bottom: 70px;
+    padding: 20px;
 }
 
 .recipe-badges {
@@ -112,7 +113,7 @@ ol {
 
 /* --- COMMENTAIRES --- */
 .commentaire form {
-    background-color: var(--vert);
+    background-color: var(--bleu);
     padding: 20px;
     width: 340px;
     margin: auto;
@@ -126,7 +127,7 @@ ol {
     border: none;
     font-size: 1rem;
     border-radius: 50px;
-    margin:20px 0;
+    margin: 20px 0;
 }
 
 .commentaire textarea {
@@ -137,11 +138,13 @@ ol {
     font-size: 1rem;
     border: none;
     font-family: 'Louis George Cafe', sans-serif;
-    margin:20px 0;
+    margin: 20px 0;
 }
 
-#toggle-comments-btn, .btn-submit{
-    background-color: var(--rose);
+#toggle-comments-btn,
+.btn-submit {
+    background-color: var(--rouge);
+    color: #fff;
     border: none;
     border-radius: 8px;
     padding: 5px 20px;
@@ -152,29 +155,42 @@ ol {
     cursor: pointer;
 }
 
-.btn-submit{
+.btn-submit {
+    color: #000;
     background-color: var(--jaune);
-    margin:0;
+    margin: 0;
 }
 
 /* --- RESPONSIVE TABLETTE / DESKTOP --- */
 @media (min-width: 768px) {
-    .container {
-        max-width: 900px;
-        margin: 0 auto;
+
+    h1 {
+        font-size: 6rem;
     }
 
-    .recipe-hero {
+    .recipe-badges {
         flex-direction: row;
+        gap: 20px;
+        justify-content: space-between;
+        font-size: 1.5rem;
+        margin: 30px auto;
+        max-width: 1200px;
+    }
+
+    .btn-save {
+        margin: 0;
     }
 
     .ingredients-grid {
-        grid-template-columns: repeat(5, 1fr);
-        /* 5 colonnes sur desktop */
+        grid-template-columns: repeat(4, 200px);
+        margin: auto;
+        max-width: 1200px;
+        justify-items: center
     }
 
-    .hero-photo img,
-    .hero-illustration img {
-        height: 300px;
+    .commentaire form {
+        max-width: 1200px;
+        width: 800px;
     }
+
 }
