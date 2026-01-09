@@ -1,49 +1,180 @@
-
-h2 {
-
-    padding-left: 30px;
-    padding-bottom: 10px;
-    padding-top: 30px;
-    font-size: 2.5rem;
+.container {
+    padding: 15px;
+    max-width: 100%;
 }
 
 h1 {
-
-    font-size: 5rem;
-    margin-bottom: 10px;
+    font-size: 2.7rem;
 }
 
-
-.publie-par {
-    margin-top: -20px;
-    font-size: 1.2rem;
+section {
+    margin-bottom: 70px;
 }
 
-.img_detail {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+.recipe-badges {
+    padding: 10px 20px;
 
-.login-required {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-top: 20px;
-    padding-bottom: 20px;
-}
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
 
-.btn-toggle {
-    background: var(--rouge);
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin: 10px 0 16px 30px;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
     font-family: 'Kelson Sans', sans-serif;
 }
 
-.hidden { display: none; }
+.badges {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.badges img {
+    width: 50px;
+    background-color: var(--rouge);
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-save {
+    font-family: 'Kelson Sans', sans-serif;
+    background-color: var(--rouge);
+    font-size: 1.5rem;
+    color: white;
+    border: none;
+    padding: 5px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: auto;
+}
+
+/* --- INGREDIENTS GRID --- */
+.ingredients-section h2 {
+    margin-bottom: 15px;
+}
+
+.ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.ingredient-card {
+    text-align: center;
+}
+
+.icon-box {
+    background-color: #FFD54F;
+    border-radius: 15px;
+    padding: 15px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.icon-box img {
+    width: 50px;
+    height: 50px;
+}
+
+/* --- PREPARATION --- */
+ol {
+    list-style-type: decimal !important;
+    padding-left: 25px;
+    margin-left: 10px;
+}
+
+.steps-content li {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding-left: 5px;
+}
+
+.steps-section h2,
+.ingredients h2 {
+    font-family: 'Kelson Sans', sans-serif;
+}
+
+/* --- COMMENTAIRES --- */
+.commentaire form {
+    background-color: var(--vert);
+    padding: 20px;
+    width: 340px;
+    margin: auto;
+    border-radius: 20px;
+    font-family: 'Kelson Sans', sans-serif;
+    font-size: 1.5rem;
+}
+
+.commentaire form select {
+    padding: 5px 20px;
+    border: none;
+    font-size: 1rem;
+    border-radius: 50px;
+    margin:20px 0;
+}
+
+.commentaire textarea {
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 1rem;
+    border: none;
+    font-family: 'Louis George Cafe', sans-serif;
+    margin:20px 0;
+}
+
+#toggle-comments-btn, .btn-submit{
+    background-color: var(--rose);
+    border: none;
+    border-radius: 8px;
+    padding: 5px 20px;
+    font-size: 1.2rem;
+    font-family: 'Kelson Sans', sans-serif;
+    margin: 20px auto;
+    display: block;
+    cursor: pointer;
+}
+
+.btn-submit{
+    background-color: var(--jaune);
+    margin:0;
+}
+
+/* --- RESPONSIVE TABLETTE / DESKTOP --- */
+@media (min-width: 768px) {
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .recipe-hero {
+        flex-direction: row;
+    }
+
+    .ingredients-grid {
+        grid-template-columns: repeat(5, 1fr);
+        /* 5 colonnes sur desktop */
+    }
+
+    .hero-photo img,
+    .hero-illustration img {
+        height: 300px;
+    }
+}
