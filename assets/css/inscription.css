@@ -1,0 +1,29 @@
+.radio-cachee {
+  display: none;
+}
+
+.label-animal {
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  margin: 10px;
+  filter: grayscale(100%); /* On les met en gris par défaut ? */
+  transition: all 0.3s ease;
+}
+
+.label-animal img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+}
+
+/* QUAND C'EST SÉLECTIONNÉ */
+.radio-cachee:checked + .label-animal {
+  filter: grayscale(0%); /* L'image reprend ses couleurs */
+  transform: scale(1.1); /* Elle grossit un peu */
+}
+
+.radio-cachee:checked + .label-animal img {
+  border-color: #D1A3C4; /* La bordure violette apparaît */
+}
