@@ -23,14 +23,11 @@ require '../controleurs/animal.php';
     <header>
         <a href="../index.php" class="logo">LG</a>
         <div class="mobile-only">
-            <?php
-            if (isset($_SESSION['id_utilisateur'])) {
-                echo '<form action="recette.php" method="get">
+            <form action="recette.php" method="get">
                 <label for="recherche" class="sr-only">Recherchez une recette</label>
                 <input type="search" name="recherche" placeholder="Recherchez une recette...">
-            </form>';
-            }
-            ?>
+            </form>
+            
         </div>
         <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
             <img src="../assets/images/burger-menu.svg" alt="">
@@ -41,32 +38,22 @@ require '../controleurs/animal.php';
                 <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>
-               <li><a href="v-contribution.php">Proposer une recette</a></li>
+                <li><a href="v-contribution.php">Proposer une recette</a></li>
 
             </ul>
-            <?php
-            if (isset($_SESSION['id_utilisateur'])) {
-                echo '<form action="recette.php" method="get" class="pc-only">
+            <form action="recette.php" method="get" class="pc-only">
                 <label for="recherche" class="sr-only">Recherchez une recette</label>
                 <input type="search" name="recherche" placeholder="Recherchez une recette...">
-            </form>';
-
-                echo '<div class="compte pc-only">
-                        <a href="profil.php?favoris"><img src="../assets/images/favorite-on.svg" alt="Voir mes favoris"></a>
-                        <a href="profil.php"><img src="../assets/images/compte.svg" alt="Accéder à mon profil"></a>
-                     </div>';
-
-                echo '<div class="compte mobile-only">
-                        <a href="profil.php?favoris">Favoris</a>
-                        <a href="profil.php">Compte</a>
-                     </div>';
-            } else {
-                echo '<div class="connexion">
-                        <a href="v-inscription.php">Inscription</a>
-                        <a href="v-connexion.php">Connexion</a>
-                    </div>';
-            }
-            ?>
+            </form>
+            <div class="compte pc-only">
+                <a href="profil.php?favoris"><img src="../assets/images/favorite-on.svg" alt="Voir mes favoris"></a>
+                <a href="../deconnexion.php">Déconnexion</a>
+            </div>
+            <div class="compte mobile-only">
+                <a href="profil.php?favoris">Favoris</a>
+                <a href="profil.php">Compte</a>
+                <a href="../deconnexion.php">Déconnexion</a>
+            </div>
         </nav>
     </header>
     <main>

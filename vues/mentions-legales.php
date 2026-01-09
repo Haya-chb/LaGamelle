@@ -55,6 +55,7 @@ session_start();
                 echo '<div class="compte mobile-only">
                         <a href="profil.php?favoris">Favoris</a>
                         <a href="profil.php">Compte</a>
+                        <a href="../deconnexion.php">Déconnexion</a>
                      </div>';
             } else {
                 echo '<div class="connexion">

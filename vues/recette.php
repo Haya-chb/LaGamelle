@@ -35,7 +35,7 @@ include_once('../controleurs/user.php');
 
         <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
-                <li><a href="recette.php">Nos Recettes</a></li>
+                <li><a href="recette.php" class="active">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>
                 <?php
@@ -59,6 +59,7 @@ include_once('../controleurs/user.php');
                 echo '<div class="compte mobile-only">
                         <a href="profil.php?favoris">Favoris</a>
                         <a href="profil.php">Compte</a>
+                        <a href="../deconnexion.php">Déconnexion</a>
                      </div>';
             } else {
                 echo '<div class="connexion">
