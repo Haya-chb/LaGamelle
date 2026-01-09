@@ -31,7 +31,7 @@ if (isset($_POST['addAnimal'])) {
     $anniv = $_POST['anniv'];
     $poids = $_POST['poids'];
 
-    addAnimal($db,$fk_user,$nom, $espece, $sexe, $race, $age, $anniv, $poids);
+    addAnimal($db, $fk_user, $nom, $espece, $sexe, $race, $age, $anniv, $poids);
 
     header('Location: ../vues/profil.php');
     exit;

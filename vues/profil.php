@@ -337,7 +337,7 @@ require '../controleurs/animal.php';
                     </div>
                     <br>
                     <div class="btn">
-                        <button class="annuler">Annuler</button>
+                        <button type="button" class="annuler">Annuler</button>
                         <input type="submit" value="Ajouter l'animal" name="addAnimal">
                     </div>
                 </form>

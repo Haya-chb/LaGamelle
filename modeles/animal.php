@@ -30,16 +30,19 @@ function updateAnimal($db, $id, $nom, $espece, $sexe, $race, $age, $anniv, $poid
 //Ajouter un animal
 function addAnimal($db, $fk_user, $nom, $espece, $sexe, $race, $age, $anniv, $poids)
 {
-    $requete = $db->prepare("INSERT INTO animal VALUES (0, :nom_animal, :race, :age, :sexe, :anniversaire, :poids, :espece, :fk_utilisateur)");
+    // Il est préférable de lister les colonnes pour éviter les erreurs d'index
+    $requete = $db->prepare("INSERT INTO animal (nom_animal, race, age, sexe, anniversaire, poids, espece, fk_utilisateur) 
+                             VALUES (:nom_animal, :race, :age, :sexe, :anniversaire, :poids, :espece, :fk_utilisateur)");
+    
     $requete->execute(
         array(
-            "nom_animal" => $nom,
-            "espece" => $espece,
-            "sexe" => $sexe,
-            "race" => $race,
-            "age" => $age,
-            "anniversaire" => $anniv,
-            "poids" => $poids,
+            "nom_animal"     => $nom,
+            "race"           => $race,
+            "age"            => $age,
+            "sexe"           => $sexe,
+            "anniversaire"   => $anniv,
+            "poids"          => $poids,
+            "espece"         => $espece,
             "fk_utilisateur" => $fk_user
         )
     );
