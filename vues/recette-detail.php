@@ -1,78 +1,10 @@
 <?php
 session_start();
-require('../connexion.php');
+include_once('../controleurs/recette-detail.php');
 include_once('../controleurs/user.php');
 include_once('../controleurs/recette.php');
-// Get the recipe ID from the URL
-$id_recette = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-if ($id_recette === 0) {
-    header('Location: recette.php');
-    exit();
-}
 
-// Fetch the recipe from the database
-$query = $db->prepare("SELECT * FROM recette WHERE id_recette = ?");
-$query->execute([$id_recette]);
-$recette = $query->fetch(PDO::FETCH_ASSOC);
-
-if (!$recette) {
-    header('Location: recette.php');
-    exit();
-}
-
-// Handle comment submission
-$comment_message = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id_utilisateur'])) {
-    $commentaire = trim($_POST['commentaire'] ?? '');
-    $note = intval($_POST['note'] ?? 0);
-    $fk_utilisateur = $_SESSION['id_utilisateur'];
-    
-    if (!empty($commentaire) && $note >= 1 && $note <= 5) {
-        try {
-            $stmtInsert = $db->prepare("INSERT INTO avis (commentaire, note, fk_utilisateur, fk_recette) VALUES (?, ?, ?, ?)");
-            $stmtInsert->execute([$commentaire, $note, $fk_utilisateur, $id_recette]);
-            // Redirect to avoid resubmission
-            header('Location: recette-detail.php?id=' . $id_recette);
-            exit();
-        } catch (Exception $e) {
-            $comment_message = 'Erreur lors de l\'ajout du commentaire.';
-        }
-    } else {
-        $comment_message = 'Veuillez remplir tous les champs correctement.';
-    }
-}
-
-// Load author (username) for this recipe
-$imgSrc = ($recette['image_recette']);
-$author = null;
-try {
-    if (!empty($recette['fk_utilisateur'])) {
-        $stmtUser = $db->prepare("SELECT pseudo, nom_utilisateur FROM utilisateur WHERE id_utilisateur = ?");
-        $stmtUser->execute([$recette['fk_utilisateur']]);
-        $author = $stmtUser->fetch(PDO::FETCH_ASSOC);
-    }
-} catch (Exception $e) {
-    $author = null;
-}
-// Load ingredients for this recipe from the database
-$ingredients = [];
-try {
-    $stmtIng = $db->prepare("SELECT i.nom_ingredient AS nom_ingredient, i.image_ingredient AS image_ingredient, ir.quantite AS quantite_ingredient FROM ingredient_recette ir JOIN ingredient i ON ir.fk_ingredient = i.id_ingredient WHERE ir.fk_recette = ?");
-    $stmtIng->execute([$id_recette]);
-    $ingredients = $stmtIng->fetchAll(PDO::FETCH_ASSOC);
-} catch (Exception $e) {
-    $ingredients = [];
-}
-// Load comments for this recipe from the database
-$commentaires = [];
-try {
-    $stmtComments = $db->prepare("SELECT a.id_avis, a.commentaire, a.note, a.fk_utilisateur, u.pseudo, u.nom_utilisateur FROM avis a JOIN utilisateur u ON a.fk_utilisateur = u.id_utilisateur WHERE a.fk_recette = ? ORDER BY a.id_avis DESC");
-    $stmtComments->execute([$id_recette]);
-    $commentaires = $stmtComments->fetchAll(PDO::FETCH_ASSOC);
-} catch (Exception $e) {
-    $commentaires = [];
-}
 ?>
 
 <!DOCTYPE html>
@@ -84,62 +16,11 @@ try {
     <title><?= htmlspecialchars($recette['nom_recette']) ?> | La Gamelle</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/recette.css">
+    <link rel="stylesheet" href="../assets/css/recette-detail.css">
 </head>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/recette.css">
-</head>
-
-<style>
-
-h2 {
-
-    padding-left: 30px;
-    padding-bottom: 10px;
-    padding-top: 30px;
-    font-size: 2.5rem;
-}
-
-h1 {
-
-    font-size: 5rem;
-    margin-bottom: 10px;
-}
+    
 
 
-.publie-par {
-    margin-top: -20px;
-    font-size: 1.2rem;
-}
-
-.img_detail {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.login-required {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-top: 20px;
-    padding-bottom: 20px;
-}
-
-.btn-toggle {
-    background: var(--rouge);
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin: 10px 0 16px 30px;
-    font-family: 'Kelson Sans', sans-serif;
-}
-
-.hidden { display: none; }
-</style>
 
 <body>
     <header>
@@ -180,13 +61,15 @@ h1 {
                             $imgPath = htmlspecialchars(str_replace('\\', '/', $ingredient['image_ingredient'] ?? ''));
                         ?>
                         <div class="ingredient-item">
-                            <?php if (!empty($imgPath)): ?>
+                           
+                        <?php if (!empty($imgPath)): ?>
                                 <img class="ingredient-img" src="<?= $imgPath ?>" alt="<?= htmlspecialchars($ingredient['nom_ingredient']) ?>">
                             <?php endif; ?>
                             <span class="ingredient-qty"><?= htmlspecialchars($ingredient['quantite_ingredient']) ?></span>
                             <span class="ingredient-name"><?= htmlspecialchars($ingredient['nom_ingredient']) ?></span>
                             </div>
                     <?php endforeach; ?>
+                    
                 </ul>
 
 
