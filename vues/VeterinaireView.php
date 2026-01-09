@@ -143,7 +143,7 @@ $hasSearch =
         <!-- LISTE -->
         <div class="results" id="vet-list">
             <?php foreach ($veterinaires as $vet): ?>
-                <div class="card-vet" id="vet-<?= $vet['id'] ?>">
+                <div class="card-vet" id="vet-<?= $vet['id_veterinaire'] ?>">
                     <h3><?= htmlspecialchars($vet['prenom'] . ' ' . $vet['nom']) ?></h3>
                     <div class="separator"></div>
                     <p>
@@ -152,7 +152,7 @@ $hasSearch =
                         <?= htmlspecialchars($vet['telephone']) ?>
                     </p>
                     <div class="note">⭐ <?= htmlspecialchars($vet['note']) ?></div>
-                    <a href="index.php?page=veterinaires&action=show&id=<?= $vet['id'] ?>">
+                    <a href="index.php?page=veterinaires&action=show&id=<?= $vet['id_veterinaire'] ?>">
                         <button>Accéder à la fiche</button>
                     </a>
                 </div>

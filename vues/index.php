@@ -14,6 +14,4 @@ if (method_exists($controller, $action)) {
 } else {
     echo "Page introuvable";
 }
-
-
-
+?>
