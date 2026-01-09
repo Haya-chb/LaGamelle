@@ -97,15 +97,22 @@ echo '
 
  <legend>Espèce de votre boule de poil :</legend>
 
- <div>
-    <input type="radio" id="chat" name="espece" value="chat" />
-    <label for="chat">Chat</label>
-  </div>
 
-  <div>
-    <input type="radio" id="chien" name="espece" value="chien" />
-    <label for="chien">Chien</label>
-  </div>
+<div class="container-animaux">
+  
+  <input type="radio" id="chat" name="espece" class="radio-cachee" value="chat">
+  <label for="chat" class="label-animal">
+    <img src="../assets/images/tete_chat.webp" alt="Un chat">
+    <p>C\'est un chat</p>
+  </label>
+
+  <input type="radio" id="chien" name="espece" class="radio-cachee" value="chien">
+  <label for="chien" class="label-animal">
+    <img src="../assets/images/tete_chien.webp" alt="Un chien">
+    <p> C\'est un chien </p>
+  </label>
+
+</div>
 
 </fieldset>
 
@@ -153,8 +160,8 @@ echo '
 <br>
 <select name="sexe" id="sexe" required>
   <option value="">Séléctionner dans un sexe</option>
-  <option value="sexe">Dog</option>
-  <option value="sexe">Cat</option>
+  <option value="Femelle">Femelle</option>
+  <option value="Mâle">Mâle</option>
 </select>
 </div>
 

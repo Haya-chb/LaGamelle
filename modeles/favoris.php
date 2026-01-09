@@ -9,7 +9,7 @@ function ajoutFavoris($db, $id_user, $id_recette){
 
 //Suppression favoris
 function supFavoris($db, $id_user, $id_recette){
-    $stmt = $db->prepare("DELETE FROM favoris WHERE fk_utilisateur = :user AND id_recette = :recette");
+    $stmt = $db->prepare("DELETE FROM favoris WHERE fk_utilisateur = :user AND fk_recette = :recette");
     $stmt->execute(['user' => $id_user, 'recette' => $id_recette]);
 }
 
