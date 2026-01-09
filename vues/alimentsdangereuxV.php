@@ -34,7 +34,7 @@ include('../controleurs/FoodController.php');
         <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
                 <li><a href="recette.php">Nos Recettes</a></li>
-                <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
+                <li><a href="alimentsdangereuxV.php" class="active">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>
                 <?php
                 if (isset($_SESSION['id_utilisateur'])) {
