@@ -17,18 +17,6 @@ include_once('../controleurs/user.php');
 </head>
 
 <body>
-    <div id="loader">
-        <div class="loader-content">
-            <div class="loader-image-container">
-                <img src="../assets/images/strawberry-cat.webp" alt="Chargement..." class="loader-img">
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
-            </div>
-            <p>Préparation des recettes...</p>
-        </div>
-    </div>
-
     <header>
         <a href="../index.php" class="logo">LG</a>
         <div class="mobile-only">
@@ -209,9 +197,6 @@ include_once('../controleurs/user.php');
         </div>
     </footer>
 
-    <script>
-        const BASE_URL = "<?php echo str_replace('/vues', '', dirname($_SERVER['PHP_SELF'])); ?>/";
-    </script>
 
     <script src="../assets/js/gsap.min.js"></script>
     <script src="../assets/js/script.js"></script>
