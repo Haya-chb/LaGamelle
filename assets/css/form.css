@@ -103,7 +103,7 @@ main form{ background-color: var(--jaune);
 
 margin-right: 6px;
 border: var(--bleu) solid 10px;
-height: 60vh;
+height: 70vh;
 min-width: 300px;
 padding: 5px;
 display: flex;
@@ -167,3 +167,16 @@ justify-content:center;
 align-items: center;
 
 }
+
+
+.notification-bar {
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
+    min-height: 1.2em; 
+}
+
+.notification-bar:not(:empty) {
+    padding: 10px;
+    border-radius: 5px;
+    color: #d9534f;}

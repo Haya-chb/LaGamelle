@@ -13,8 +13,6 @@ if (isset($_POST['action']) && $_POST['action'] === 'Valider') {
     $nom = $_POST['nom'];
     $mail = $_POST['mail'];
     $telephone = $_POST['telephone'];
-    
-   
     $nom_animal = $_POST['nom_animal'];
     $race = $_POST['race'];
     $age = $_POST['age'];
@@ -25,15 +23,16 @@ if (isset($_POST['action']) && $_POST['action'] === 'Valider') {
 
 
     $existe = existe($db, $pseudo);
+    if (!isset($message)) { $message = ""; }
 
     if ($existe) {
-        echo '<p> Ce login est déja prit.</p>';
+        $message = "Ce login est déjà pris.";
     } else {
          $id_utilisateur = ajouter_utilisateur($db, $nom, $prenom, $mail, $telephone, $pseudo, $hash);
 
         $id_animal =ajouter_animal($db, $id_utilisateur, $nom_animal, $race, $age, $sexe, $anniv, $poids, $espece);
 
-        echo '<p> Inscription réussie. Vous pouvez vous connecter.</p>';
+        $message = "Inscription réussie ! Vous pouvez vous connecter";
     }
 }
 

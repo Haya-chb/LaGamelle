@@ -1,7 +1,6 @@
 <?php
 
 include("../controleurs/c-inscription.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +51,11 @@ echo '
 </div>
 
 <form action="v-inscription.php" method="POST">
+
+<div class="notification-bar"> ';
+echo $message; 
+     
+echo '</div>
 
 <section id="etape1">
 

@@ -26,10 +26,6 @@
 
 }
 
-
-
-
-
 .radio-cachee:checked + .label-animal {
   filter: grayscale(0%); 
   transform: scale(1.1); 
@@ -38,3 +34,4 @@
 .radio-cachee:checked + .label-animal img {
   border-color: #D1A3C4; 
 }
+

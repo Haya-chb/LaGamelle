@@ -41,6 +41,9 @@ include("../controleurs/c-connexion.php");
         <?php
         echo '<form action="v-connexion.php" method="POST">
 
+<div class="notification-bar"> ';
+echo $message; 
+echo '</div>
 
 <div><label for="login">Login :</label><br>
 <input type="text" id="login" name="pseudo" required></div>
