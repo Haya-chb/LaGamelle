@@ -55,12 +55,12 @@ echo '
   <div class="step-number">5</div>
 </div>
 
-<form action="v-inscription.php" method="POST">
+<form action="v-inscription.php" method="POST">';
+?>
 
-<div class="notification-bar"> ';
-echo $message; 
-     
-echo '</div>
+<div class="notification-bar"> 
+    <?php echo isset($message) ? $message : ''; ?> 
+</div>
 
 <section id="etape1">
 

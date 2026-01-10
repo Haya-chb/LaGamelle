@@ -1,4 +1,9 @@
 <?php 
+session_start();
+if (!isset($_SESSION['pseudo']) || $_SESSION['pseudo'] !== 'Nichocolat') {
+    header('Location: ../index.php');
+    exit();
+}
 include('../controleurs/c-admin.php'); 
 ?>
 <!DOCTYPE html>
