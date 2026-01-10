@@ -49,12 +49,10 @@ require '../controleurs/animal.php';
             </form>
             <div class="compte pc-only">
                 <a href="profil.php?favoris"><img src="../assets/images/favorite-on.svg" alt="Voir mes favoris"></a>
-                <a href="../deconnexion.php">Déconnexion</a>
+                <a href="../deconnexion.php" class="deco">Déconnexion</a>
             </div>
             <div class="compte mobile-only">
-                <a href="profil.php?favoris">Favoris</a>
-                <a href="profil.php">Compte</a>
-                <a href="../deconnexion.php">Déconnexion</a>
+                <a href="../deconnexion.php" class="deco">Déconnexion</a>
             </div>
         </nav>
     </header>

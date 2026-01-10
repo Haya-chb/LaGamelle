@@ -216,6 +216,13 @@ input[type="search"]::placeholder {
     width: 30px;
 }
 
+.compte.mobile-only a:last-child, .deco{
+    background-color: var(--rouge);
+    padding: 5px 20px;
+    color: #fff;
+    border-radius: 30px;
+}
+
 .compte a:hover {
     transform: translateY(5px);
 }
