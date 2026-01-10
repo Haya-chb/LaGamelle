@@ -10,6 +10,11 @@ session_start();
     <title>Mentions Légales | La Gamelle</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/mentions.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/images/favicon/site.webmanifest">
 </head>
 
 <body>
@@ -84,7 +89,9 @@ session_start();
             <p><strong>Numéro de téléphone :</strong> +33 (0)1 60 95 75 00</p>
 
             <h3>Hébergement</h3>
-            <p>à completer</p>
+            <p>Le site est hébergé par la société o2switch, SAS au capital de 100 000 €, dont le siège social est situé
+                Chemin des Pardiaux, 63000 Clermont-Ferrand. <br> Téléphone : 04 44 44 60 40 <br> Site web : <a
+                    href="http://www.o2switch.fr">www.o2switch.fr</a></p>
 
             <h3>Membres et rôles de l’équipe</h3>
             <p>Ce site a été conçu dans le cadre d’un projet étudiant par quatre membres de l’Université Gustave Eiffel.

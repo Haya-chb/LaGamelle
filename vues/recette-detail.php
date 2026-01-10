@@ -263,18 +263,18 @@ if ($totalCommentaires > 0) {
                 <h3>Navigation</h3>
                 <ul>
                     <li><a href="index.php">Accueil</a></li>
-                    <li><a href="vues/recette.php">Nos Recettes</a></li>
-                    <li><a href="vues/alimentsdangereuxV.php">Aliments toxiques</a></li>
-                    <li><a href="vues/VeterinaireView.php">Vétérinaires</a></li>
+                    <li><a href="recette.php">Nos Recettes</a></li>
+                    <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
+                    <li><a href="VeterinaireView.php">Vétérinaires</a></li>
                 </ul>
             </div>
 
             <div class="footer-links">
                 <h3>Informations</h3>
                 <ul>
-                    <li><a href="vues/mentions-legales.php">Mentions légales</a></li>
-                    <li><a href="vues/mentions-legales.php#confidentialite">Confidentialité</a></li>
-                    <li><a href="vues/mentions-legales.php#credits">Crédits</a></li>
+                    <li><a href="mentions-legales.php">Mentions légales</a></li>
+                    <li><a href="mentions-legales.php#confidentialite">Confidentialité</a></li>
+                    <li><a href="mentions-legales.php#credits">Crédits</a></li>
                 </ul>
             </div>
         </div>

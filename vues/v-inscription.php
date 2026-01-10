@@ -11,6 +11,11 @@ include("../controleurs/c-inscription.php");
   <link rel="stylesheet" href="../assets/css/inscription.css">
   <link rel="stylesheet" href="../assets/css/form.css">
   <link rel="stylesheet" href="../assets/css/style.css">
+
+      <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/images/favicon/site.webmanifest">
   
   <title>Inscription | La Gamelle</title>
 </head>
@@ -206,18 +211,18 @@ echo '</div>
                 <h3>Navigation</h3>
                 <ul>
                     <li><a href="../index.php">Accueil</a></li>
-                    <li><a href="../vues/recette.php">Nos Recettes</a></li>
-                    <li><a href="../vues/alimentsdangereuxV.php">Aliments toxiques</a></li>
-                    <li><a href="..:vues/index.php">Vétérinaires</a></li>
+                    <li><a href="recette.php">Nos Recettes</a></li>
+                    <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
+                    <li><a href="index.php">Vétérinaires</a></li>
                 </ul>
             </div>
 
             <div class="footer-links">
                 <h3>Informations</h3>
                 <ul>
-                    <li><a href="../vues/mentions-legales.php">Mentions légales</a></li>
-                    <li><a href="../vues/mentions-legales.php#confidentialite">Confidentialité</a></li>
-                    <li><a href="../vues/mentions-legales.php#credits">Crédits</a></li>
+                    <li><a href="mentions-legales.php">Mentions légales</a></li>
+                    <li><a href="mentions-legales.php#confidentialite">Confidentialité</a></li>
+                    <li><a href="mentions-legales.php#credits">Crédits</a></li>
                 </ul>
             </div>
         </div>

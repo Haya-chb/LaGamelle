@@ -1,6 +1,6 @@
-<?php 
+<?php
 session_start();
-include('../controleurs/FoodController.php'); 
+include('../controleurs/FoodController.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -12,6 +12,11 @@ include('../controleurs/FoodController.php');
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/recette.css">
     <link rel="stylesheet" href="../assets/css/dangereux.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/images/favicon/site.webmanifest">
 </head>
 
 <body>
@@ -38,7 +43,7 @@ include('../controleurs/FoodController.php');
                 <li><a href="alimentsdangereuxV.php" class="active">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>
                 <li><a href="v-contribution.php">Proposer une recette</a></li>
-                
+
 
             </ul>
             <?php
@@ -81,7 +86,8 @@ include('../controleurs/FoodController.php');
 
             <!-- Formulaire de filtre -->
             <form id="filters" class="filtres">
-                <button class="btn-close-filtres"><img src="../assets/images/close.svg" alt="Fermer les filtres"></button>
+                <button class="btn-close-filtres"><img src="../assets/images/close.svg"
+                        alt="Fermer les filtres"></button>
                 <select name="species" id="species-filter">
                     <option value="all">Espèce</option>
                     <option value="chat">Chat</option>
@@ -138,7 +144,7 @@ include('../controleurs/FoodController.php');
         </section>
     </main>
 
-        <footer class="main-footer">
+    <footer class="main-footer">
         <div class="footer-wave">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
                 preserveAspectRatio="none">
@@ -152,18 +158,18 @@ include('../controleurs/FoodController.php');
                 <h3>Navigation</h3>
                 <ul>
                     <li><a href="../index.php">Accueil</a></li>
-                    <li><a href="../vues/recette.php">Nos Recettes</a></li>
-                    <li><a href="../vues/alimentsdangereuxV.php">Aliments toxiques</a></li>
-                    <li><a href="../vues/VeterinaireView.php">Vétérinaires</a></li>
+                    <li><a href="recette.php">Nos Recettes</a></li>
+                    <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
+                    <li><a href="VeterinaireView.php">Vétérinaires</a></li>
                 </ul>
             </div>
 
             <div class="footer-links">
                 <h3>Informations</h3>
                 <ul>
-                    <li><a href="../vues/mentions-legales.php">Mentions légales</a></li>
-                    <li><a href="../vues/mentions-legales.php#confidentialite">Confidentialité</a></li>
-                    <li><a href="../vues/mentions-legales.php#credits">Crédits</a></li>
+                    <li><a href="mentions-legales.php">Mentions légales</a></li>
+                    <li><a href="mentions-legales.php#confidentialite">Confidentialité</a></li>
+                    <li><a href="mentions-legales.php#credits">Crédits</a></li>
                 </ul>
             </div>
         </div>
@@ -210,4 +216,5 @@ include('../controleurs/FoodController.php');
         });
     </script>
 </body>
+
 </html>
