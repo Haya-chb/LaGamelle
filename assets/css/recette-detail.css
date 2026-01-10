@@ -1,6 +1,5 @@
-.container {
-    padding: 15px;
-    max-width: 100%;
+main{
+    padding: 0 35px;
 }
 
 h1 {
@@ -10,6 +9,20 @@ h1 {
 section {
     margin-bottom: 70px;
     padding: 20px;
+}
+
+.title{
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.recipe-visual img {
+    min-width: 450px;
+    width: 80%;
+    border-radius: 15px;
+    display: block;
+    margin: auto;
 }
 
 .recipe-badges {
@@ -112,7 +125,8 @@ ol {
 }
 
 /* --- COMMENTAIRES --- */
-.coms, .comments form  {
+.coms,
+.comments form {
     max-width: 1200px;
     width: 90%;
     margin: auto;
@@ -220,6 +234,10 @@ ol {
 
     .comments h2 {
         font-size: 4.75rem;
+    }
+
+    .recipe-visual img {
+        max-width: 900px;
     }
 
 }

@@ -105,34 +105,29 @@ if ($totalCommentaires > 0) {
 
     <main>
         <section class="recipe-intro">
-            <h1><?= htmlspecialchars($recette['nom_recette']) ?></h1>
-
-
-            <div class="recipe-rating">
-                <span class="stars">
-                    <?php
-                    $noteEntiere = round($moyenne); // Pour l'affichage des étoiles (ex: 4.2 devient 4)
-                    for ($i = 1; $i <= 5; $i++) {
-                        if ($i <= $noteEntiere) {
-                            echo '<span class="star active">★</span>';
-                        } else {
-                            echo '<span class="star">☆</span>';
+            <div class="title">
+                <h1><?= htmlspecialchars($recette['nom_recette']) ?></h1>
+                <div class="recipe-rating">
+                    <span class="stars">
+                        <?php
+                        $noteEntiere = round($moyenne); // Pour l'affichage des étoiles (ex: 4.2 devient 4)
+                        for ($i = 1; $i <= 5; $i++) {
+                            if ($i <= $noteEntiere) {
+                                echo '<span class="star active">★</span>';
+                            } else {
+                                echo '<span class="star">☆</span>';
+                            }
                         }
-                    }
-                    ?>
-                </span>
-                <span>
-                    <?= $moyenne ?>/5 - <?= $totalCommentaires ?> <?= $totalCommentaires > 1 ? 'avis' : 'avis' ?>
-                </span>
+                        ?>
+                    </span>
+                    <span>
+                        <?= $moyenne ?>/5 - <?= $totalCommentaires ?> <?= $totalCommentaires > 1 ? 'avis' : 'avis' ?>
+                    </span>
+                </div>
             </div>
 
-            <div class="recipe-visuals">
-                <div class="visual-illustration">
-                    <img src="" alt="Illustration">
-                </div>
-                <div class="visual-photo">
-                    <img src="" alt="">
-                </div>
+            <div class="recipe-visual">
+                    <img src="../assets/images/<?= $recette['image_recette'] ?>" alt="">
             </div>
 
             <div class="recipe-badges">

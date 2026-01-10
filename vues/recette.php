@@ -49,7 +49,7 @@ include_once('../controleurs/user.php');
             </form>';
 
                 echo '<div class="compte pc-only">
-                        <a href="profil.php?favoris"><img src="../assets/images/favorite-on.svg" alt="Voir mes favoris"></a>
+                        <a href="profil.php?favoris"><img src="../assets/images/favorite-on.svg" alt="Voir mes favoris" loading="lazy"></a>
                         <a href="profil.php"><img src="../assets/images/compte.svg" alt="Accéder à mon profil"></a>
                      </div>';
 
@@ -128,7 +128,7 @@ include_once('../controleurs/user.php');
 
                     echo "<div class='recette'>";
                     echo "<a class='recette-link' href='recette-detail.php?id={$id}'>
-                            <div class='img'><img width='219px' src='{$imgSrc}' alt='{$nom}'></div>
+                            <div class='img'><img width='219px' src='../assets/images/{$imgSrc}' alt=''></div>
                             <img src='../assets/images/pin.png' alt='' class='pin'>
                             <h2>{$nom}</h2>
                             <span class='temps'><img src='../assets/images/clock.png' alt=''> {$temps} min</span>

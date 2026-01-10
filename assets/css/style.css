@@ -135,7 +135,7 @@ h3 {
 
 a {
     text-decoration: none;
-    color: #000;
+    color: var(--noir);
     transition: all 0.3s ease;
 }
 
@@ -176,24 +176,28 @@ nav.active {
 }
 
 nav a {
-    color: #000;
+    color: var(--noir);
     position: relative;
     font-family: 'Kelson Sans', sans-serif;
     font-weight: bold;
+}
+
+nav a:hover, footer a:hover{
+    border-bottom: solid 1px;
 }
 
 input[type="search"] {
     border: none;
     border-radius: 30px;
     background-color: var(--vert);
-    color: #000;
+    color: var(--noir);
     padding: 5px 20px;
     font-size: 1.05rem;
     font-family: 'Louis George Cafe', sans-serif;
 }
 
 input[type="search"]::placeholder {
-    color: #000;
+    color: var(--noir);
 }
 
 .navbar,
@@ -285,6 +289,7 @@ h2 {
         center top;
     color: var(--noir);
     position: relative;
+    transition: all 0.3s ease;
 }
 
 .recette h2 {
@@ -304,9 +309,10 @@ h2 {
     font-size: 1.2rem;
 }
 
-.recette .img {
+.recette .img img {
     height: 190px;
     width: 190px;
+    aspect-ratio: 1/1;
     border-radius: 10px;
     background-color: var(--jaune);
     position: relative;
@@ -320,7 +326,7 @@ h2 {
     width: fit-content;
     padding: 3px 10px 3px 3px;
     border-radius: 20px;
-    color: #000;
+    color: var(--noir);
     font-family: 'Kelson Sans', sans-serif;
     position: absolute;
     bottom: 40px;
@@ -568,7 +574,7 @@ footer {
     }
 
     nav a.active {
-        border-bottom: #000 2px solid;
+        border-bottom: var(--noir) 2px solid;
     }
 
     .connexion a {

@@ -91,6 +91,11 @@ form input[type="submit"] {
     width: 100%;
 }
 
+.recette:hover {
+    transform: translateY(-5px);
+    opacity: 0.8;
+}
+
 @media screen and (min-width: 768px) {
     h1 {
         font-size: 11rem;
@@ -150,34 +155,3 @@ form input[type="submit"] {
         width: fit-content;
     }
 }
-
-    .recette-info {
-
-        background-color: var(--rouge);
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 12px;
-  
-    }
-
-    .recette-info span {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-family: 'Kelson Sans', sans-serif;
-        font-size: 1.1rem;
-    }
-
-    h2 {
-
-        font-family: 'Kelson Sans', sans-serif;
-        font-size: 2rem;
-        margin-top: 5px;   
-
-    }
-
-    
-    
