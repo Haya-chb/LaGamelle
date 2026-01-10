@@ -105,7 +105,7 @@ include_once('controleurs/user.php');
                         <div class="page" style="z-index: <?= count($newRecettes) - $index ?>;">
 
                             <div class="page-face front recette">
-                                <div class="img"></div>
+                                <div class="img"><img width='219px' src='assets/images/<?= $recette['image_recette'] ?>' alt=''></div>
                                 <img src="assets/images/pin.png" alt="" class="pin">
 
                                 <h2><?= htmlspecialchars($recette['nom_recette']) ?></h2>

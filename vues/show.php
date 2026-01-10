@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/veterinaire.css">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16x16.png">
     <link rel="manifest" href="../assets/images/favicon/site.webmanifest">
@@ -99,10 +99,11 @@
                     $nom = htmlspecialchars($recette['nom_recette']);
                     $temps = (int) $recette['temps'];
                     $animal = htmlspecialchars($recette['animal']);
+                    $img = $recette['image_recette'];
 
                     echo "<div class='recette'>";
                     echo "<a class='recette-link' href='recette-detail.php?id={$id}'>
-                            <div class='img'></div>
+                            <div class='img'><img src='../assets/images/{$img}' alt=''></div>
                             <img src='../assets/images/pin.png' alt='' class='pin'>
                             <h2>{$nom}</h2>
                             <span class='temps'><img src='../assets/images/clock.png' alt=''> {$temps} min</span>

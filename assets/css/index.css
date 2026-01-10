@@ -73,6 +73,7 @@ h2 {
     margin: auto;
 }
 
+
 .couverture h3 {
     color: #fff;
     font-size: 2.5rem;
@@ -92,13 +93,12 @@ h2 {
     margin-top: 0;
 }
 
-.couverture .front {
-    padding: 30px;
+.recette h2{
+    font-size: 1.2rem;
 }
 
-.front.recette .img {
+.front.recette .img img {
     border-radius: 10px;
-    background-color: var(--jaune);
     position: relative;
     left: 20px;
     bottom: 20px;
@@ -109,13 +109,17 @@ h2 {
     color: #fff;
     font-size: 1.1rem;
     display: inline-block;
-    margin-top: 25px;
 }
 
 .badge {
     bottom: 70px;
     left: 120px;
     transform: rotate(-0.03turn);
+    font-size: 0.9rem;
+}
+
+.pin {
+    display: none;
 }
 
 .front.recette a:hover {
@@ -322,7 +326,7 @@ h2 {
         height: 32rem;
     }
 
-    .front.recette .img {
+    .front.recette .img img {
         height: 290px;
         width: 290px;
     }
@@ -378,6 +382,10 @@ h2 {
 
     .aliment-container {
         font-size: 1.3rem;
+    }
+
+    .front.recette a {
+        margin-top: 15px;
     }
 }
 

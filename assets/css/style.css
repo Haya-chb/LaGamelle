@@ -599,7 +599,7 @@ footer {
         margin-top: 5px;
     }
 
-    .recette .img {
+    .recette .img img{
         height: 220px;
         width: 220px;
         left: 90px;
