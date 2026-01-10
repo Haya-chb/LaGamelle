@@ -127,7 +127,7 @@ if ($totalCommentaires > 0) {
             </div>
 
             <div class="recipe-visual">
-                    <img src="../assets/images/<?= $recette['image_recette'] ?>" alt="">
+                <img src="../assets/images/<?= $recette['image_recette'] ?>" alt="">
             </div>
 
             <div class="recipe-badges">
@@ -148,17 +148,21 @@ if ($totalCommentaires > 0) {
         </section>
         <section class="ingredients">
             <h2>Ingrédients :</h2>
-            <div class="ingredients-grid">
+            <ul class="ingredients-list">
                 <?php foreach ($ingredients as $ingredient): ?>
-                    <div class="ingredient-item">
-                        <?php if (!empty($imgPath)): ?>
-                            <img src="" alt="">
+                    <li class="ingredient-item">
+                        <?php if (!empty($ingredient['quantite_ingredient']) && $ingredient['quantite_ingredient'] !== '0'): ?>
+                            <span class="ingredient-qty">
+                                <?= htmlspecialchars($ingredient['quantite_ingredient']) ?> 
+                            </span>
                         <?php endif; ?>
-                        <span class="ingredient-qty"><?= htmlspecialchars($ingredient['quantite_ingredient']) ?></span>
-                        <span class="ingredient-name"><?= htmlspecialchars($ingredient['nom_ingredient']) ?></span>
-                    </div>
+
+                        <span class="ingredient-name">
+                            <?= htmlspecialchars($ingredient['nom_ingredient']) ?>
+                        </span>
+                    </li>
                 <?php endforeach; ?>
-            </div>
+            </ul>
         </section>
 
         <section class="steps-section">
@@ -284,7 +288,7 @@ if ($totalCommentaires > 0) {
     <script>
         const toggleBtn = document.getElementById('toggle-comments-btn');
         const commentsWrapper = document.querySelector('.coms');
-        
+
         if (toggleBtn && commentsWrapper) {
             toggleBtn.addEventListener('click', () => {
                 const hidden = commentsWrapper.classList.toggle('hidden');

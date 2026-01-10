@@ -448,49 +448,6 @@ footer {
     text-align: center;
 }
 
-.commentaire-item {
-
-    align-items: center;
-    margin-bottom: 10px;
-    background-color: var(--jaune);
-    border-radius: 5px;
-}
-
-.ingredient-item {
-
-        background-color: var(--jaune);
-        max-width: fit-content;
-        padding: 5px 10px;
-        margin-bottom: 8px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 10px;
-
-
-    }
-
-    .recette-contenu {
-        background: linear-gradient(135deg, var(--beige) 0%, rgba(255, 232, 206, 0.5) 100%);
-        padding: 2rem;
-        border-radius: 12px;
-        margin: 2rem 0;
-        border-left: 5px solid var(--orange);
-    }
-
-    .recette-contenu p {
-        font-family: 'Kelson Sans', sans-serif;
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: var(--noir);
-        text-align: justify;
-        margin: 0;
-        word-wrap: break-word;
-        white-space: pre-wrap;
-    }
-
-
 @media (min-width: 768px) {
     .main-footer {
         text-align: left;

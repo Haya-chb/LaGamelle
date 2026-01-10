@@ -14,7 +14,7 @@ function trouverPseudo($db, $id_utilisateur) {
 }
 
 function selectIngredients($db, $id_recette) {
-    $stmtIng = $db->prepare("SELECT i.nom_ingredient, i.image_ingredient, ir.quantite AS quantite_ingredient 
+    $stmtIng = $db->prepare("SELECT i.nom_ingredient, ir.quantite AS quantite_ingredient 
                              FROM ingredient_recette ir 
                              JOIN ingredient i ON ir.fk_ingredient = i.id_ingredient 
                              WHERE ir.fk_recette = ?");

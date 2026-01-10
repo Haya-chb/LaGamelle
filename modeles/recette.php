@@ -4,7 +4,7 @@ require_once __DIR__ . '/../connexion.php';
 //Récupération de toute les recettes
 function getRecettes($db)
 {
-    $stmt = $db->prepare("SELECT * FROM recette");
+    $stmt = $db->prepare("SELECT * FROM recette ORDER BY id_recette DESC");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
