@@ -23,7 +23,7 @@ if (!isset($_SESSION['id_utilisateur'])) {
 <body>
      
     <header>
-        <a href="../index.php" class="logo">LG</a>
+        <a href="../index.php" class="logo"><img src="../assets/images/logo.webp" alt="Retour à l'accueil"></a>
         <div class="mobile-only">
             <form action="recette.php" method="get">
                 <label for="recherche" class="sr-only">Recherchez une recette</label>
@@ -37,6 +37,7 @@ if (!isset($_SESSION['id_utilisateur'])) {
 
         <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
+                <li class="mobile-only"><a href="../index.php">Accueil</a></li>
                 <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>

@@ -155,7 +155,7 @@ header {
 
 nav {
     position: fixed;
-    z-index: 100;
+    z-index: 1001;
     inset: 0;
     background-color: var(--jaune);
 
@@ -225,11 +225,16 @@ input[type="search"]::placeholder {
     border: none;
     cursor: pointer;
     position: relative;
-    z-index: 102;
+    z-index: 1005;
 }
 
-.burger img {
+.burger img, .logo img {
     width: 40px;
+}
+
+.logo img{
+    transform: rotate(-0.01turn);
+    cursor: pointer;
 }
 
 /* titre */

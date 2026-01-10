@@ -29,7 +29,7 @@ include_once('controleurs/user.php');
     </div>
 
     <header>
-        <a href="#" class="logo">LG</a>
+        <a href="#" class="logo"><img src="assets/images/logo.webp" alt="Retour en haut"></a>
         <div class="mobile-only">
             <?php
             if (isset($_SESSION['id_utilisateur'])) {

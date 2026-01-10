@@ -11,13 +11,14 @@
 
 <body>
     <header>
-        <a href="../index.php" class="logo">LG</a>
+        <a href="../index.php" class="logo"><img src="../assets/images/logo.webp" alt="Retour à l'accueil"></a>
         <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
             <img src="../assets/images/burger-menu.svg" alt="">
         </button>
 
         <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
+                <li class="mobile-only"><a href="../index.php">Accueil</a></li>
                 <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>

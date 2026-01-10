@@ -14,7 +14,7 @@ session_start();
 
 <body>
     <header>
-        <a href="../index.php" class="logo">LG</a>
+        <a href="../index.php" class="logo"><img src="../assets/images/logo.webp" alt="Retour à l'accueil"></a>
         <div class="mobile-only">
             <?php
             if (isset($_SESSION['id_utilisateur'])) {
@@ -31,10 +31,11 @@ session_start();
 
         <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
+                <li class="mobile-only"><a href="../index.php">Accueil</a></li>
                 <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>
-                 <li><a href="v-contribution.php">Proposer une recette</a></li>
+                <li><a href="v-contribution.php">Proposer une recette</a></li>
 
             </ul>
             <?php
