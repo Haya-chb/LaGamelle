@@ -5,6 +5,7 @@ if (!isset($_SESSION['id_utilisateur'])) {
     header('Location: ../index.php');
     exit;
 }
+
 require '../controleurs/user.php';
 require '../controleurs/animal.php';
 ?>
@@ -130,7 +131,7 @@ require '../controleurs/animal.php';
                         <?php
                         foreach ($animaux as $a) {
                             echo '<span>';
-                            echo "<img src='../assets/images/{$a["espece"]}-profil.png' alt='' class='icon'><p>" . htmlspecialchars($a['nom_animal']) . "</p>";
+                            echo "<img src='../assets/images/{$a["espece"]}.svg' alt='' class='icon'><p>" . htmlspecialchars($a['nom_animal']) . "</p>";
                             echo '</span>';
                         }
                         ?>

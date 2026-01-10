@@ -4,7 +4,6 @@ require('../connexion.php');
 include_once('../controleurs/recette.php');
 include_once('../controleurs/user.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -35,13 +34,10 @@ include_once('../controleurs/user.php');
 
         <nav id="menu" aria-label="Navigation principale">
             <ul class="navbar">
-                <li><a href="recette.php" class="active">Nos Recettes</a></li>
+                <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>
-                <?php
-                if (isset($_SESSION['id_utilisateur'])) {
-                    echo ' <li><a href="v-contribution.php">Proposer une recette</a></li>';
-                } ?>
+                <li><a href="v-contribution.php">Proposer une recette</a></li>
 
             </ul>
             <?php
@@ -73,8 +69,7 @@ include_once('../controleurs/user.php');
     <main>
         <section>
             <h1>Nos Recettes</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, ab fugiat minima dolores pariatur
-                repellat?</p>
+            <p>Ici vous trouverez des recettes pour chouchouter votre compagnon !</p>
 
             <button class="btn-filtres" aria-expanded="false" aria-controls="filtres">
                 Filtres
@@ -120,7 +115,6 @@ include_once('../controleurs/user.php');
                 <a href="../vues/recette.php" class="btn-reset">Réinitialiser</a>
             </div>
         </section>
-
         <section class="recettes">
             <?php
             if (!empty($recettes)) {
@@ -149,9 +143,10 @@ include_once('../controleurs/user.php');
 
                     echo "</a>";
 
-                    // bouton favoris en dehors de la balise <a>
+                    if(isset($_SESSION['id_utilisateur'])){
                     echo '<button class="btn-favoris" data-recette="' . $id . '"><img src="../assets/images/favorite-off.svg" alt="">
                          <span class="sr-only">Ajouter aux favoris</span></button>';
+                    }
 
                     echo "</div>";
                 }
@@ -161,41 +156,6 @@ include_once('../controleurs/user.php');
             ?>
         </section>
     </main>
-
-    <footer class="main-footer">
-        <div class="footer-wave">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-                preserveAspectRatio="none">
-                <path
-                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                    class="shape-fill"></path>
-            </svg>
-        </div>
-        <div class="footer-container">
-            <div class="footer-links">
-                <h3>Navigation</h3>
-                <ul>
-                    <li><a href="../index.php">Accueil</a></li>
-                    <li><a href="../vues/recette.php">Nos Recettes</a></li>
-                    <li><a href="../vues/alimentsdangereuxV.php">Aliments toxiques</a></li>
-                    <li><a href="../vues/index.php">Vétérinaires</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-links">
-                <h3>Informations</h3>
-                <ul>
-                    <li><a href="../vues/mentions-legales.php">Mentions légales</a></li>
-                    <li><a href="../vues/mentions-legales.php#confidentialite">Confidentialité</a></li>
-                    <li><a href="../vues/mentions-legales.php#credits">Crédits</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 La Gamelle - Fait avec passion pour vos animaux.</p>
-        </div>
-    </footer>
-
 
     <script src="../assets/js/gsap.min.js"></script>
     <script src="../assets/js/script.js"></script>
@@ -211,7 +171,6 @@ include_once('../controleurs/user.php');
                 btn.innerHTML = '<img src="../assets/images/favorite-on.svg" alt="">';
             }
         });
-
     </script>
 </body>
 

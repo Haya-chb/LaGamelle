@@ -13,7 +13,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: var(--bleu);
+    background-color: var(--vert);
     border-radius: 20px;
 }
 
@@ -41,11 +41,14 @@ body {
 
 .form button {
     width: 100%;
-    padding: 12px;
-    background-color: var(--jaune);
+    padding: 8px 12px;
+    background-color: var(--noir);
+    color: #fff;
     border: none;
     border-radius: 20px;
-    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Kelson Sans', sans-serif;
+    font-size: 1.2rem;
 }
 
 /* Container & Liste */
@@ -67,7 +70,7 @@ body {
 
 /* Carte Vétérinaire Mobile */
 .card-vet {
-    background-color: var(--bleu);
+    background-color: var(--vert);
     border-radius: 14px;
     padding: 15px;
     line-height: 1.2;
@@ -91,7 +94,8 @@ body {
 .card-vet a {
     width: 100%;
     padding: 5px 10px;
-    background-color: var(--jaune);
+    background-color: var(--noir);
+    color: #fff;
     border-radius: 20px;
     font-family: 'Kelson Sans', sans-serif;
     font-size: 1.1rem;
@@ -110,7 +114,7 @@ body {
     width: 100%;
     height: 300px;
     border-radius: 14px;
-    border: solid 2px var(--bleu);
+    border: solid 2px var(--vert);
 }
 
 /* Fiche détaillée Mobile (vet-header) */
@@ -126,11 +130,10 @@ body {
 }
 
 .vet-photo img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+    width: 300px;
     overflow: hidden;
-    border: 4px solid var(--bleu);
+    border-radius: 20px;
+    border: 2px solid var(--vert);
 }
 
 .vet-info h1 {

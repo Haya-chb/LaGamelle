@@ -1,8 +1,9 @@
 <?php
 require_once  __DIR__ . '/../modeles/favoris.php';
+require_once __DIR__ . '/c-connexion.php';
 
-// TEMPORAIRE
-$id_user = 1;
+// Récupération de l'ID depuis la session
+$id_user = $_SESSION['id_utilisateur'] ?? null;
 
 //====SYSTEME DE FAVORIS====//
 //Récupération du POST
