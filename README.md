@@ -1,40 +1,54 @@
-URL du site : https://lagaamelle.fr
+# README – La Gamelle
+
+## URL du site : https://lagaamelle.fr
+
+## Url tableur Opquast et accéssibilité : https://docs.google.com/spreadsheets/d/14QeysxklN1QNs3so0HiC1ZEYmkPKsPkjABZ14Si7lBA/edit?usp=sharing
 
 
-/////////// Réinstaller le site et la base de donnée sur un autre seerveur ///////////////////
+# Réinstaller le site et la base de donnée sur un autre serveur
 
-Insérer la base de donnée  : 
+## Insérer la base de donnée  : 
 
-1 - Créer une base de donnée se nommant "lagamelle"
+1 - Créer une base de donnée se nommant "lagamelle" : CREATE DATABASE lagamelle;
 
-2 - Ouvrir son Phpmy admin si ce n'est pas déja fait
+2 - Importer le fichier lagamelle.sql via phpMyAdmin
 
-3 - Prendre le fichier sql se trouvant dans le dossier qu'on vous a fournit
+3 - Modifier le fichier connexion.php avec vos informations (utilisateur et mdp)
 
-4 - Appuyer sur  importer et selectionner le fichier sql
-
-
-
-Insérer les fichiers : 
+## Insérer les fichiers : 
 
 1 - Ouvrir le gestionnaire de fichier de votre serveur
 
-2 - Zipper le dossier qu'on vous a fournit
+2 - Zipper le dossier fournit
 
-3 - Le déposser à la racine de votre serveur
+3 - Le déposer à la racine de votre serveur (/var/www/html/)
 
 4 - Le dézipper
 
 
+## Dimensionnement du serveur
 
-Connecter la base de donnée : 
+### Petit trafic (≤ 100 utilisateurs/jour)
+- 1 vCPU
 
-1 - Aller sur la page connexion.php du dossier que vous venez de déposer sur votre serveur
+- 1 Go RAM
 
-2 - Modifier la ligne de connexion en fenction de votre login et mot de passe sur Phpmyadmin
+- 10 Go stockage
 
+### Trafic moyen (100 à 1 000 utilisateurs/jour)
 
+- 2 vCPU
 
+- 2 à 4 Go RAM
 
- 
+- 20 Go stockage
 
+### Trafic élevé (> 1 000 utilisateurs/jour)
+
+- 4 vCPU
+
+- 8 Go RAM
+
+- Cache PHP (OPcache)
+
+- Hébergement dédié ou cloud
