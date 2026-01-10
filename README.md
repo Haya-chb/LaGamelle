@@ -1,4 +1,4 @@
-URL du site : https://vilasse.projetsmmichamps.fr/LaGamelle/index.php
+URL du site : https://lagaamelle.fr
 
 
 /////////// Réinstaller le site et la base de donnée sur un autre seerveur ///////////////////
