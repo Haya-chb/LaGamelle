@@ -19,6 +19,18 @@ switch ($niveau) {
         $difficulte = "Facile";
         $difficulte_class = "";
 }
+
+$moyenne = 0;
+$totalCommentaires = count($commentaires);
+
+if ($totalCommentaires > 0) {
+    $somme = 0;
+    foreach ($commentaires as $com) {
+        $somme += $com['note'];
+    }
+    // Calcul de la moyenne arrondie à 1 décimale (ex: 4.5)
+    $moyenne = round($somme / $totalCommentaires, 1);
+}
 ?>
 
 <!DOCTYPE html>
@@ -96,8 +108,21 @@ switch ($niveau) {
 
 
             <div class="recipe-rating">
-                <span class="stars">★★★★☆</span>
-                <span>4/5 - <?= count($commentaires) ?> avis</span>
+                <span class="stars">
+                    <?php
+                    $noteEntiere = round($moyenne); // Pour l'affichage des étoiles (ex: 4.2 devient 4)
+                    for ($i = 1; $i <= 5; $i++) {
+                        if ($i <= $noteEntiere) {
+                            echo '<span class="star active">★</span>';
+                        } else {
+                            echo '<span class="star">☆</span>';
+                        }
+                    }
+                    ?>
+                </span>
+                <span>
+                    <?= $moyenne ?>/5 - <?= $totalCommentaires ?> <?= $totalCommentaires > 1 ? 'avis' : 'avis' ?>
+                </span>
             </div>
 
             <div class="recipe-visuals">
@@ -160,6 +185,35 @@ switch ($niveau) {
         <section class="comments">
             <h2>Les commentaires</h2>
             <button id="toggle-comments-btn">Masquer les commentaires</button>
+            <div class="coms">
+                <?php if (isset($commentaires) && !empty($commentaires)): ?>
+                    <?php foreach ($commentaires as $com): ?>
+                        <div class="com">
+                            <div class="com-head">
+                                <p><?= htmlspecialchars($com['pseudo']) ?> -
+                                    <span class="stars">
+                                        <?php
+                                        $note = intval($com['note']);
+                                        for ($i = 1; $i <= 5; $i++) {
+                                            if ($i <= $note) {
+                                                echo '<span class="star active">★</span>';
+                                            } else {
+                                                echo '<span class="star">☆</span>';
+                                            }
+                                        }
+                                        ?>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="com-body">
+                                <p><?= htmlspecialchars(string: $com['commentaire']) ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>Aucun commentaire pour le moment.</p>
+                <?php endif; ?>
+            </div>
 
             <?php if (isset($_SESSION['id_utilisateur'])): ?>
                 <div class="commentaire">
@@ -232,32 +286,15 @@ switch ($niveau) {
     <script src="../assets/js/gsap.min.js"></script>
     <script src="../assets/js/script.js"></script>
     <script>
-        // Randomize background colors of comment items using CSS variables
-        // and provide toggle show/hide for comments
-        document.addEventListener('DOMContentLoaded', function () {
-            const colors = ['--rouge', '--orange', '--jaune', '--rose', '--vert', '--bleu'];
-            const commentItems = document.querySelectorAll('.commentaire-item');
-
-            commentItems.forEach(item => {
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                const colorValue = getComputedStyle(document.documentElement).getPropertyValue(randomColor).trim();
-                item.style.backgroundColor = colorValue;
-
-                // Set text color to white if the background is rouge
-                if (randomColor === '--rouge') {
-                    item.style.color = 'white';
-                }
+        const toggleBtn = document.getElementById('toggle-comments-btn');
+        const commentsWrapper = document.querySelector('.coms');
+        
+        if (toggleBtn && commentsWrapper) {
+            toggleBtn.addEventListener('click', () => {
+                const hidden = commentsWrapper.classList.toggle('hidden');
+                toggleBtn.textContent = hidden ? 'Afficher les commentaires' : 'Masquer les commentaires';
             });
-
-            const toggleBtn = document.getElementById('toggle-comments-btn');
-            const commentsWrapper = document.getElementById('comments-wrapper');
-            if (toggleBtn && commentsWrapper) {
-                toggleBtn.addEventListener('click', () => {
-                    const hidden = commentsWrapper.classList.toggle('hidden');
-                    toggleBtn.textContent = hidden ? 'Afficher les commentaires' : 'Masquer les commentaires';
-                });
-            }
-        });
+        }
     </script>
 </body>
 

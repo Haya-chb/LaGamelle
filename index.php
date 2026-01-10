@@ -84,7 +84,7 @@ include_once('controleurs/user.php');
 
         <section class="recents">
             <h2>Nos nouvelles recettes</h2>
-            <p>Ne ratez rien des nouveautés pour vos compagnons ! Chaque semaine, de nouvelles recettes saines et
+            <p>Ne ratez rien des nouveautés pour vos compagnons ! <br> Chaque semaine, de nouvelles recettes saines et
                 gourmandes arrivent pour ravir chats et chiens. Inspirez-vous et faites plaisir à votre chouchou avec
                 des repas faits maison faciles à préparer.</p>
             <div class="new">
@@ -116,7 +116,7 @@ include_once('controleurs/user.php');
                                     <img src="assets/images/<?= $icon ?>" alt="">
                                     <p>Pour <?= $recette['animal'] ?></p>
                                 </div>
-                                <a href="">Voir la recette</a>
+                                <a class='recette-link' href='vues/recette-detail.php?id=<?= $recette['id_recette'] ?>'>Voir la recette</a>
                             </div>
 
                             <div class="page-face back">
@@ -130,7 +130,7 @@ include_once('controleurs/user.php');
 
         <section class="nous">
             <h2>Que proposons-nous ?</h2>
-            <p>Ici, vous trouverez toutes les recettes pour chouchouter votre compagnon à quatre pattes ! Snacks
+            <p>Ici, vous trouverez toutes les recettes pour chouchouter votre compagnon à quatre pattes ! <br> Snacks
                 rapides, repas gourmands ou petites friandises maison… tout est pensé pour égayer les repas de votre
                 chat ou de votre chien et lui faire plaisir à chaque bouchée.</p>
 

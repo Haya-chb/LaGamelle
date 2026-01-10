@@ -271,7 +271,7 @@ h2 {
     background-position:
         center top,
         center top;
-    color: #fff;
+    color: var(--noir);
     position: relative;
 }
 
