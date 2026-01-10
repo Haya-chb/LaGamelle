@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/redirection.css">
      <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Redirection</title>
+    <title>Redirection | La Gamelle</title>
 </head>
 <body>
     

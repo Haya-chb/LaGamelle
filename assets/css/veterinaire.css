@@ -1,760 +1,262 @@
-/* =====================
-   FONTS
-===================== */
-@font-face {
-    font-family: 'Nobulina';
-    src: url('../polices/NobulinaDemo-Inktrap.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'KelsonSans';
-    src: url('../polices/KelsonSans-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'KelsonSans';
-    src: url('../polices/KelsonSans-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'LouisGeorge';
-    src: url('../polices/LouisGeorgeCafe.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'LouisGeorge';
-    src: url('../polices/LouisGeorgeCafe-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-}
-
-:root {
-    --beige: #FFE8CE;
-    --rouge: #AD0000;
-    --orange: #E63C23;
-    --jaune: #FFBF35;
-    --rose: #ED4296;
-    --vert: #149353;
-    --bleu: #116FD1;
-    --noir: #010101;
-}
-
-/* =====================
-   BASE
-===================== */
-* {
-    box-sizing: border-box;
-}
-
 body {
-    margin: 0;
-    background-color: #FDE8CF;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Louis George Cafe', sans-serif;
 }
 
-/* =====================
-   BARRE DE RECHERCHE
-===================== */
+/* ===============
+   MOBILE FIRST 
+   =============== */
+
+/* Barre de recherche mobile */
 .form {
-    max-width: 1100px;
-    margin: 30px auto 15px;
-    padding: 6px;
+    margin: 16px;
+    padding: 8px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
     background-color: var(--bleu);
-    border-radius: 50px;
-}
-
-/* inputs */
-.form input[type="text"] {
-    flex: 1;
-    padding: 16px 20px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    background-color: #fff;
-    font-family: 'LouisGeorge', sans-serif;
-}
-
-/* input gauche */
-.form input[name="name"] {
-    border-top-left-radius: 40px;
-    border-bottom-left-radius: 40px;
-}
-
-/* input droite */
-.form input[name="city"] {
-    border-left: 2px solid #000;
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-}
-
-/* bouton rechercher */
-.form button {
-    margin-left: 10px;
-    padding: 17px 38px;
-    border: none;
-    border-radius: 40px;
-    background-color: #FFBF35;
-    font-family: 'KelsonSans', sans-serif;
-    font-weight: 700;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.form button:hover {
-    background-color: #cd9a2c;
-}
-
-.vet-reinitialiser {
-    background-color: transparent;
-    border: 2px solid #E63C23;
-    color: #E63C23;
-    padding: 8px 18px;
-    font-size: 0.75rem;
-    border-radius: 40px;
-    cursor: pointer;
-    font-family: 'KelsonSans', sans-serif;
-    font-weight: 700;
-    transition: 0.3s;
-    margin-left: 190px;
-}
-
-.vet-reinitialiser:hover {
-    background-color: #E63C23;
-    color: #fff;
+    border-radius: 20px;
 }
 
 .input-wrapper {
-    flex: 1;
     position: relative;
-    display: flex;
-}
-
-.input-wrapper input {
     width: 100%;
-    padding-left: 50px;
 }
 
-/* icône */
+.form input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 12px 12px 45px;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
 .input-icon {
     position: absolute;
-    left: 13px;
+    left: 12px;
     top: 50%;
     transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    pointer-events: none;
+    width: 20px;
 }
 
-/* arrondis conservés */
-.input-wrapper.left input {
-    border-top-left-radius: 40px;
-    border-bottom-left-radius: 40px;
-}
-
-.input-wrapper.right input {
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-}
-
-
-/* =====================
-   CONTAINER
-===================== */
-.container {
-    max-width: 1300px;
-    margin: 20px auto 40px;
-    display: flex;
-    gap: 30px;
-}
-
-/* =====================
-   LISTE
-===================== */
-.results {
-    width: 55%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* =====================
-   CARD VETERINAIRE
-===================== */
-.card-vet {
-    background-color: var(--bleu);
-    border-radius: 14px;
-    position: relative;
-    padding-bottom: 10px;
-}
-
-/* nom */
-.card-vet h3 {
-    margin: 20px 20px 35px;
-    font-size: 2rem;
-    font-family: 'Kelson Sans', sans-serif;
+.form button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--jaune);
+    border: none;
+    border-radius: 20px;
     font-weight: 700;
 }
 
-/* ligne */
-.card-vet .separator {
+/* Container & Liste */
+.container {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 15px;
+    gap: 30px;
+}
+
+.results {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* Carte Vétérinaire Mobile */
+.card-vet {
+    background-color: var(--bleu);
+    border-radius: 14px;
+    padding: 15px;
+    line-height: 1.2;
+}
+
+.card-vet-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-vet h3 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.card-vet .note {
+    font-size: 1rem;
+}
+
+.card-vet a {
+    width: 100%;
+    padding: 5px 10px;
+    background-color: var(--jaune);
+    border-radius: 20px;
+    font-family: 'Kelson Sans', sans-serif;
+    font-size: 1.1rem;
+    display: block;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.separator {
     border-top: 1px solid #000;
     margin: 0 15px 20px;
 }
 
-/* note */
-.card-vet .note {
-    position: absolute;
-    top: 70px;
-    right: 40px;
-    font-size: 0.8rem;
-    font-family: 'KelsonSans', sans-serif;
-}
-
-/* texte */
-.card-vet p {
-    margin: 0 20px 25px;
-    font-size: 0.8rem;
-    line-height: 1.6;
-    font-family: 'KelsonSans', sans-serif;
-}
-
-/* bouton fiche */
-.card-vet button {
-    margin-left: 20px;
-    margin-bottom: 20px;
-    width: 40%;
-    padding: 10px;
-    border: none;
-    border-radius: 25px;
-    background-color:  var(--jaune);
-    font-size: 0.8rem;
-    font-family: 'KelsonSans', sans-serif;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.card-vet button:hover {
-    transform: translateY(5px);
-}
-
-/* =====================
-   MAP
-===================== */
+/* Map - cachée ou petite sur mobile */
 #map {
-    width: 45%;
-    height: 650px;
+    width: 100%;
+    height: 300px;
     border-radius: 14px;
-    border: 2px solid var(--bleu);
+    border: solid 2px var(--bleu);
 }
 
+/* Fiche détaillée Mobile (vet-header) */
 .container-vet {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 40px 20px;
+    padding: 20px;
 }
 
-/* Header Section */
 .vet-header {
-    display: grid;
-    grid-template-columns: 420px 1fr;
-    gap: 60px;
-    margin-bottom: 60px;
-}
-
-.vet-photo {
-    position: relative;
-    top: 100px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    width: 400px; 
-    height: 200px;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 .vet-photo img {
-    width: 100%; 
-    height: auto;
-    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--bleu);
 }
 
 .vet-info h1 {
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 30px;
-    color: #1a1a1a;
+    font-size: 4rem;
+    text-align: center;
+    margin: 20px;
 }
 
 .vet-description {
-    margin-bottom: 30px;
+    font-size: 1.15rem;
+    line-height: 1.3;
+    margin-bottom: 20px;
 }
 
-.vet-description p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #333;
+.vet-contact h2 {
+    margin-bottom: 15px;
 }
 
-.vet-contact {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 30px;
+.vet-contact img {
+    width: 40px;
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 16px;
+    gap: 20px;
+    font-size: 1.2rem;
 }
 
-.contact-item .icon {
-    font-size: 24px;
+.recettes{
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 100px;
 }
-
-.contact-item .icon.location {
-    color: #E91E63;
-}
-
-.contact-item .icon.phone {
-    color: #E91E63;
-}
-
-.btn-contact {
-    background-color: #E91E63;
-    color: white;
-    border: none;
-    padding: 15px 40px;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
-}
-
-.btn-contact:hover {
-    background-color: #C2185B;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
-}
-
-/* Recipes Section */
-.recipes-section {
-    margin-bottom: 50px;
-}
-
-.recipes-section h2 {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 40px;
-    color: #1a1a1a;
-}
-
-.recipes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-    gap: 40px;
-}
-
-.recipe-card {
-    background-color: #1B5E3E;
-    border-radius: 20px;
-    padding: 30px;
-    display: flex;
-    gap: 30px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-}
-
-.recipe-card:hover {
-    transform: translateY(-5px);
-}
-
-.recipe-card img {
-    width: 240px;
-    height: 240px;
-    object-fit: cover;
-    border-radius: 15px;
-}
-
-.recipe-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.recipe-content h3 {
-    color: white;
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    line-height: 1.3;
-}
-
-.recipe-info {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 25px;
-}
-
-.recipe-time,
-.recipe-category {
-    color: white;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.btn-recipe {
-    background-color: #FDB913;
-    color: #1a1a1a;
-    border: none;
-    padding: 12px 30px;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 25px;
-    cursor: pointer;
-    align-self: flex-start;
-    transition: all 0.3s ease;
-}
-
-.btn-recipe:hover {
-    background-color: #FFD54F;
-    transform: scale(1.05);
-}
-
-/* Back Button */
-.btn-back {
-    display: inline-block;
-    color: #1a1a1a;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-    padding: 12px 0;
-    transition: all 0.3s ease;
-}
-
-.btn-back:hover {
-    color: #E91E63;
-    transform: translateX(-5px);
-}
-
-@media (max-width: 768px) {
-
-    /* =====================
-       BARRE DE RECHERCHE
-    ===================== */
+/* ==========================================================================
+   TABLETTES ET DESKTOP (Min-width: 768px)
+   ========================================================================== */
+@media (min-width: 768px) {
 
     .form {
-        max-width: none;
-        margin: 16px 16px 20px;
-        padding: 8px;
-        border-radius: 24px;
-        height: 50px;
+        flex-direction: row;
+        max-width: 1100px;
+        margin: 30px auto;
+        border-radius: 50px;
+        padding: 6px;
+        gap: 0;
     }
 
-    .form input {
-        font-size: 14px;
-        padding: 12px 16px 12px 42px;
-         height: 30px;
+    .form input[name="name"] {
+        border-radius: 40px 0 0 40px;
+    }
+
+    .form input[name="city"] {
+        border-left: 2px solid #000;
+        border-radius: 0 40px 40px 0;
     }
 
     .form button {
-        padding: 0px 10px;
-        font-size: 0.7rem;
-        height: 30px;
+        width: auto;
+        padding: 8px 38px;
+        margin-left: 10px;
     }
-
-    .input-icon{
-        width: 20px;
-        height: 20px;
-    }
-
-    /* =====================
-       ORDRE DES BLOCS
-    ===================== */
 
     .container {
-        display: flex;
-        flex-direction: column;
-        max-width: none;
-        width: 150%;
-        
+        flex-direction: row;
+        max-width: 1300px;
+        margin: 0 auto;
     }
-
-    .container-vet{
-        max-width: none;
-
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        overflow: hidden;
-    }
-
-#map {
-margin-left: 3%;
-    order: 1;
-}
-
 
     .results {
-        order: 2;
-        max-width: none;
-       width: 100%;
-       margin-left: 10%;
-       
-       overflow: hidden;
-
+        width: 55%;
     }
 
-    /* =====================
-       CARTES
-    ===================== */
-
-    .card-vet {
-        padding: 14px;
-        border-radius: 18px;
-        width: 100%;
+    #map {
+        width: 45%;
+        height: 650px;
+        position: sticky;
+        top: 20px;
     }
 
-    .card-vet h3 {
-        font-size: 1.3rem;
-        margin: 12px 12px 18px;
-    }
-
-    .card-vet p {
-        font-size: 0.75rem;
-        margin: 0 12px 16px;
-    }
-
-    .card-vet button {
-        width: auto;
-        margin-left: 12px;
-        padding: 8px 16px;
-        font-size: 0.7rem;
-    }
-
-}
-
-/* VERSION MOBILE UNIQUEMENT - max 464px */
-@media (max-width: 464px) {
-    /* Cacher le header sur mobile */
-    header {
-        display: none !important;
-    }
-
-    body {
-        background-color: #f5dcc8;
-        margin: 0;
-        padding: 0;
-    }
-
-    .container-vet {
-        max-width: 100%;
-        padding: 0;
-        background-color: #f5dcc8;
-    }
-
-    .vet-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0;
-        background-color: #f5dcc8;
-    }
-
-    .vet-photo {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        overflow: hidden;
-        margin: 30px auto 0 auto;
-        border: 6px solid #e8d4bf;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    .card-vet a {
+        width: 40%;
     }
 
     .vet-photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        width: 450px;
+        height: 300px;
+        border-radius: 20px;
     }
 
-    .vet-info {
-        background: white;
-        border: none;
-        border-top: 4px solid #ff99cc;
-        border-radius: 0;
-        margin: 0;
-        padding: 30px 25px;
-        max-height: none;
-        width: 100%;
+    .vet-description{
+        max-width: 800px;
+        margin: 0 auto 20px;
+    }
+
+}
+
+/* ==========================================================================
+   LARGE DESKTOP (Min-width: 1200px)
+   ========================================================================== */
+@media (min-width: 1200px) {
+
+    /* Fiche détaillée Desktop */
+    .vet-header {
+        display: grid;
+        grid-template-columns: 450px 1fr;
+        gap: 60px;
+        text-align: left;
+        width: fit-content;
+        margin: auto;
     }
 
     .vet-info h1 {
-        text-align: center;
-        font-size: 28px;
-        font-weight: bold;
-        margin: 0 0 25px 0;
-        color: #000;
-    }
-
-    .vet-description {
-        font-size: 15px;
-        line-height: 1.7;
-        color: #333;
-        margin-bottom: 0;
-        text-align: left;
-    }
-
-    .vet-description p {
+        font-size: 7rem;
+        text-align: start;
         margin: 0;
     }
 
-    .vet-contact {
-        background: linear-gradient(180deg, #ffd4e5 0%, #ff88bb 100%);
-        border-radius: 0;
-        padding: 30px 25px 25px 25px;
-        margin: 30px 0 0 0;
-        position: relative;
-        width: 100%;
-    }
-
-    .vet-contact::before {
-        content: 'Contact';
-        display: block;
-        color: #000;
-        font-size: 26px;
-        font-weight: bold;
-        margin-bottom: 25px;
-        text-align: center;
-    }
-
-    .contact-item {
-        display: flex;
-        align-items: center;
+    .vet-description{
+        margin: 0;
         margin-bottom: 20px;
-    }
-
-    .contact-item .icon {
-        width: 50px;
-        height: 50px;
-        background-color: #2d9d78;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 15px;
-        flex-shrink: 0;
-        font-size: 24px;
-    }
-
-    .contact-item span:not(.icon) {
-        color: #000;
-        font-size: 17px;
-        font-weight: 500;
-    }
-
-    .btn-contact {
-        background-color: #00aa66;
-        color: white;
-        padding: 15px 30px;
-        border: none;
-        border-radius: 30px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        width: 100%;
-        margin-top: 15px;
-    }
-
-    .recipes-section {
-        background-color: #f5dcc8;
-        padding: 30px 25px;
-    }
-
-    .recipes-section h2 {
-        font-size: 20px;
-        font-weight: bold;
-        color: #000;
-        margin-bottom: 20px;
-        line-height: 1.4;
     }
 
     .recipes-grid {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .recipe-card {
-        background: white;
-        border: 3px solid #ff99cc;
-        border-radius: 15px;
-        overflow: hidden;
-    }
-
-    .recipe-card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-
-    .recipe-content {
-        padding: 15px;
-    }
-
-    .recipe-content h3 {
-        font-size: 18px;
-        margin-bottom: 10px;
-        color: #000;
-    }
-
-    .recipe-info {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        margin-bottom: 15px;
-        font-size: 14px;
-        color: #666;
-    }
-
-    .btn-recipe {
-        display: inline-block;
-        background-color: #00aa66;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 20px;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 600;
-    }
-
-    .btn-back {
-        display: block;
-        text-align: center;
-        margin: 20px 25px 30px 25px;
-        padding: 14px;
-        background-color: #00aa66;
-        color: white;
-        text-decoration: none;
-        border-radius: 25px;
-        font-weight: 600;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
     }
 }
-
-

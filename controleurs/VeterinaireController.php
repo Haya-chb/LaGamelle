@@ -28,7 +28,9 @@ class VeterinaireController
 
         if (!$vet) {
             die('Vétérinaire introuvable');
-        }
+        };
+
+        $recettesAssociees = Veterinaire::getRecettes($id);
 
         require __DIR__ . '/../vues/show.php';
     }

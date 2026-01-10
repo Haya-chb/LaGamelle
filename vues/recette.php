@@ -111,9 +111,9 @@ include_once('../controleurs/user.php');
                     <label for="niveau" class="sr-only">Niveau de difficulté</label>
                     <select name="niveau" id="niveau">
                         <option value="">Difficulté</option>
-                        <option value="Facile">Facile</option>
-                        <option value="Moyen">Moyen</option>
-                        <option value="Difficile">Difficile</option>
+                        <option value="1">Facile</option>
+                        <option value="2">Moyen</option>
+                        <option value="3">Difficile</option>
                     </select>
                     <input type="submit" value="Filtrer">
                 </form>
@@ -158,7 +158,6 @@ include_once('../controleurs/user.php');
             } else {
                 echo '<p class="rien"> Aucun résultat </p>';
             }
-
             ?>
         </section>
     </main>

@@ -34,7 +34,7 @@ class Veterinaire
     // =========================
     public static function find(int $id): ?array
     {
-        global $db; // Utilisation de la connexion définie dans connexion.php
+        global $db;
 
         $stmt = $db->prepare(
             "SELECT * FROM veterinaires WHERE id_veterinaire = :id LIMIT 1"
@@ -45,6 +45,23 @@ class Veterinaire
         $vet = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $vet ?: null;
+    }
+
+    // =========================
+// RECETTES ASSOCIÉES
+// =========================
+    public static function getRecettes(int $id_veto): array
+    {
+        global $db;
+
+        $sql = "SELECT * FROM recette 
+            INNER JOIN veterinaire_recette ON id_recette = fk_recette
+            WHERE fk_veterinaire = :id_veto";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute(['id_veto' => $id_veto]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>

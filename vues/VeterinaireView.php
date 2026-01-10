@@ -22,33 +22,7 @@ $hasSearch =
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="../assets/css/veterinaire.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <style>
-        .container {
-            display: flex;
-            gap: 20px;
-        }
-
-        .results {
-            width: 40%;
-            max-height: 600px;
-            overflow-y: auto;
-        }
-
-        #map {
-            width: 60%;
-            height: 600px;
-        }
-
-        .card-vet {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
-
-
-
 
 <body>
     <header>
@@ -72,11 +46,7 @@ $hasSearch =
                 <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
                 <li><a href="index.php" class="active">Trouver un vétérinaire</a></li>
-                <?php
-                if (isset($_SESSION['id_utilisateur'])) {
-                    echo '<li><a href="v-contribution.php">Proposer une recette</a></li>';
-                }
-                ?>
+                <li><a href="v-contribution.php">Proposer une recette</a></li>
             </ul>
             <?php
             if (isset($_SESSION['id_utilisateur'])) {
@@ -103,94 +73,106 @@ $hasSearch =
             ?>
         </nav>
     </header>
+    <main>
 
-    <!-- BARRE DE RECHERCHE -->
-    <form method="GET" action="index.php" class="form">
-        <input type="hidden" name="page" value="veterinaires">
-        <input type="hidden" name="action" value="index">
-
-        <!-- INPUT NOM -->
-        <div class="input-wrapper left">
-            <img src="../assets/images/person.svg" alt="" class="input-icon">
-            <input type="text" name="name" placeholder="       Nom ou prénom"
-                value="<?= htmlspecialchars($_GET['name'] ?? '') ?>">
-        </div>
-
-        <!-- INPUT VILLE -->
-        <div class="input-wrapper right">
-            <img src="../assets/images/loca.svg" alt="" class="input-icon">
-            <input type="text" name="city" placeholder=".      Ville"
-                value="<?= htmlspecialchars($_GET['city'] ?? '') ?>">
-        </div>
-
-        <button type="submit">Rechercher</button>
-    </form>
-
-
-    <!-- BOUTON EFFACER LA RECHERCHE (AFFICHE UNIQUEMENT SI RECHERCHE) -->
-    <?php if ($hasSearch): ?>
-        <form method="GET" action="index.php" class="vet-reset-form">
+        <!-- BARRE DE RECHERCHE -->
+        <form method="GET" action="index.php" class="form">
             <input type="hidden" name="page" value="veterinaires">
             <input type="hidden" name="action" value="index">
 
-            <button type="submit" class="vet-reinitialiser">
-                Effacer la recherche
-            </button>
+            <!-- INPUT NOM -->
+            <div class="input-wrapper left">
+                <img src="../assets/images/person.svg" alt="" class="input-icon">
+                <input type="text" name="name" placeholder="       Nom ou prénom"
+                    value="<?= htmlspecialchars($_GET['name'] ?? '') ?>">
+            </div>
+
+            <!-- INPUT VILLE -->
+            <div class="input-wrapper right">
+                <img src="../assets/images/loca.svg" alt="" class="input-icon">
+                <input type="text" name="city" placeholder=".      Ville"
+                    value="<?= htmlspecialchars($_GET['city'] ?? '') ?>">
+            </div>
+
+            <button type="submit">Rechercher</button>
         </form>
-    <?php endif; ?>
 
-    <div class="container">
-        <!-- LISTE -->
-        <div class="results" id="vet-list">
-            <?php foreach ($veterinaires as $vet): ?>
-                <div class="card-vet" id="vet-<?= $vet['id_veterinaire'] ?>">
-                    <h3><?= htmlspecialchars($vet['prenom'] . ' ' . $vet['nom']) ?></h3>
-                    <div class="separator"></div>
-                    <p>
-                        <?= htmlspecialchars($vet['adresse']) ?><br>
-                        <?= htmlspecialchars($vet['code_postal']) ?>     <?= htmlspecialchars($vet['ville']) ?><br>
-                        <?= htmlspecialchars($vet['telephone']) ?>
-                    </p>
-                    <div class="note">⭐ <?= htmlspecialchars($vet['note']) ?></div>
-                    <a href="index.php?page=veterinaires&action=show&id=<?= $vet['id_veterinaire'] ?>">
-                        <button>Accéder à la fiche</button>
-                    </a>
-                </div>
-            <?php endforeach; ?>
+
+        <!-- BOUTON EFFACER LA RECHERCHE (AFFICHE UNIQUEMENT SI RECHERCHE) -->
+        <?php if ($hasSearch): ?>
+            <form method="GET" action="index.php" class="vet-reset-form">
+                <input type="hidden" name="page" value="veterinaires">
+                <input type="hidden" name="action" value="index">
+
+                <button type="submit" class="vet-reinitialiser">
+                    Effacer la recherche
+                </button>
+            </form>
+        <?php endif; ?>
+
+        <div class="container">
+            <!-- LISTE -->
+            <div class="results" id="vet-list">
+                <?php foreach ($veterinaires as $vet): ?>
+                    <div class="card-vet" id="vet-<?= $vet['id_veterinaire'] ?>">
+                        <div class="card-vet-head">
+                            <h3><?= htmlspecialchars($vet['prenom'] . ' ' . $vet['nom']) ?></h3>
+                            <div class="note">⭐ <?= htmlspecialchars($vet['note']) ?></div>
+                        </div>
+                        <div class="separator"></div>
+                        <p>
+                            <?= htmlspecialchars($vet['adresse']) ?>
+                        </p>
+                        <p><?= htmlspecialchars($vet['code_postal']) ?>     <?= htmlspecialchars($vet['ville']) ?></p>
+
+                        <a href="index.php?page=veterinaires&action=show&id=<?= $vet['id_veterinaire'] ?>">Accéder à la fiche</a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <!-- CARTE -->
+            <div id="map"></div>
         </div>
+    </main>
 
-        <!-- CARTE -->
-        <div id="map"></div>
-    </div>
+    <footer class="main-footer">
+        <div class="footer-wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="footer-container">
+            <div class="footer-links">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="../index.php">Accueil</a></li>
+                    <li><a href="../vues/recette.php">Nos Recettes</a></li>
+                    <li><a href="../vues/alimentsdangereuxV.php">Aliments toxiques</a></li>
+                    <li><a href="../vues/index.php">Vétérinaires</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3>Informations</h3>
+                <ul>
+                    <li><a href="../vues/mentions-legales.php">Mentions légales</a></li>
+                    <li><a href="../vues/mentions-legales.php#confidentialite">Confidentialité</a></li>
+                    <li><a href="../vues/mentions-legales.php#credits">Crédits</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 La Gamelle - Fait avec passion pour vos animaux.</p>
+        </div>
+    </footer>
 
     <!-- Leaflet CSS/JS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="../assets/js/gsap.min.js"></script>
+    <script src="../assets/js/script.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-    <style>
-        .container {
-            display: flex;
-            gap: 20px;
-        }
-
-        .results {
-            width: 40%;
-            max-height: 600px;
-            overflow-y: auto;
-        }
-
-        #map {
-            width: 60%;
-            height: 600px;
-        }
-
-        .card-vet {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-    </style>
-
     <script>
         // =======================
         // DONNEES PASSEES DEPUIS PHP
@@ -297,42 +279,6 @@ $hasSearch =
             resetSelection();
         });
     </script>
-
-
-
-    <footer class="main-footer">
-        <div class="footer-wave">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-                preserveAspectRatio="none">
-                <path
-                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                    class="shape-fill"></path>
-            </svg>
-        </div>
-        <div class="footer-container">
-            <div class="footer-links">
-                <h3>Navigation</h3>
-                <ul>
-                    <li><a href="../index.php">Accueil</a></li>
-                    <li><a href="../vues/recette.php">Nos Recettes</a></li>
-                    <li><a href="../vues/alimentsdangereuxV.php">Aliments toxiques</a></li>
-                    <li><a href="../vues/index.php">Vétérinaires</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-links">
-                <h3>Informations</h3>
-                <ul>
-                    <li><a href="../vues/mentions-legales.php">Mentions légales</a></li>
-                    <li><a href="../vues/mentions-legales.php#confidentialite">Confidentialité</a></li>
-                    <li><a href="../vues/mentions-legales.php#credits">Crédits</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 La Gamelle - Fait avec passion pour vos animaux.</p>
-        </div>
-    </footer>
 </body>
 
 </html>

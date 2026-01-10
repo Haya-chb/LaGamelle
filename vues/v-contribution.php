@@ -1,6 +1,11 @@
 <?php
 session_start();
 include("../controleurs/c-contribution.php");
+
+if (!isset($_SESSION['id_utilisateur'])) {
+    header('Location: v-connexion.php');
+    exit;
+}
 ?>
 
 
@@ -13,7 +18,7 @@ include("../controleurs/c-contribution.php");
     <link rel="stylesheet" href="../assets/css/contribution.css">
      <link rel="stylesheet" href="../assets/css/form.css">
 
-    <title>Proposition de recette</title>
+    <title>Proposition de recette | La Gamelle</title>
 </head>
 <body>
      

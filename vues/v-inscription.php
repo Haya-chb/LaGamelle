@@ -13,7 +13,7 @@ include("../controleurs/c-inscription.php");
   <link rel="stylesheet" href="../assets/css/form.css">
   <link rel="stylesheet" href="../assets/css/style.css">
   
-  <title>Inscription</title>
+  <title>Inscription | La Gamelle</title>
 </head>
 <body>
   
@@ -29,6 +29,9 @@ include("../controleurs/c-inscription.php");
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>
             </ul>
+            <div class="connexion">
+                        <a href="v-connexion.php">Connexion</a>
+            </div>
         </nav>
     </header>
 

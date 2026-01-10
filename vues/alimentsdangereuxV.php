@@ -8,7 +8,7 @@ include('../controleurs/FoodController.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les aliments toxiques</title>
+    <title>Aliments toxiques | La Gamelle</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/recette.css">
     <link rel="stylesheet" href="../assets/css/dangereux.css">
@@ -36,10 +36,8 @@ include('../controleurs/FoodController.php');
                 <li><a href="recette.php">Nos Recettes</a></li>
                 <li><a href="alimentsdangereuxV.php" class="active">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>
-                <?php
-                if (isset($_SESSION['id_utilisateur'])) {
-                    echo ' <li><a href="v-contribution.php">Proposer une recette</a></li>';
-                } ?>
+                <li><a href="v-contribution.php">Proposer une recette</a></li>
+                
 
             </ul>
             <?php
@@ -125,7 +123,7 @@ include('../controleurs/FoodController.php');
                                     alt="<?= htmlspecialchars($food['name']) ?>">
                             </div>
 
-                            <h3><?= htmlspecialchars($food['name']) ?></h3>
+                            <h2><?= htmlspecialchars($food['name']) ?></h2>
                             <p>Survoler la carte pour en savoir plus !</p>
                         </div>
 

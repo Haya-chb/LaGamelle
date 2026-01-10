@@ -1,20 +1,22 @@
 <?php
 
-include ("../controleurs/c-connexion.php");
+include("../controleurs/c-connexion.php");
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/form.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <title>Connexion</title>
+    <title>Connexion | La Gamelle</title>
 </head>
+
 <body>
-    
+
     <header>
         <a href="../index.php" class="logo">LG</a>
         <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
@@ -27,13 +29,16 @@ include ("../controleurs/c-connexion.php");
                 <li><a href="alimentsdangereuxV.php">Aliments toxiques</a></li>
                 <li><a href="index.php">Trouver un vétérinaire</a></li>
             </ul>
+            <div class="connexion">
+                <a href="v-inscription.php">Inscription</a>
+            </div>
         </nav>
     </header>
 
 
-<main>
-<?php
- echo '<form action="v-connexion.php" method="POST">
+    <main>
+        <?php
+        echo '<form action="v-connexion.php" method="POST">
 
 
 <div><label for="login">Login :</label><br>
@@ -47,9 +52,9 @@ include ("../controleurs/c-connexion.php");
 
 
 </form>';
-?>
+        ?>
 
-</main>
+    </main>
 
     <footer class="main-footer">
         <div class="footer-wave">
@@ -84,8 +89,8 @@ include ("../controleurs/c-connexion.php");
             <p>&copy; 2026 La Gamelle - Fait avec passion pour vos animaux.</p>
         </div>
     </footer>
-<script src="../assets/js/gsap.min.js"></script>
-<script src="../assets/js/script.js"></script>
+    <script src="../assets/js/gsap.min.js"></script>
+    <script src="../assets/js/script.js"></script>
 </body>
-</html>
 
+</html>
