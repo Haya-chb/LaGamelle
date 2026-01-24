@@ -1,7 +1,13 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 30px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.filtres {
+    display: block;
 }
 
 .card {
@@ -23,6 +29,11 @@
     transition: transform 0.6s ease;
     transform-style: preserve-3d;
     border-radius: 18px;
+}
+
+.card-inner h2 {
+    font-family: 'Kelson Sans', sans-serif;
+    font-weight: bold;
 }
 
 /* Rotation au survol */
@@ -131,7 +142,7 @@
     font-size: 1rem;
 }
 
-.btn-filtres{
+.btn-filtres {
     margin-bottom: 30px;
 }
 
@@ -139,5 +150,39 @@
 @media(max-width:600px) {
     .search input {
         width: 180px;
+    }
+}
+
+@media (min-width:1200px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        margin: 20px;
+    }
+
+    .filtres {
+        display: flex;
+        gap: 30px;
+        top: 20px;
+        left: 0px;
+    }
+
+    .recettes-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: start;
+        gap: 60px;
+    }
+}
+
+@media (min-width:1600px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        margin: 20px auto;
+        max-width: 1400px;
+    }
+
+    .filtres {
+        top: 20px;
+        left: 40px;
     }
 }

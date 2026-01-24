@@ -110,7 +110,7 @@ body {
     max-width: 150px;
     max-height: 150px;
     object-fit: contain;
-    opacity: 1; 
+    opacity: 1;
 }
 
 .progress-bar {
@@ -182,7 +182,8 @@ nav a {
     font-weight: bold;
 }
 
-nav a:hover, footer a:hover{
+nav a:not(.compte a):hover,
+footer a:hover {
     border-bottom: solid 1px;
 }
 
@@ -220,7 +221,8 @@ input[type="search"]::placeholder {
     width: 30px;
 }
 
-.compte.mobile-only a:last-child, .deco{
+.compte.mobile-only a:last-child,
+.deco {
     background-color: var(--rouge);
     padding: 5px 20px;
     color: #fff;
@@ -239,11 +241,12 @@ input[type="search"]::placeholder {
     z-index: 1005;
 }
 
-.burger img, .logo img {
+.burger img,
+.logo img {
     width: 40px;
 }
 
-.logo img{
+.logo img {
     transform: rotate(-0.01turn);
     cursor: pointer;
 }
@@ -265,19 +268,20 @@ h2 {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     justify-items: center;
     gap: 30px;
+    width: 100%;
     margin-top: 20px;
-    padding: 10px;
 }
 
 .recette {
-    background-color: var(--bleu);
+    background-color: #fff2f2;
+    border: solid 2px var(--rouge);
     padding: 20px;
     width: 260px;
     height: 350px;
     border-radius: 10px;
     background-image:
-        radial-gradient(circle at center, var(--beige) 10px, transparent 10px),
-        linear-gradient(#FFBADD 3px, transparent 3px);
+        radial-gradient(circle at center, var(--beige) 8px, var(--rouge) 8px, transparent 10px, transparent 10px),
+        linear-gradient(rgba(173,0,0, 0.9) 3px, transparent 3px);
     background-size:
         50px 50px,
         90% 40px;
@@ -289,6 +293,7 @@ h2 {
         center top;
     color: var(--noir);
     position: relative;
+    box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;
     transition: all 0.3s ease;
 }
 
@@ -302,11 +307,18 @@ h2 {
     display: flex;
     align-items: center;
     gap: 10px;
+    font-weight: bold;
 }
 
 .temps {
     margin-top: 10px;
     font-size: 1.2rem;
+}
+
+.temps img {
+    background-color: var(--rouge);
+    padding: 1.5px;
+    border-radius: 50%;
 }
 
 .recette .img img {
@@ -345,7 +357,8 @@ h2 {
 .btn-favoris img,
 .btn-supp img {
     width: 40px;
-    background-color: #fff;
+    background-color: var(--beige);
+    border: #010101 1px solid;
 }
 
 .btn-favoris,
@@ -482,14 +495,16 @@ footer {
 }
 
 @media (min-width: 850px) {
+
     .mobile-only,
     .compte .mobile-only {
         display: none !important;
     }
 
-    .pc-only{
+    .pc-only {
         display: flex;
     }
+
     header {
         flex-direction: row;
         justify-content: start;
@@ -555,11 +570,13 @@ footer {
 }
 
 @media (min-width: 900px) {
-    .pc-only, .compte.pc-only {
+
+    .pc-only,
+    .compte.pc-only {
         display: flex;
     }
 
-        input[type="search"] {
+    input[type="search"] {
         width: 250px;
     }
 
@@ -599,7 +616,7 @@ footer {
         margin-top: 5px;
     }
 
-    .recette .img img{
+    .recette .img img {
         height: 220px;
         width: 220px;
         left: 90px;

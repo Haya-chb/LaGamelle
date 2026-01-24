@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 10 jan. 2026 à 22:26
+-- Généré le : sam. 10 jan. 2026 à 22:52
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -63,16 +63,7 @@ CREATE TABLE IF NOT EXISTS `avis` (
   `fk_utilisateur` int NOT NULL,
   `fk_recette` int NOT NULL,
   PRIMARY KEY (`id_avis`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Déchargement des données de la table `avis`
---
-
-INSERT INTO `avis` (`id_avis`, `commentaire`, `note`, `fk_utilisateur`, `fk_recette`) VALUES
-(1, 'Just how I feel.', 2, 4, 18),
-(2, 'Identity', 5, 4, 18),
-(3, 'Commentaire marche', 4, 4, 18);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -366,15 +357,14 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `pseudo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id_utilisateur`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`id_utilisateur`, `nom_utilisateur`, `prenom_utilisateur`, `mail`, `numero_utilisateur`, `pseudo`, `password`) VALUES
-(3, 'Dupont', 'Nicholat', 'nico@gmail.com', 123456789, 'Nichocolat', '$2y$10$fsRlEIOn8IqXfVyJL1NG1u8lunIaYW3yagFSLTWvFBdnU9KA4zbz2'),
-(4, 'Dupont', 'Nicolas', 'nicolatdupont@test.com', 123456789, 'Nathalia', '$2y$10$H/afxdzIAo2k6aIrTktTUe7YEYoEXCBQSNzctaAqE7jAdoKTD/.Ge');
+(1, 'Dupont', 'Nicolat', 'nico@gmail.fr', 123456789, 'Nichocolat', '$2y$10$81MpiUrOG70s1PQdDUCZ5O7KI9.pyD/6dDY.US9SPEj7HYF8stf1O');
 
 -- --------------------------------------------------------
 

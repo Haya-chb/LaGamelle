@@ -1,6 +1,6 @@
 <?php
 
-include("../controleurs/c-connexion.php");
+include("../controleurs/AuthControleur.php");
 ?>
 
 <!DOCTYPE html>

@@ -1,6 +1,6 @@
 <?php
 
-include("../controleurs/c-inscription.php");
+include("../controleurs/AuthControleur.php");
 ?>
 
 <!DOCTYPE html>
@@ -116,13 +116,13 @@ echo '
   <input type="radio" id="chat" name="espece" class="radio-cachee" value="chat">
   <label for="chat" class="label-animal">
     <img src="../assets/images/tete_chat.webp" alt="Un chat">
-    <p>C\'est un chat</p>
+    <p>C'est un chat</p>
   </label>
 
   <input type="radio" id="chien" name="espece" class="radio-cachee" value="chien">
   <label for="chien" class="label-animal">
     <img src="../assets/images/tete_chien.webp" alt="Un chien">
-    <p> C\'est un chien </p>
+    <p> C'est un chien </p>
   </label>
 
 </div>
@@ -137,7 +137,7 @@ echo '
 
 <fieldset>
 
-<legend>Votre boule de poile</legend>
+<legend>Votre boule de poil</legend>
 
 <span class="etape4-1">
 <div>

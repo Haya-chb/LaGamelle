@@ -133,7 +133,7 @@ body {
     width: 300px;
     overflow: hidden;
     border-radius: 20px;
-    border: 2px solid var(--vert);
+    border: 2px solid var(--bleu);
 }
 
 .vet-info h1 {

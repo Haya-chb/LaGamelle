@@ -1,8 +1,7 @@
 <?php
 session_start();
-include_once('../controleurs/recette-detail.php');
-include_once('../controleurs/user.php');
-include_once('../controleurs/recette.php');
+include_once('../controleurs/recetteControleur.php');
+include_once('../controleurs/userControleur.php');
 
 $niveau = $recette['niveau'];
 switch ($niveau) {
@@ -43,9 +42,6 @@ if ($totalCommentaires > 0) {
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/recette-detail.css">
 </head>
-
-
-
 
 <body>
     <header>
@@ -110,7 +106,7 @@ if ($totalCommentaires > 0) {
                 <div class="recipe-rating">
                     <span class="stars">
                         <?php
-                        $noteEntiere = round($moyenne); // Pour l'affichage des étoiles (ex: 4.2 devient 4)
+                        $noteEntiere = round($moyenne);
                         for ($i = 1; $i <= 5; $i++) {
                             if ($i <= $noteEntiere) {
                                 echo '<span class="star active">★</span>';
@@ -143,7 +139,8 @@ if ($totalCommentaires > 0) {
                     <img src="../assets/images/timer.svg" alt="">
                     Total : <?= $recette['temps'] ?> min
                 </div>
-                <button class="btn-save"><img src="../assets/images/heart.svg" alt="">Enregistrer</button>
+                <button class="btn-save" data-recette="<?= $recette['id_recette'] ?>">
+                    <img src="../assets/images/heart.svg" alt="">Enregistrer</button>
             </div>
         </section>
         <section class="ingredients">
@@ -153,7 +150,7 @@ if ($totalCommentaires > 0) {
                     <li class="ingredient-item">
                         <?php if (!empty($ingredient['quantite_ingredient']) && $ingredient['quantite_ingredient'] !== '0'): ?>
                             <span class="ingredient-qty">
-                                <?= htmlspecialchars($ingredient['quantite_ingredient']) ?> 
+                                <?= htmlspecialchars($ingredient['quantite_ingredient']) ?>
                             </span>
                         <?php endif; ?>
 
@@ -285,6 +282,7 @@ if ($totalCommentaires > 0) {
 
     <script src="../assets/js/gsap.min.js"></script>
     <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/favoris.js"></script>
     <script>
         const toggleBtn = document.getElementById('toggle-comments-btn');
         const commentsWrapper = document.querySelector('.coms');
@@ -295,6 +293,16 @@ if ($totalCommentaires > 0) {
                 toggleBtn.textContent = hidden ? 'Afficher les commentaires' : 'Masquer les commentaires';
             });
         }
+
+        //Vérifis s'il la recette est déjà dans les favoris de l'utilisateur
+        const favoris = <?= json_encode(array_column($favoris, 'id_recette')) ?>;
+        let btn = document.querySelector('.btn-save');
+        const recetteId = parseInt(btn.dataset.recette);
+        if (favoris.includes(recetteId)) {
+            btn.classList.add('active');
+           btn.innerHTML =btn.innerHTML.replace('Enregistrer', 'Enregistré');
+        }
+
     </script>
 </body>
 

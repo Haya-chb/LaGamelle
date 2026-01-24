@@ -60,19 +60,21 @@ h2 {
 
 .couverture {
     z-index: 5;
-    background-color: var(--bleu);
+    background-color: var(--rouge);
     width: 260px;
     height: 350px;
-    padding: 20px;
     border-radius: 10px;
 }
 
+.couverture .page-face {
+    padding: 20px;
+}
+
 .couverture img {
-    width: 200px;
+    width: 150px;
     display: block;
     margin: auto;
 }
-
 
 .couverture h3 {
     color: #fff;
@@ -93,7 +95,7 @@ h2 {
     margin-top: 0;
 }
 
-.recette h2{
+.recette h2 {
     font-size: 1.2rem;
 }
 
@@ -106,9 +108,14 @@ h2 {
 }
 
 .front.recette a {
-    color: #fff;
+    color: var(--noir);
     font-size: 1.1rem;
     display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.front.recette a:hover {
+    text-decoration: underline;
 }
 
 .badge {
@@ -128,10 +135,11 @@ h2 {
 
 .back {
     transform: rotateY(180deg);
-    background-color: var(--bleu);
+    background-color: #fff2f2;
+    border: solid 2px var(--rouge);
     background-image:
-        radial-gradient(circle at center, var(--beige) 10px, transparent 10px),
-        linear-gradient(#FFBADD 3px, transparent 3px);
+        radial-gradient(circle at center, var(--beige) 8px, var(--rouge) 8px, transparent 10px, transparent 10px),
+        linear-gradient(rgba(173, 0, 0, 0.9) 3px, transparent 3px);
     background-size:
         50px 50px,
         90% 40px;
@@ -145,8 +153,10 @@ h2 {
     height: 350px;
 }
 
-.couverture .back {
+.couverture .back,
+.page:last-of-type .back {
     background-image: none;
+    background-color: var(--rouge);
 }
 
 .btn-reset {
@@ -333,18 +343,19 @@ h2 {
 
     .badge {
         bottom: 80px;
-        left: 150px;
+        left: 200px;
         transform: rotate(-0.04turn);
     }
 
     .front.recette h2 {
-        margin-top: 12px;
+        font-size: 1.7rem;
         font-family: 'Kelson Sans', sans-serif;
     }
 
     .couverture img {
         margin-bottom: 30px;
         margin-top: 50px;
+        width: 250px;
     }
 
     .croquette h2 {
@@ -447,6 +458,11 @@ h2 {
 
     .couverture img {
         width: 250px;
+    }
+
+    .front.recette .img img {
+       left: 60px;
+       box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     }
 
     .cards {

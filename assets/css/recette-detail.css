@@ -67,6 +67,11 @@ section {
     align-items: center;
     gap: 20px;
     margin: auto;
+    transition: all 0.3s ease;
+}
+
+.btn-save:hover, #toggle-comments-btn:hover{
+    background-color: #860000;
 }
 
 /* --- INGREDIENTS GRID --- */
@@ -170,6 +175,7 @@ ol, .ingredients-list {
     margin: 20px auto;
     display: block;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .btn-submit {

@@ -94,7 +94,7 @@ function afficherEtape(){
 
 function afficherBoutton(){
 
-    if (currentStep <= 5) {
+    if (currentStep < 5) {
 
         document.querySelector('input[value="Valider"]').style.display = "none";
         document.querySelector('input[value="Continuer"]').style.display = "inline";

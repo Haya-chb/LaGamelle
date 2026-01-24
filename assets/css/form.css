@@ -1,12 +1,11 @@
 *,
 *::after,
 *::before {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-
 :root {
---blanc: #f8f8f8;
+    --blanc: #f8f8f8;
 }
 
 .progress-container {
@@ -14,16 +13,13 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     position: relative;
-    width:250px;
-    margin:10px
-
-
-    
+    width: 250px;
+    margin: 10px
 }
 
-.step-number{
-    width:30px;
-    height:30px;
+.step-number {
+    width: 30px;
+    height: 30px;
     border: 3px solid var(--bleu);
     background-color: var(--beige);
     color: var(--bleu);
@@ -35,17 +31,15 @@
     z-index: 1;
     transition: 0.4s ease-in;
     cursor: pointer;
-
 }
 
 .step-number.active {
-    
+
     background-color: var(--bleu);
-    color:var(--beige)
-    
+    color: var(--beige)
 }
 
-.progress-container::before{
+.progress-container::before {
     position: absolute;
     content: "";
     width: 100%;
@@ -57,8 +51,8 @@
     z-index: -1;
 }
 
-.step-progression{
- position: absolute;
+.step-progression {
+    position: absolute;
     width: 33%;
     height: 3px;
     top: 50%;
@@ -68,115 +62,114 @@
     z-index: 1;
 }
 
-
-
-.etape.hidden{
-    
+.etape.hidden {
     display: none;
 }
 
-
-.button{
-
-border: none;
-width: 150px;
-height: 40px;
-color: var(--blanc);
-
-
+.button {
+    border: none;
+    width: 150px;
+    height: 40px;
+    color: var(--blanc);
 }
 
-.button:first-child{
-background-color: var(--rose);
-
+.button:first-child {
+    background-color: var(--rose);
 }
 
-.button:nth-child(2), .button:last-child{
-  background-color: var(--rouge);  
-  
+.button:nth-child(2),
+.button:last-child {
+    background-color: var(--rouge);
 }
 
-
-
-
-main form{ background-color: var(--jaune);
-
-margin-right: 6px;
-border: var(--bleu) solid 10px;
-height: 70vh;
-min-width: 300px;
-padding: 5px;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-
+main form {
+    background-color: var(--jaune);
+    margin-right: 6px;
+    border: var(--bleu) solid 10px;
+    height: 70vh;
+    min-width: 300px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-family: 'Kelson Sans', sans-serif;
+    font-size: 1.1rem;
 }
 
-main input{
-    
-    background-color: var(--blanc) ;
+main input {
+    font-family: 'Kelson Sans', sans-serif;
+    background-color: var(--blanc);
     border: var(--bleu) solid 4px;
     width: 300px;
     height: 60px;
     margin-bottom: 20px;
     margin-top: 5px;
+    border-radius: 5px;
+    font-size: 1.1rem;
 }
 
-
-
-@media (width >= 1050px) {
-  main form {
-    padding: 20px;
-    min-width: 485px ;
-    height: 75vh;
-  }
-
-
-main input {
-
-width: 400px;
+input[type="submit"], input[type="button"] {
+    cursor: pointer;
 }
 
-legend{
-    font-size: 2rem;}
-
+select{
+    font-family: 'Kelson Sans', sans-serif;
+    background-color: var(--blanc);
+    border: var(--bleu) solid 4px;
+    width: 310px;
+    height: 60px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 1.1rem;
 }
 
+@media (width >=1050px) {
+    main form {
+        padding: 20px;
+        min-width: 485px;
+        height: 75vh;
+    }
 
+    main input {
 
+        width: 400px;
+    }
 
+    legend {
+        font-size: 2rem;
+    }
+}
 
+fieldset {
+    border: none;
+}
 
-fieldset{ border: none;}
-
-legend{
+legend {
     font-size: 1.3rem;
-    font-family: 'KelsonSans';
+    font-family: 'Kelson Sans', sans-serif;
     margin: auto;
     margin-top: 8px;
 }
 
-
-
-main{
-
-display: flex;
-flex-direction: column;
-justify-content:center;
-align-items: center;
-
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-
 
 .notification-bar {
     text-align: center;
     margin: 20px 0;
     font-weight: bold;
-    min-height: 1.2em; 
+    min-height: 1.2em;
 }
 
 .notification-bar:not(:empty) {
     padding: 10px;
     border-radius: 5px;
-    color: #d9534f;}
+    color: #d9534f;
+}

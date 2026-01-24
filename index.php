@@ -1,7 +1,6 @@
 <?php
 session_start();
-include_once('controleurs/recette.php');
-include_once('controleurs/user.php');
+include_once('controleurs/recetteControleur.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">

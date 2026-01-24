@@ -6,8 +6,7 @@ if (!isset($_SESSION['id_utilisateur'])) {
     exit;
 }
 
-require '../controleurs/user.php';
-require '../controleurs/animal.php';
+require '../controleurs/userControleur.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -64,29 +63,27 @@ require '../controleurs/animal.php';
     <main>
         <section class="head">
             <div class="section flex head-gardien head-favoris active">
-                <div class="img"></div>
                 <div>
-                    <h1><?= htmlspecialchars($user['pseudo']) ?></h1>
+                    <h1><?= htmlspecialchars($user[0]['pseudo']) ?></h1>
                 </div>
             </div>
             <div class="section flex head-compagnon">
-                <div class="img"></div>
                 <div>
-                    <h1 class="animal-name"><?= htmlspecialchars($animaux[0]['nom_animal']) ?></h1>
+                    <h1 class="animal-name"><?= htmlspecialchars($user[0]['nom_animal']) ?></h1>
                 </div>
             </div>
 
             <div class="section flex compagnon-modif">
                 <button id="compagnon-modif">Modifier le profil de
-                    <?= htmlspecialchars($animaux[0]['nom_animal']) ?></button>
+                    <?= htmlspecialchars($user[0]['nom_animal']) ?></button>
                 <?php
-                if (count($animaux) > 1) {
+                if (count($user) > 1) {
                     echo '<label for="animal" class="sr-only">Changer de profil animal :</label>
                 <select name="animal" id="animal">
                     <option value="">Changer de profil animal</option>';
 
 
-                    foreach ($animaux as $index => $a) {
+                    foreach ($user as $index => $a) {
                         echo "<option value='{$index}'>{$a['nom_animal']}</option>";
                     }
 
@@ -118,22 +115,22 @@ require '../controleurs/animal.php';
                 <h2>Fiche de renseignement</h2>
                 <div>
                     <p><strong>Nom et prénom :</strong></p>
-                    <p> <?= htmlspecialchars($user['prenom_utilisateur']) . ' ' . htmlspecialchars($user['nom_utilisateur']) ?>
+                    <p> <?= htmlspecialchars($user[0]['prenom_utilisateur']) . ' ' . htmlspecialchars($user[0]['nom_utilisateur']) ?>
                     </p>
                 </div>
                 <div>
                     <p><strong>Adresse Mail :</strong></p>
-                    <p><?php echo htmlspecialchars($user['mail']); ?></p>
+                    <p><?php echo htmlspecialchars($user[0]['mail']); ?></p>
                 </div>
                 <div>
                     <p><strong>Numéro de téléphone :</strong></p>
-                    <p><?php echo htmlspecialchars($user['numero_utilisateur']); ?></p>
+                    <p><?php echo htmlspecialchars($user[0]['numero_utilisateur']); ?></p>
                 </div>
                 <div>
                     <p><strong>Animaux à charge :</strong></p>
                     <div class="animal">
                         <?php
-                        foreach ($animaux as $a) {
+                        foreach ($user as $a) {
                             echo '<span>';
                             echo "<img src='../assets/images/{$a["espece"]}.svg' alt='' class='icon'><p>" . htmlspecialchars($a['nom_animal']) . "</p>";
                             echo '</span>';
@@ -150,27 +147,27 @@ require '../controleurs/animal.php';
                 <h2>Fiche de renseignement</h2>
                 <div>
                     <p><strong>Espèce :</strong></p>
-                    <p class="animal-espece"><?php echo htmlspecialchars($animaux[0]['espece']); ?></p>
+                    <p class="animal-espece"><?php echo htmlspecialchars($user[0]['espece']); ?></p>
                 </div>
                 <div>
                     <p><strong>Race :</strong></p>
-                    <p class="animal-race"><?php echo htmlspecialchars($animaux[0]['race']); ?></p>
+                    <p class="animal-race"><?php echo htmlspecialchars($user[0]['race']); ?></p>
                 </div>
                 <div>
                     <p><strong>Sexe :</strong></p>
-                    <p class="animal-sexe"><?php echo htmlspecialchars($animaux[0]['sexe']); ?></p>
+                    <p class="animal-sexe"><?php echo htmlspecialchars($user[0]['sexe']); ?></p>
                 </div>
                 <div>
                     <p><strong>Age :</strong></p>
-                    <p class="animal-age"><?php echo htmlspecialchars($animaux[0]['age']); ?> ans</p>
+                    <p class="animal-age"><?php echo htmlspecialchars($user[0]['age']); ?> ans</p>
                 </div>
                 <div>
                     <p><strong>Anniversaire :</strong></p>
-                    <p class="animal-anniv"><?php echo htmlspecialchars($animaux[0]['anniversaire']); ?></p>
+                    <p class="animal-anniv"><?php echo htmlspecialchars($user[0]['anniversaire']); ?></p>
                 </div>
                 <div>
                     <p><strong>Poids :</strong></p>
-                    <p class="animal-poids"><?php echo htmlspecialchars($animaux[0]['poids']); ?> kg</p>
+                    <p class="animal-poids"><?php echo htmlspecialchars($user[0]['poids']); ?> kg</p>
                 </div>
             </div>
 
@@ -178,19 +175,26 @@ require '../controleurs/animal.php';
                 <?php
                 if (!empty($favoris)) {
                     foreach ($favoris as $fav) {
-                        echo "<div class='recette favoris-card'><div class='img'></div>
-                        <img src='../assets/images/pin.png' alt='' class='pin'>
-                <h2>{$fav['nom_recette']}</h2>
-                <span class='temps'><img src='../assets/images/clock.png' alt=''> {$fav['temps']} min</span>
-                <div class='badge'>";
+                        $id = (int) $fav['id_recette'];
+                        $imgSrc = ($fav['image_recette']);
+                        $nom = htmlspecialchars($fav['nom_recette']);
+                        $temps = (int) $fav['temps'];
+                        $animal = htmlspecialchars($fav['animal']);
 
+                       echo"<div class='recette '><a class='recette-link' href='recette-detail.php?id={$id}'>
+                                <div class='img'><img width='219px' src='../assets/images/{$imgSrc}' alt=''></div>
+                                <img src='../assets/images/pin.png' alt='' class='pin'>
+                                <h2>{$nom}</h2>
+                                <span class='temps'><img src='../assets/images/clock.png' alt=''> {$temps} min</span>
+                                <div class='badge'>";
                         if ($fav['animal'] == 'chien') {
-                            echo "<img src='../assets/images/dog.png' alt=''><p>Pour {$fav['animal']}</p>
-                </div>";
+                            echo "<img src='../assets/images/dog.png' alt=''><p>Pour {$animal}</p></div>";
                         } else if ($fav['animal'] == 'chat') {
-                            echo "<img src='../assets/images/cat.png' alt=''><p>Pour {$fav['animal']}</p>
-                </div>";
+                            echo "<img src='../assets/images/cat.png' alt=''><p>Pour {$animal}</p></div>";
+                        } else {
+                            echo "</div>";
                         }
+                        echo "</a>";
                         echo '<button class="btn-supp" data-recette="' . $fav["id_recette"] . '"><img src="../assets/images/favorite-on.svg" alt=""> <span class="sr-only">Ajouter aux favoris</span></button></div>';
                     }
                 } else {
@@ -203,36 +207,36 @@ require '../controleurs/animal.php';
             <!-- FORMULAIRE MODIF PROFIL -->
             <div class="gardien-form">
                 <h2>Modifier vos informations</h2>
-                <form action="../controleurs/user.php" method="post">
-                    <input type="hidden" name="id_user" value="<?php echo $user['id_utilisateur']; ?>">
+                <form action="../controleurs/userControleur.php" method="post">
+                    <input type="hidden" name="id_user" value="<?php echo $user[0]['id_utilisateur']; ?>">
                     <div>
                         <label for="pseudo">Pseudo :</label><br>
                         <input type="text" name="pseudo" id="pseudo"
-                            value="<?php echo htmlspecialchars($user['pseudo']); ?>" required>
+                            value="<?php echo htmlspecialchars($user[0]['pseudo']); ?>" required>
                     </div>
                     <br>
                     <div>
                         <label for="nom">Nom :</label><br>
                         <input type="text" name="nom" id="nom"
-                            value="<?php echo htmlspecialchars($user['nom_utilisateur']); ?>" require>
+                            value="<?php echo htmlspecialchars($user[0]['nom_utilisateur']); ?>" require>
                     </div>
                     <br>
                     <div>
                         <label for="prenom">Prénom :</label><br>
                         <input type="text" name="prenom" id="prenom"
-                            value="<?php echo htmlspecialchars($user['prenom_utilisateur']); ?>" require>
+                            value="<?php echo htmlspecialchars($user[0]['prenom_utilisateur']); ?>" require>
                     </div>
                     <br>
                     <div>
                         <label for="mail">Mail :</label><br>
-                        <input type="email" name="mail" id="mail" value="<?php echo htmlspecialchars($user['mail']); ?>"
+                        <input type="email" name="mail" id="mail" value="<?php echo htmlspecialchars($user[0]['mail']); ?>"
                             require>
                     </div>
                     <br>
                     <div>
                         <label for="numero">Numéro de téléphone :</label><br>
                         <input type="tel" name="numero" id="numero"
-                            value="<?php echo htmlspecialchars($user['numero_utilisateur']); ?>" require>
+                            value="<?php echo htmlspecialchars($user[0]['numero_utilisateur']); ?>" require>
                     </div>
                     <br>
                     <div class="btn">
@@ -244,48 +248,48 @@ require '../controleurs/animal.php';
             <!-- FORMULAIRE MODIF ANIMAL -->
             <div class="compagnon-form">
                 <h2>Modifier les infos de votre boule de poil</h2>
-                <form action="../controleurs/animal.php" method="post" class="compagnon-form">
-                    <input type="hidden" name="id-animal" value="<?php echo $animaux[0]['id_animal']; ?>">
+                <form action="../controleurs/userControleur.php" method="post" class="compagnon-form">
+                    <input type="hidden" name="id-animal" value="<?php echo $user[0]['id_animal']; ?>">
                     <div>
                         <label for="nom-animal">Nom :</label><br>
                         <input type="text" name="nom-animal" id="nom-animal"
-                            value="<?php echo htmlspecialchars($animaux[0]['nom_animal']); ?>">
+                            value="<?php echo htmlspecialchars($user[0]['nom_animal']); ?>">
                     </div>
                     <br>
                     <div>
                         <label for="espece">Espèce :</label><br>
                         <input type="text" name="espece" id="espece"
-                            value="<?php echo htmlspecialchars($animaux[0]['espece']); ?>">
+                            value="<?php echo htmlspecialchars($user[0]['espece']); ?>">
                     </div>
                     <br>
                     <div>
                         <label for="sexe">Sexe :</label><br>
                         <input type="text" name="sexe" id="sexe"
-                            value="<?php echo htmlspecialchars($animaux[0]['sexe']); ?>">
+                            value="<?php echo htmlspecialchars($user[0]['sexe']); ?>">
                     </div>
                     <br>
                     <div>
                         <label for="race">Race :</label><br>
                         <input type="text" name="race" id="race"
-                            value="<?php echo htmlspecialchars($animaux[0]['race']); ?>">
+                            value="<?php echo htmlspecialchars($user[0]['race']); ?>">
                     </div>
                     <br>
                     <div>
                         <label for="age">Age :</label><br>
                         <input type="text" name="age" id="age"
-                            value="<?php echo htmlspecialchars($animaux[0]['age']); ?>">
+                            value="<?php echo htmlspecialchars($user[0]['age']); ?>">
                     </div>
                     <br>
                     <div>
                         <label for="annniv">Anniversaire :</label><br>
                         <input type="date" name="anniv" id="anniv"
-                            value="<?php echo htmlspecialchars($animaux[0]['anniversaire']); ?>">
+                            value="<?php echo htmlspecialchars($user[0]['anniversaire']); ?>">
                     </div>
                     <br>
                     <div>
                         <label for="poids">Poids de l'animal :</label><br>
                         <input type="number" name="poids" id="poids"
-                            value="<?php echo htmlspecialchars($animaux[0]['poids']); ?>">
+                            value="<?php echo htmlspecialchars($user[0]['poids']); ?>">
                     </div>
                     <br>
                     <div class="btn">
@@ -298,7 +302,7 @@ require '../controleurs/animal.php';
             <div class="ajout-animal-form">
                 <h2>Ajouter un nouveau compagnon</h2>
                 <form action="../controleurs/animal.php" method="post">
-                    <input type="hidden" name="fk_user" value="<?php echo $user['id_utilisateur']; ?>">
+                    <input type="hidden" name="fk_user" value="<?php echo $user[0]['id_utilisateur']; ?>">
 
                     <div>
                         <label for="new-nom">Nom de l'animal :</label><br>
@@ -396,7 +400,7 @@ require '../controleurs/animal.php';
         });
 
         //Change les infos de l'animal au changement dans le select
-        const animals = <?= json_encode($animaux, JSON_UNESCAPED_UNICODE); ?>;
+        const animals = <?= json_encode($user, JSON_UNESCAPED_UNICODE); ?>;
 
         const select = document.getElementById('animal');
         if (select !== null) {

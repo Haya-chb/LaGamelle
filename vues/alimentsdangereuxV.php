@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../controleurs/FoodController.php');
+include('../controleurs/recetteControleur.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -83,7 +83,9 @@ include('../controleurs/FoodController.php');
             <button class="btn-filtres" aria-expanded="false" aria-controls="filtres">
                 Filtres
             </button>
+        </section>
 
+        <section class="recettes-container">
             <!-- Formulaire de filtre -->
             <form id="filters" class="filtres">
                 <button class="btn-close-filtres"><img src="../assets/images/close.svg"
@@ -107,40 +109,34 @@ include('../controleurs/FoodController.php');
                 </select>
                 <button type="button" id="reset-btn" class="btn-reset">Réinitialiser</button>
             </form>
-        </section>
-
-        <!-- Grid des cartes -->
-        <section class="grid" id="grid">
-            <?php foreach ($dangereux as $food): ?>
-                <div class="card" data-species="<?= htmlspecialchars($food['species']) ?>"
-                    data-type="<?= htmlspecialchars($food['type']) ?>">
-                    <div class="card-inner">
-
-                        <div class="card-front">
-                            <div class="badge <?= $food['species'] === 'chat' ? 'badge-chat' : 'badge-chien' ?>">
-                                <span class="icon">
-                                    <img
-                                        src="../assets/images/<?= $food['species'] === 'chat' ? 'icon-chat.svg' : 'icon-chien.svg' ?>">
-                                </span>
-                                <span class="badge-text">Pour <?= htmlspecialchars($food['species']) ?></span>
+            <!-- Grid des cartes -->
+            <div class="grid" id="grid">
+                <?php foreach ($dangereux as $food): ?>
+                    <div class="card" data-species="<?= htmlspecialchars($food['species']) ?>"
+                        data-type="<?= htmlspecialchars($food['type']) ?>">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="badge <?= $food['species'] === 'chat' ? 'badge-chat' : 'badge-chien' ?>">
+                                    <span class="icon">
+                                        <img
+                                            src="../assets/images/<?= $food['species'] === 'chat' ? 'icon-chat.svg' : 'icon-chien.svg' ?>">
+                                    </span>
+                                    <span class="badge-text">Pour <?= htmlspecialchars($food['species']) ?></span>
+                                </div>
+                                <div class="illus">
+                                    <img src="../<?= htmlspecialchars($food['image']) ?>"
+                                        alt="<?= htmlspecialchars($food['name']) ?>">
+                                </div>
+                                <h2><?= htmlspecialchars($food['name']) ?></h2>
+                                <p>Survoler la carte pour en savoir plus !</p>
                             </div>
-
-                            <div class="illus">
-                                <img src="../<?= htmlspecialchars($food['image']) ?>"
-                                    alt="<?= htmlspecialchars($food['name']) ?>">
+                            <div class="card-back">
+                                <p><?= htmlspecialchars($food['description']) ?></p>
                             </div>
-
-                            <h2><?= htmlspecialchars($food['name']) ?></h2>
-                            <p>Survoler la carte pour en savoir plus !</p>
                         </div>
-
-                        <div class="card-back">
-                            <p><?= htmlspecialchars($food['description']) ?></p>
-                        </div>
-
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
         </section>
     </main>
 

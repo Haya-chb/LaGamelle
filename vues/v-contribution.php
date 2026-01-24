@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../controleurs/c-contribution.php");
+include("../controleurs/recetteControleur.php");
 
 if (!isset($_SESSION['id_utilisateur'])) {
     header('Location: v-connexion.php');
@@ -103,7 +103,7 @@ if (!isset($_SESSION['id_utilisateur'])) {
                     </div>
 
                     <div>
-                        <label for="categorie">Catégorie :</label>
+                        <label for="categorie">Catégorie :</label><br>
                         <select name="categorie" id="categorie">
                             <option value="snack">Choisir une difficulté</option>
                             <br>
@@ -124,7 +124,7 @@ if (!isset($_SESSION['id_utilisateur'])) {
                     </div>
 
                     <div>
-                        <label for="niveau">Niveau de difficulté :</label>
+                        <label for="niveau">Niveau de difficulté :</label><br>
                         <select name="niveau" id="niveau">
                             <option value="">Choisire une difficulté</option>
                             <option value="1">Facile</option>
