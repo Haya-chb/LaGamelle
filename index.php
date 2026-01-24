@@ -37,7 +37,7 @@ include_once('controleurs/recetteControleur.php');
         <div class="mobile-only">
             <?php
             if (isset($_SESSION['id_utilisateur'])) {
-                echo '<form action="controleurs/recette.php" method="get">
+                echo '<form action="vues/recette.php" method="get">
                 <label for="recherche" class="sr-only">Recherchez une recette</label>
                 <input type="search" name="recherche" placeholder="Recherchez une recette...">
             </form>';
@@ -57,7 +57,7 @@ include_once('controleurs/recetteControleur.php');
             </ul>
             <?php
             if (isset($_SESSION['id_utilisateur'])) {
-                echo '<form action="controleurs/recette.php" method="get" class="pc-only">
+                echo '<form action="vues/recette.php" method="get" class="pc-only">
                 <label for="recherche" class="sr-only">Recherchez une recette</label>
                 <input type="search" name="recherche" placeholder="Recherchez une recette...">
             </form>';
