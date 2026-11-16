@@ -1,14 +1,6 @@
 @font-face {
-    font-family: 'Kelson Sans';
-    src: url('../polices/KelsonSans-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Kelson Sans';
-    src: url('../polices/KelsonSans-Bold.woff2') format('woff2');
+    font-family: 'Louis George Cafe';
+    src: url('../fonts/LouisGeorgeCafe-Bold.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -16,54 +8,103 @@
 
 @font-face {
     font-family: 'Louis George Cafe';
-    src: url('../polices/LouisGeorgeCafe-Bold.woff2') format('woff2');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Louis George Cafe';
-    src: url('../polices/LouisGeorgeCafe.woff2') format('woff2');
+    src: url('../fonts/LouisGeorgeCafe.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Nobulina';
-    src: url('../polices/NobulinaDemo-Inktrap.woff2') format('woff2');
+    font-family: 'Rantaro';
+    src: url('../fonts/Rantaro.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
 :root {
-    --beige: #FFE8CE;
-    --rouge: #AD0000;
-    --orange: #E63C23;
-    --jaune: #FFBF35;
-    --rose: #ED4296;
-    --vert: #149353;
-    --bleu: #116FD1;
-    --noir: #010101;
+    --creme: #FFF1D9;
+    --brun: #2A1517;
+    --rose: #FFA1C2;
+    --bleu: #47A0FF;
+    --bleu-fonce: #0A58C2;
+    --jaune: #F9E571;
+    --rouge: #AA0003;
+    --blanc-pur: #fff;
+
+    /* --- Typographies --- */
+    --font-titre: 'Rantaro', sans-serif;
+    --font-texte: 'Louis George Cafe', sans-serif;
+
+    /* --- Tailles de texte --- */
+    --fs-xs: 0.85rem;
+    --fs-s: 1rem;
+    --fs-m: 1.2rem;
+    --fs-l: 1.5rem;
+    --fs-xl: 2rem;
+    --fs-h2: 3rem;
+    --fs-h1: 6rem;
+
+    /* --- Espacements --- */
+    --space-xs: 8px;
+    --space-s: 16px;
+    --space-m: 24px;
+    --space-l: 32px;
+    --space-xl: 48px;
+    --space-xxl: 64px;
+
+    /* Marges internes communes à toutes les sections */
+    --section-x: var(--space-xl);
+    --section-y: var(--space-xxl);
+
+    /* --- Largeur maximale du contenu --- */
+    --largeur-max: 1200px;
+
+    /* --- Arrondis --- */
+    --radius-s: 10px;
+    --radius-m: 20px;
+    --radius-l: 30px;
+    --radius-pill: 50px;
+
+    /* --- Bordures et ombres --- */
+    --bordure: 3px solid var(--brun);
+    --ombre-douce: rgba(149, 157, 165, 0.3) 0px 8px 24px;
+    --ombre-dure-s: 4px 4px 0 var(--brun);
+    --ombre-dure-m: 8px 8px 0 var(--brun);
+    --ombre-dure-l: 10px 10px 0 var(--brun);
+
+    /* --- Animation --- */
+    --transition: all 0.3s ease;
+
+    /* --- Superpositions (z-index) --- */
+    --z-overlay: 1000;
+    --z-nav: 1001;
+    --z-burger: 1005;
+    --z-loader: 10000;
 }
 
 html {
-    scrollbar-color: var(--noir) transparent;
+    scrollbar-color: var(--brun) transparent;
     scrollbar-width: thin;
     scroll-behavior: smooth;
 }
 
-* {
+*,
+*::before,
+*::after{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    background-color: var(--beige);
-    font-family: 'Louis George Cafe', sans-serif;
+    background-color: var(--creme);
+    font-family: var(--font-texte);
+}
+
+/* --- Style commun à toutes les sections --- */
+section {
+    padding: var(--section-y) var(--section-x);
 }
 
 .sr-only {
@@ -76,559 +117,4 @@ body {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
-}
-
-/* --- Overlay de chargement --- */
-#loader {
-    position: fixed;
-    inset: 0;
-    background-color: var(--beige);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    overflow: hidden;
-}
-
-.loader-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.illustration-container {
-    width: 200px;
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.loader-img {
-    max-width: 150px;
-    max-height: 150px;
-    object-fit: contain;
-    opacity: 1;
-}
-
-.progress-bar {
-    width: 150px;
-    height: 2px;
-    background: var(--noir);
-    border-radius: 10px;
-}
-
-.progress-fill {
-    width: 0%;
-    height: 100%;
-    background: var(--jaune);
-}
-
-h1,
-h2,
-h3 {
-    font-family: 'Nobulina', sans-serif;
-    font-weight: normal;
-}
-
-a {
-    text-decoration: none;
-    color: var(--noir);
-    transition: all 0.3s ease;
-}
-
-
-.pc-only,
-.compte.pc-only {
-    display: none;
-}
-
-/* mobile-first */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 3px;
-}
-
-nav {
-    position: fixed;
-    z-index: 1001;
-    inset: 0;
-    background-color: var(--jaune);
-
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 30px;
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-nav.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-nav a {
-    color: var(--noir);
-    position: relative;
-    font-family: 'Kelson Sans', sans-serif;
-    font-weight: bold;
-}
-
-nav a:not(.compte a):hover,
-footer a:hover {
-    border-bottom: solid 1px;
-}
-
-input[type="search"] {
-    border: none;
-    border-radius: 30px;
-    background-color: var(--vert);
-    color: var(--noir);
-    padding: 5px 20px;
-    font-size: 1.05rem;
-    font-family: 'Louis George Cafe', sans-serif;
-}
-
-input[type="search"]::placeholder {
-    color: var(--noir);
-}
-
-.navbar,
-.connexion,
-.compte.mobile-only {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 30px;
-    list-style: none;
-}
-
-.compte {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.compte img {
-    width: 30px;
-}
-
-.compte.mobile-only a:last-child,
-.deco {
-    background-color: var(--rouge);
-    padding: 5px 20px;
-    color: #fff;
-    border-radius: 30px;
-}
-
-.compte a:hover {
-    transform: translateY(5px);
-}
-
-.burger {
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    z-index: 1005;
-}
-
-.burger img,
-.logo img {
-    width: 40px;
-}
-
-.logo img {
-    transform: rotate(-0.01turn);
-    cursor: pointer;
-}
-
-/* titre */
-
-h1 {
-    font-size: 6rem;
-}
-
-h2 {
-    font-size: 3rem;
-}
-
-/* recettes et favoris */
-.recettes,
-.favoris {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    justify-items: center;
-    gap: 30px;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.recette {
-    background-color: #fff2f2;
-    border: solid 2px var(--rouge);
-    padding: 20px;
-    width: 260px;
-    height: 350px;
-    border-radius: 10px;
-    background-image:
-        radial-gradient(circle at center, var(--beige) 8px, var(--rouge) 8px, transparent 10px, transparent 10px),
-        linear-gradient(rgba(173,0,0, 0.9) 3px, transparent 3px);
-    background-size:
-        50px 50px,
-        90% 40px;
-    background-repeat:
-        repeat-x,
-        repeat-y;
-    background-position:
-        center top,
-        center top;
-    color: var(--noir);
-    position: relative;
-    box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;
-    transition: all 0.3s ease;
-}
-
-.recette h2 {
-    font-size: 1.5rem;
-    font-family: 'Kelson Sans', sans-serif;
-}
-
-.temps,
-.badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: bold;
-}
-
-.temps {
-    margin-top: 10px;
-    font-size: 1.2rem;
-}
-
-.temps img {
-    background-color: var(--rouge);
-    padding: 1.5px;
-    border-radius: 50%;
-}
-
-.recette .img img {
-    height: 190px;
-    width: 190px;
-    aspect-ratio: 1/1;
-    border-radius: 10px;
-    background-color: var(--jaune);
-    position: relative;
-    left: 50px;
-    bottom: 10px;
-    transform: rotate(0.06turn);
-}
-
-.badge {
-    background-color: var(--jaune);
-    width: fit-content;
-    padding: 3px 10px 3px 3px;
-    border-radius: 20px;
-    color: var(--noir);
-    font-family: 'Kelson Sans', sans-serif;
-    position: absolute;
-    bottom: 40px;
-    left: 120px;
-    transform: rotate(-0.04turn);
-}
-
-.badge img,
-.btn-favoris img,
-.btn-supp img {
-    background-color: var(--rouge);
-    border-radius: 50%;
-    padding: 3px;
-}
-
-.btn-favoris img,
-.btn-supp img {
-    width: 40px;
-    background-color: var(--beige);
-    border: #010101 1px solid;
-}
-
-.btn-favoris,
-.btn-supp {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.rien {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.pin {
-    position: absolute;
-    top: -15px;
-    right: 80px;
-    width: 35px;
-}
-
-
-footer {
-    background-color: var(--rouge);
-    font-family: 'Kelson Sans', sans-serif;
-    font-size: 1.2rem;
-}
-
-.main-footer {
-    position: relative;
-    padding-top: 60px;
-    margin-top: 60px;
-    color: #fff;
-    text-align: center;
-}
-
-/* La vague décorative */
-.footer-wave {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-}
-
-.footer-wave svg {
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 40px;
-}
-
-.footer-wave .shape-fill {
-    fill: var(--beige);
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
-
-.footer-links h3 {
-    margin-bottom: 15px;
-    font-size: 1.5rem;
-    color: #fff;
-    font-family: 'Kelson Sans', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.footer-links ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-links ul li {
-    margin-bottom: 12px;
-}
-
-.footer-links ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-}
-
-.footer-bottom {
-    padding: 25px 20px;
-    margin-top: 40px;
-    border-top: 1.5px solid rgba(0, 0, 0, 0.05);
-    font-size: 0.85rem;
-    opacity: 0.8;
-    text-align: center;
-}
-
-@media (min-width: 768px) {
-    .main-footer {
-        text-align: left;
-        padding-top: 80px;
-    }
-
-    .footer-wave svg {
-        height: 70px;
-    }
-
-    .footer-container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
-
-    .footer-brand {
-        flex: 2;
-    }
-
-    .footer-links {
-        flex: 1;
-    }
-
-    .footer-brand p {
-        margin: 15px 0 0;
-    }
-
-    input[type="search"] {
-        width: 500px;
-    }
-}
-
-@media (min-width: 850px) {
-
-    .mobile-only,
-    .compte .mobile-only {
-        display: none !important;
-    }
-
-    .pc-only {
-        display: flex;
-    }
-
-    header {
-        flex-direction: row;
-        justify-content: start;
-        gap: 10px;
-    }
-
-    .burger {
-        display: none;
-    }
-
-    nav {
-        background: transparent;
-        position: static;
-        font-size: 1rem;
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: none;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-    }
-
-    .navbar,
-    .connexion {
-        flex-direction: row;
-        gap: 15px;
-    }
-
-    nav a {
-        opacity: 1;
-        transform: none;
-        position: relative;
-    }
-
-    nav li {
-        text-align: center;
-    }
-
-    nav a.active {
-        border-bottom: var(--noir) 2px solid;
-    }
-
-    .connexion a {
-        background-color: var(--rose);
-        padding: 5px 15px;
-        border-radius: 20px;
-        transition: all 0.3s ease;
-    }
-
-    .connexion a:nth-child(2) {
-        background-color: var(--orange);
-    }
-
-    .connexion a:hover {
-        transform: translateY(5px);
-    }
-
-    input[type="search"] {
-        font-size: 0.9rem;
-    }
-}
-
-@media (min-width: 900px) {
-
-    .pc-only,
-    .compte.pc-only {
-        display: flex;
-    }
-
-    input[type="search"] {
-        width: 250px;
-    }
-
-    nav {
-        font-size: 1.05rem;
-    }
-}
-
-@media (min-width: 1280px) {
-    input[type="search"] {
-        font-size: 1rem;
-        width: 450px;
-    }
-
-    .compte {
-        gap: 30px;
-        margin-right: 20px;
-    }
-}
-
-@media (min-width: 1400px) {
-
-    .recettes,
-    .favoris {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-        justify-items: center;
-    }
-
-    .recette {
-        width: 340px;
-        height: 450px;
-    }
-
-    .recette h2 {
-        font-size: 2rem;
-        margin-top: 5px;
-    }
-
-    .recette .img img {
-        height: 220px;
-        width: 220px;
-        left: 90px;
-    }
-
-    .badge {
-        left: 180px;
-    }
-
-    .pin {
-        right: 100px;
-        width: 50px;
-        top: -25px;
-    }
 }
