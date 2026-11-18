@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Réécriture des URL
+RewriteRule ^recettes/?$ vues/recettes.php [L]
+RewriteRule ^aliments-dangereux/?$ vues/alimentsdangereuxV.php [L]
+RewriteRule ^profil/?$ vues/profil.php [L]
+RewriteRule ^connexion/?$ vues/connexion.php [L]
+RewriteRule ^inscription/?$ vues/inscription.php [L]
+
+# Fiche d'une recette
+RewriteRule ^recette/([0-9]+)/?$ vues/fiche-recette.php?id=$1 [L,QSA]
